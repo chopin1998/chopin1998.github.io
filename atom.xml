@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://blog.tensor-robotics.com/"/>
   <updated>2020-03-12T02:32:32.521Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://blog.tensor-robotics.com/</id>
   
   <author>
     <name>chopin1998@gmail.com</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2020/03/12/hello-world/"/>
-    <id>http://yoursite.com/2020/03/12/hello-world/</id>
+    <link href="http://blog.tensor-robotics.com/2020/03/12/hello-world/"/>
+    <id>http://blog.tensor-robotics.com/2020/03/12/hello-world/</id>
     <published>2020-03-12T02:32:32.521Z</published>
     <updated>2020-03-12T02:32:32.521Z</updated>
     
