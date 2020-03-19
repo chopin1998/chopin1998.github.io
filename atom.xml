@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>tensor-robotics</title>
+  <title>tensor robotics</title>
   
-  
+  <subtitle>Tensor Robotics</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.tensor-robotics.com/"/>
-  <updated>2020-03-19T05:42:42.401Z</updated>
+  <updated>2020-03-19T08:11:32.454Z</updated>
   <id>http://blog.tensor-robotics.com/</id>
   
   <author>
@@ -20,14 +20,31 @@
     <title>the first blog</title>
     <link href="http://blog.tensor-robotics.com/2020/03/19/the-first-blog/"/>
     <id>http://blog.tensor-robotics.com/2020/03/19/the-first-blog/</id>
-    <published>2020-03-19T05:42:42.000Z</published>
-    <updated>2020-03-19T05:42:42.401Z</updated>
+    <published>2020-03-19T12:00:01.000Z</published>
+    <updated>2020-03-19T08:11:32.454Z</updated>
+    
+    <content type="html"><![CDATA[<p>安定了。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;安定了。&lt;/p&gt;
+&lt;script&gt;
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if (!el.dataset.src) { return
+      
     
     </summary>
     
     
+      <category term="misc" scheme="http://blog.tensor-robotics.com/categories/misc/"/>
+    
+    
+      <category term="misc" scheme="http://blog.tensor-robotics.com/tags/misc/"/>
+    
+      <category term="test" scheme="http://blog.tensor-robotics.com/tags/test/"/>
     
   </entry>
   

@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.tensor-robotics.com/tags/index.html</loc>
+    
+    <lastmod>2020-03-19T08:11:53.721Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.tensor-robotics.com/contact/index.html</loc>
+    
+    <lastmod>2020-03-19T08:11:48.884Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.tensor-robotics.com/categories/index.html</loc>
+    
+    <lastmod>2020-03-19T08:11:45.221Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.tensor-robotics.com/about/index.html</loc>
+    
+    <lastmod>2020-03-19T08:11:40.544Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.tensor-robotics.com/2020/03/19/the-first-blog/</loc>
     
-    <lastmod>2020-03-19T05:42:42.401Z</lastmod>
+    <lastmod>2020-03-19T08:11:32.454Z</lastmod>
     
   </url>
   
