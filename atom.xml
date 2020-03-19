@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.tensor-robotics.com/"/>
-  <updated>2020-03-12T02:32:32.521Z</updated>
+  <updated>2020-03-19T05:09:10.004Z</updated>
   <id>http://blog.tensor-robotics.com/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>this is my new blog</title>
+    <link href="http://blog.tensor-robotics.com/2020/03/19/this-is-my-new-blog/"/>
+    <id>http://blog.tensor-robotics.com/2020/03/19/this-is-my-new-blog/</id>
+    <published>2020-03-19T05:09:09.000Z</published>
+    <updated>2020-03-19T05:09:10.004Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
