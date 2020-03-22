@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于ToF 番三, welcome">
+    <meta name="keywords" content="关于ToF 番四, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于ToF 番三 | welcome</title>
+    <title>关于ToF 番四 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于ToF 番三</h1>
+                    <h1 class="description center-align post-title">关于ToF 番四</h1>
                 </div>
             </div>
         </div>
@@ -382,7 +382,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    587
                 </div>
                 
 
@@ -395,35 +395,46 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>由于各种事物影响， ToF项目被暂缓了￼， 趁着公司再次搬家的这段时间，重新捡起来。</p>
-<iframe frameborder="0" src="https://v.qq.com/txp/iframe/player.html?vid=o1357dpu781" allowfullscreen="true"></iframe>
-
-<p>先是把代码又理了一遍，抽空学习了一下numpy， 搞一点儿opencv，tensorflow和pytorch，把第二编辑器换成了VSCode（顺便看了一下markdown和简单的Latex语法），换用Python 3.7，还有vrep， openscad，steamVR HDK什么的……咦，好像扯远了……然后继续攻目前的障碍。这把终于弄通了￼ 其实很简单的嘛。。。。</p>
+                <p>由于各种原因，和本番相关的工作被严重耽误……以至于错过大好机会</p>
+<p><strong>痛定思痛 痛何如哉</strong></p>
 <hr>
-<p>非英语母语国家的厂家写的英文文档遇上了半吊子英语水平的我的结果是世界上最远的距离变成了本来往后退一步就能到达的地方却要拼命往前跑￼</p>
-<p>是的，我看文档时就和你读上句话的感受是一样的￼</p>
-<p><img src="blurred.webp" alt=""><br> 这是我用mardkdown做的笔记， 数学公式真的好漂亮。有多漂亮呢？为了让人看不清楚，我特地使用了高斯模糊处理了一下</p>
+<p>本番行文后，将在另外一种形式上重启</p>
 <hr>
-<p>前面两番已经交代了深度视觉特别是ToF技术的概况，今天来谈一谈ToF具体实现上的大坑（之一，我预感我还会面临最后一个坑）。</p>
-<p>ToF是一把用来测量距离的尺子，造一把尺子的关注点是精度，而造一批尺子关注的是制造精度的分布。</p>
-<hr>
-<p>一把尺子造出来， 如何知道它是准的？有多么不准？不准了怎么办？￼</p>
-<p>这就涉及到标定 &amp; 补偿</p>
+<p>在 【关于ToF 番二】 中介绍的ToF系统，使用连续调制光照射外界，并通过多帧数据，计算得出反射光的相位偏移角度， 从而间接计算出光线行走距离。</p>
+<p>但，这不是唯一的方式，本文介绍另外一种ToF相机的操作原理：脉冲式ToF</p>
+<p>让我们来构建一个和连续调制方式ToF的有点儿相似但不完全相同的像素结构</p>
+<p><img src="pulse_tof_gate.webp" alt=""></p>
 <ul>
-<li>标定，是指出厂前，使用另外一把更准的尺子教新尺子重新做人，标定后会得到一组标定数据</li>
-<li>补偿，是在运行时，利用出厂前的标定数据，实时地对当前原始数据进行算法处理，得到最终的结果</li>
+<li>首先操作时， chg会打开，对两侧两颗电容充电</li>
+<li>然后S0(或S1)进行开关操作，开关时机由调制模块控制</li>
+<li>像素点开始曝光，并将光信号转变成电荷</li>
+<li>当S0（或S1）闭合时，积分电荷就会和对应电容中和</li>
+<li>最后读取电容中的剩余电压</li>
 </ul>
-<p>那么为什么从传感器直接得到的原始数据不能拿来用呢？我也想呀！可我们面对的是裸片，是真实的物理世界，搞不好还有量子效应。</p>
-<p>因为NDA的缘故， 我不能说得太具体￼ 但参考各家公开的文档，基本情况大差不差。</p>
-<p>造成ToF系统产生误差的重要原因是“热”  中医分内热和外热两种，电烙铁也是如此… 热导致电信号（电子、空穴移动）在硅基芯片内的传导时间发生变化，而ToF高度依赖时间测量的精度。 光速大约 30厘米/纳秒， 若要达到厘米级的测距精度，对时间的测量精度不能低于30皮秒级别￼</p>
-<p>然而环境温度的变化， 芯片工作时的温升， 都会导致精度的大规模失准， 特别是像素和像素之间的温差和其它工艺因素的差别会更加劣化这种情况￼</p>
-<p>不同厂家针对器件的特性，都有各自的办法来解决这个问题。有些厂家的的设计比较独到，为批量化自动生产打开了便利之门。</p>
-<p>另外一个造成误差的主要因素是环境光， 虽说相位检测的ToF系统天生具有差分读取结构，但是过强的环境光或者环境光扰动会使得调制信号的信噪比降低。 </p>
-<p>对于这种情况，补偿算法是一方面，加强调制光照明强度，减少曝光时间，以及光学滤镜都是可以尝试的手段。</p>
-<p>当然还有一些其它的因素，有些是特定器件相关的， 有些影响相对较小，这里不再一一熬述￼</p>
-<p>听上去有点儿复杂，实现起来细节也确实很多，但 是可行的。</p>
-<p>我想这就是个机会，将来总会有厂家把这些算法ASIC化，或者有人给出更简单的打包方案，不过目前，我将会来完成这些￼</p>
-<p>毕竟朕是在暴风雨里单日骑行超过400km的人， 老子的目标在很远的地方。</p>
+<p>然后有下图</p>
+<p><img src="op.webp" alt=""></p>
+<ul>
+<li>第一行 代表受控的LED输出，正是因为这个，才被称之为脉冲式</li>
+<li>第二行 代表实际的光线反射回波</li>
+</ul>
+<hr>
+<p>LED发射的每个脉冲长度为 t， 而S0和S1的采样时长也为t，但是S0于LED同时开启，S1在S0关闭后立即打开。因此得到第三行和第四行</p>
+<ul>
+<li>第三行 是S0的积分</li>
+<li>第四行 是S1的积分</li>
+</ul>
+<p>得到公式</p>
+<p> d = 1/2 * C * t * (S0) / (S0 + S1)</p>
+<p>可以看到，和连续调制ToF相比</p>
+<ul>
+<li>脉冲ToF的结算会更容易。当然二者基本还是在一个水平线上，一个是加减乘除，一个带三角函数</li>
+<li>连续调制ToF的像素点因为是差分结构，对环境光噪音的抑制有天生的优势</li>
+<li>听说脉冲式ToF的精度会略高，当然还要看各自厂家的具体优化手段</li>
+<li>连续调制ToF在计算中，可以得到一些附结论（比如误差估计）</li>
+</ul>
+<hr>
+<p>最后附上一种连续调制式ToF的像素结构图</p>
+<p><img src="tune.jpeg" alt=""></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -467,7 +478,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/2020/03/22/tof-3/">http://blog.tensor-robotics.com/2020/03/22/tof-3/</a>
+                    <a href="http://blog.tensor-robotics.com/2020/03/22/tof/tof-4/">http://blog.tensor-robotics.com/2020/03/22/tof/tof-4/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -681,7 +692,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998@gmail.com",
-        id: '2020-03-22T16-03-06',
+        id: '2020-03-22T16-51-06',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -702,11 +713,12 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/03/22/tof-4/">
+                <a href="/2020/03/22/tof/tof-4/">
                     <div class="card-image">
                         
                         
@@ -727,9 +739,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -742,6 +754,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -764,21 +777,22 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/22/tof-2/">
+                <a href="/2020/03/22/tof/tof-3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="关于ToF 番二">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="关于ToF 番三">
                         
-                        <span class="card-title">关于ToF 番二</span>
+                        <span class="card-title">关于ToF 番三</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            书接前文。【关于ToF 番一】
-上回说到ToF的基本概念， 即LED/LD对着场景发射光线，如果场景中有物体反射光线回来，那么我们测定这道光线从发射到被接收的时间间隔， 就能计算出距该离物体的长度为 1/2 * c * t， c是光速。
-举
+                            由于各种事物影响， ToF项目被暂缓了￼， 趁着公司再次搬家的这段时间，重新捡起来。
+
+
+先是把代码又理了一遍，抽空学习了一下numpy， 搞一点儿opencv，tensorflow和pytorch，把第二编辑器换成了VSCode（顺便看了
                         
                     </div>
                     <div class="publish-info">
