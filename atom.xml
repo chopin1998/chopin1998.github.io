@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.tensor-robotics.com/"/>
-  <updated>2020-03-22T03:59:27.926Z</updated>
+  <updated>2020-03-22T07:51:59.087Z</updated>
   <id>http://blog.tensor-robotics.com/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于ToF 番二</title>
+    <link href="http://blog.tensor-robotics.com/2020/03/22/tof-2/"/>
+    <id>http://blog.tensor-robotics.com/2020/03/22/tof-2/</id>
+    <published>2020-03-22T07:19:30.000Z</published>
+    <updated>2020-03-22T07:51:59.087Z</updated>
+    
+    <content type="html"><![CDATA[<p>书接前文。【关于ToF 番一】</p><p>上回说到ToF的基本概念， 即LED/LD对着场景发射光线，如果场景中有物体反射光线回来，那么我们测定这道光线从发射到被接收的时间间隔， 就能计算出距该离物体的长度为 1/2 * c * t， c是光速。</p><p>举个例子， 如果光线的旅行时间测得为 5ns， 取光速为30万千米每秒， 那么光线总的行走距离就是 300000000 * 0.000000005 = 1.5米， 因为是一来一回再除以二， 就知道有个物体距离接收器0.75米（光源和接收器在同一位置）</p><p><img src="measure.png" alt=""></p><p>haha</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;书接前文。【关于ToF 番一】&lt;/p&gt;
+&lt;p&gt;上回说到ToF的基本概念， 即LED/LD对着场景发射光线，如果场景中有物体反射光线回来，那么我们测定这道光线从发射到被接收的时间间隔， 就能计算出距该离物体的长度为 1/2 * c * t， c是光速。&lt;/p&gt;
+&lt;p&gt;举个例子
+      
+    
+    </summary>
+    
+    
+      <category term="ToF" scheme="http://blog.tensor-robotics.com/categories/ToF/"/>
+    
+    
+      <category term="生产和分享知识" scheme="http://blog.tensor-robotics.com/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="ToF" scheme="http://blog.tensor-robotics.com/tags/ToF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于ToF 番一</title>
+    <link href="http://blog.tensor-robotics.com/2020/03/22/tof-1/"/>
+    <id>http://blog.tensor-robotics.com/2020/03/22/tof-1/</id>
+    <published>2020-03-22T06:32:01.000Z</published>
+    <updated>2020-03-22T07:18:18.867Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="曾经，通过CCD-CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。"><a href="#曾经，通过CCD-CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。" class="headerlink" title="曾经，通过CCD/CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。"></a>曾经，通过CCD/CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。</h2><h2 id="现在，日新月异的传感器技术以及强大的移动计算能力，让计算机获得深度感知能力的可能性也越来越多。"><a href="#现在，日新月异的传感器技术以及强大的移动计算能力，让计算机获得深度感知能力的可能性也越来越多。" class="headerlink" title="现在，日新月异的传感器技术以及强大的移动计算能力，让计算机获得深度感知能力的可能性也越来越多。"></a>现在，日新月异的传感器技术以及强大的移动计算能力，让计算机获得深度感知能力的可能性也越来越多。</h2><h2 id="当获得一帧3D深度图景时，会收到一幅2D深度阵列，-其中的每个”pixel”都代表了该点对应物体的实际距离。闭上眼睛想象一下，那是一堆密密麻麻的点云。机器人将更容易的进行自主定位，计算机能更轻易的识别目标，也许新的测量工具，新的交互方式也会应运而生。"><a href="#当获得一帧3D深度图景时，会收到一幅2D深度阵列，-其中的每个”pixel”都代表了该点对应物体的实际距离。闭上眼睛想象一下，那是一堆密密麻麻的点云。机器人将更容易的进行自主定位，计算机能更轻易的识别目标，也许新的测量工具，新的交互方式也会应运而生。" class="headerlink" title="当获得一帧3D深度图景时，会收到一幅2D深度阵列， 其中的每个”pixel”都代表了该点对应物体的实际距离。闭上眼睛想象一下，那是一堆密密麻麻的点云。机器人将更容易的进行自主定位，计算机能更轻易的识别目标，也许新的测量工具，新的交互方式也会应运而生。"></a>当获得一帧3D深度图景时，会收到一幅2D深度阵列， 其中的每个”pixel”都代表了该点对应物体的实际距离。闭上眼睛想象一下，那是一堆密密麻麻的点云。机器人将更容易的进行自主定位，计算机能更轻易的识别目标，也许新的测量工具，新的交互方式也会应运而生。</h2><h2 id="双眼（和大脑）是人类获得深度感知最自然的渠道。通过长在不同地方的两只眼睛￼，视网膜上被投影了两帧“略有差异”的倒影，大脑根据几十年来的习得，分析出这两个影像中相同的物体，以及它们距离我们自身的大致距离。"><a href="#双眼（和大脑）是人类获得深度感知最自然的渠道。通过长在不同地方的两只眼睛￼，视网膜上被投影了两帧“略有差异”的倒影，大脑根据几十年来的习得，分析出这两个影像中相同的物体，以及它们距离我们自身的大致距离。" class="headerlink" title="双眼（和大脑）是人类获得深度感知最自然的渠道。通过长在不同地方的两只眼睛￼，视网膜上被投影了两帧“略有差异”的倒影，大脑根据几十年来的习得，分析出这两个影像中相同的物体，以及它们距离我们自身的大致距离。"></a>双眼（和大脑）是人类获得深度感知最自然的渠道。通过长在不同地方的两只眼睛￼，视网膜上被投影了两帧“略有差异”的倒影，大脑根据几十年来的习得，分析出这两个影像中相同的物体，以及它们距离我们自身的大致距离。</h2><h2 id="这个原理也是计算机目前深度视觉原理的三大流派之一：-双目视觉。-另外两个技术流，一个基于ToF测距技术，-另外一个基于Structured-Light技术。当然这是主要的分类，具体场景，具体产品，可能会相互融合，或者辅以其它技术、算法。"><a href="#这个原理也是计算机目前深度视觉原理的三大流派之一：-双目视觉。-另外两个技术流，一个基于ToF测距技术，-另外一个基于Structured-Light技术。当然这是主要的分类，具体场景，具体产品，可能会相互融合，或者辅以其它技术、算法。" class="headerlink" title="这个原理也是计算机目前深度视觉原理的三大流派之一： 双目视觉。 另外两个技术流，一个基于ToF测距技术， 另外一个基于Structured Light技术。当然这是主要的分类，具体场景，具体产品，可能会相互融合，或者辅以其它技术、算法。"></a>这个原理也是计算机目前深度视觉原理的三大流派之一： 双目视觉。 另外两个技术流，一个基于ToF测距技术， 另外一个基于Structured Light技术。当然这是主要的分类，具体场景，具体产品，可能会相互融合，或者辅以其它技术、算法。</h2><h2 id="此番将大致比较一下这三个技术流的主要特征。-下一更将重点介绍本屌目前正在玩儿的ToF方案原理。"><a href="#此番将大致比较一下这三个技术流的主要特征。-下一更将重点介绍本屌目前正在玩儿的ToF方案原理。" class="headerlink" title="此番将大致比较一下这三个技术流的主要特征。 下一更将重点介绍本屌目前正在玩儿的ToF方案原理。"></a>此番将大致比较一下这三个技术流的主要特征。 下一更将重点介绍本屌目前正在玩儿的ToF方案原理。</h2><hr><h3 id="就双目视觉来说，-对前端硬件特殊性的要求很低，两个普通摄像头即可（或许有同步采样要求）。但要从两张平面图像恢复出原本的深度信息，重建工作对于算力、算法的要求可是相当相当的高。此外对于弱光环境、光线扰动、无特征的面（一堵白墙）都无法很好处理。其速度响应、帧率、可靠性都会多少有问题。至于它的优点嘛。。除了刚刚说的硬件比较便宜外，还有一个就是分辨率理论上可以做得比较高（受限于算力）。"><a href="#就双目视觉来说，-对前端硬件特殊性的要求很低，两个普通摄像头即可（或许有同步采样要求）。但要从两张平面图像恢复出原本的深度信息，重建工作对于算力、算法的要求可是相当相当的高。此外对于弱光环境、光线扰动、无特征的面（一堵白墙）都无法很好处理。其速度响应、帧率、可靠性都会多少有问题。至于它的优点嘛。。除了刚刚说的硬件比较便宜外，还有一个就是分辨率理论上可以做得比较高（受限于算力）。" class="headerlink" title="就双目视觉来说， 对前端硬件特殊性的要求很低，两个普通摄像头即可（或许有同步采样要求）。但要从两张平面图像恢复出原本的深度信息，重建工作对于算力、算法的要求可是相当相当的高。此外对于弱光环境、光线扰动、无特征的面（一堵白墙）都无法很好处理。其速度响应、帧率、可靠性都会多少有问题。至于它的优点嘛。。除了刚刚说的硬件比较便宜外，还有一个就是分辨率理论上可以做得比较高（受限于算力）。"></a>就双目视觉来说， 对前端硬件特殊性的要求很低，两个普通摄像头即可（或许有同步采样要求）。但要从两张平面图像恢复出原本的深度信息，重建工作对于算力、算法的要求可是相当相当的高。此外对于弱光环境、光线扰动、无特征的面（一堵白墙）都无法很好处理。其速度响应、帧率、可靠性都会多少有问题。至于它的优点嘛。。除了刚刚说的硬件比较便宜外，还有一个就是分辨率理论上可以做得比较高（受限于算力）。</h3><h3 id="而Structured-Light呢，翻译过来是“结构光”。-是一种很好玩儿的技术。-最新的Apple-iPhone-X应该就是这个技术的一个变种。"><a href="#而Structured-Light呢，翻译过来是“结构光”。-是一种很好玩儿的技术。-最新的Apple-iPhone-X应该就是这个技术的一个变种。" class="headerlink" title="而Structured Light呢，翻译过来是“结构光”。 是一种很好玩儿的技术。 最新的Apple iPhone X应该就是这个技术的一个变种。"></a>而Structured Light呢，翻译过来是“结构光”。 是一种很好玩儿的技术。 最新的Apple iPhone X应该就是这个技术的一个变种。</h3><h3 id="基于结构光技术的深度系统，有一个主动（红外）光源，像外界投射设计过的点阵，或者干涉条纹或者别的什么pattern。这些pattern光遇到物体反射回摄像头。后端算法会根据这些点在摄像头里的位置推出物体实际的距离。"><a href="#基于结构光技术的深度系统，有一个主动（红外）光源，像外界投射设计过的点阵，或者干涉条纹或者别的什么pattern。这些pattern光遇到物体反射回摄像头。后端算法会根据这些点在摄像头里的位置推出物体实际的距离。" class="headerlink" title="基于结构光技术的深度系统，有一个主动（红外）光源，像外界投射设计过的点阵，或者干涉条纹或者别的什么pattern。这些pattern光遇到物体反射回摄像头。后端算法会根据这些点在摄像头里的位置推出物体实际的距离。"></a>基于结构光技术的深度系统，有一个主动（红外）光源，像外界投射设计过的点阵，或者干涉条纹或者别的什么pattern。这些pattern光遇到物体反射回摄像头。后端算法会根据这些点在摄像头里的位置推出物体实际的距离。</h3><h3 id="结构光技术对算法、算力的要求比起双面视觉来说下降很多。因为是主动投射，对弱光环境下的效果显著提升。但因为需要投影pattern，对超强光下的应用反而是受限的。此外结构光技术的深度系统，只能测定极短-中短距离的物体，搞不远。。。分辨精度在mm-cm级别。"><a href="#结构光技术对算法、算力的要求比起双面视觉来说下降很多。因为是主动投射，对弱光环境下的效果显著提升。但因为需要投影pattern，对超强光下的应用反而是受限的。此外结构光技术的深度系统，只能测定极短-中短距离的物体，搞不远。。。分辨精度在mm-cm级别。" class="headerlink" title="结构光技术对算法、算力的要求比起双面视觉来说下降很多。因为是主动投射，对弱光环境下的效果显著提升。但因为需要投影pattern，对超强光下的应用反而是受限的。此外结构光技术的深度系统，只能测定极短-中短距离的物体，搞不远。。。分辨精度在mm-cm级别。"></a>结构光技术对算法、算力的要求比起双面视觉来说下降很多。因为是主动投射，对弱光环境下的效果显著提升。但因为需要投影pattern，对超强光下的应用反而是受限的。此外结构光技术的深度系统，只能测定极短-中短距离的物体，搞不远。。。分辨精度在mm-cm级别。</h3><h3 id="intel的realsense和老款m-Kinect是代表产品。"><a href="#intel的realsense和老款m-Kinect是代表产品。" class="headerlink" title="intel的realsense和老款m$ Kinect是代表产品。"></a>intel的realsense和老款m$ Kinect是代表产品。</h3><h3 id="传统的固定pattern投影技术，深度分辨率也受到pattern发生器的限制。"><a href="#传统的固定pattern投影技术，深度分辨率也受到pattern发生器的限制。" class="headerlink" title="传统的固定pattern投影技术，深度分辨率也受到pattern发生器的限制。"></a>传统的固定pattern投影技术，深度分辨率也受到pattern发生器的限制。</h3><h3 id="苹果那个就比较牛逼，传说pattern是可变的，分辨精度在极短距离内可以达到惊人的um级别，分辨率在适当的范围内也相对喜人。"><a href="#苹果那个就比较牛逼，传说pattern是可变的，分辨精度在极短距离内可以达到惊人的um级别，分辨率在适当的范围内也相对喜人。" class="headerlink" title="苹果那个就比较牛逼，传说pattern是可变的，分辨精度在极短距离内可以达到惊人的um级别，分辨率在适当的范围内也相对喜人。"></a>苹果那个就比较牛逼，传说pattern是可变的，分辨精度在极短距离内可以达到惊人的um级别，分辨率在适当的范围内也相对喜人。</h3><h3 id="ToF的全称是”Time-of-Flight”。本意是通过测量光线的折返时间来算出距离。我们都知道-距离-速度-×-时间。光速爱因斯坦告诉我们不变了，现在只要测定光线从物体反射回来的时间就能很容易算出距离来了。听上去是不是很酷！要测定一秒绕地球七圈的光，行走很短距离的时间？具体原理和操作，下一弹说￼。"><a href="#ToF的全称是”Time-of-Flight”。本意是通过测量光线的折返时间来算出距离。我们都知道-距离-速度-×-时间。光速爱因斯坦告诉我们不变了，现在只要测定光线从物体反射回来的时间就能很容易算出距离来了。听上去是不是很酷！要测定一秒绕地球七圈的光，行走很短距离的时间？具体原理和操作，下一弹说￼。" class="headerlink" title="ToF的全称是”Time of Flight”。本意是通过测量光线的折返时间来算出距离。我们都知道 距离 = 速度 × 时间。光速爱因斯坦告诉我们不变了，现在只要测定光线从物体反射回来的时间就能很容易算出距离来了。听上去是不是很酷！要测定一秒绕地球七圈的光，行走很短距离的时间？具体原理和操作，下一弹说￼。"></a>ToF的全称是”Time of Flight”。本意是通过测量光线的折返时间来算出距离。我们都知道 距离 = 速度 × 时间。光速爱因斯坦告诉我们不变了，现在只要测定光线从物体反射回来的时间就能很容易算出距离来了。听上去是不是很酷！要测定一秒绕地球七圈的光，行走很短距离的时间？具体原理和操作，下一弹说￼。</h3><h3 id="和结构光一样，ToF同样需要主动发射光线。当然不是“结构”的，它只是亮和暗，视界内全面覆盖。所以功耗会比结构光的大一丢丢，特别是远距离的时候，喔，对了反正结构光也搞不远…"><a href="#和结构光一样，ToF同样需要主动发射光线。当然不是“结构”的，它只是亮和暗，视界内全面覆盖。所以功耗会比结构光的大一丢丢，特别是远距离的时候，喔，对了反正结构光也搞不远…" class="headerlink" title="和结构光一样，ToF同样需要主动发射光线。当然不是“结构”的，它只是亮和暗，视界内全面覆盖。所以功耗会比结构光的大一丢丢，特别是远距离的时候，喔，对了反正结构光也搞不远…"></a>和结构光一样，ToF同样需要主动发射光线。当然不是“结构”的，它只是亮和暗，视界内全面覆盖。所以功耗会比结构光的大一丢丢，特别是远距离的时候，喔，对了反正结构光也搞不远…</h3><h3 id="新款m-Kinect是这个架构的代表。"><a href="#新款m-Kinect是这个架构的代表。" class="headerlink" title="新款m$ Kinect是这个架构的代表。"></a>新款m$ Kinect是这个架构的代表。</h3><h3 id="ToF技术架构的优势之一就是计算相对最简单，几乎是传感器直接测量。帧率高并因此响应极快。抗外界光线干扰能力很强。长、短距离皆可应用。分辨精度在mm～cm级别之间。"><a href="#ToF技术架构的优势之一就是计算相对最简单，几乎是传感器直接测量。帧率高并因此响应极快。抗外界光线干扰能力很强。长、短距离皆可应用。分辨精度在mm～cm级别之间。" class="headerlink" title="ToF技术架构的优势之一就是计算相对最简单，几乎是传感器直接测量。帧率高并因此响应极快。抗外界光线干扰能力很强。长、短距离皆可应用。分辨精度在mm～cm级别之间。"></a>ToF技术架构的优势之一就是计算相对最简单，几乎是传感器直接测量。帧率高并因此响应极快。抗外界光线干扰能力很强。长、短距离皆可应用。分辨精度在mm～cm级别之间。</h3><h3 id="缺陷除了刚刚提到的功耗外，分辨率是最大硬伤。目前-320x240算旗舰，640x480等更高规格器件或许在路线图上"><a href="#缺陷除了刚刚提到的功耗外，分辨率是最大硬伤。目前-320x240算旗舰，640x480等更高规格器件或许在路线图上" class="headerlink" title="缺陷除了刚刚提到的功耗外，分辨率是最大硬伤。目前~320x240算旗舰，640x480等更高规格器件或许在路线图上"></a>缺陷除了刚刚提到的功耗外，分辨率是最大硬伤。目前~320x240算旗舰，640x480等更高规格器件或许在路线图上</h3><h3 id="未来的道路在哪里？谁知道呢。。。走着瞧吧。。。"><a href="#未来的道路在哪里？谁知道呢。。。走着瞧吧。。。" class="headerlink" title="未来的道路在哪里？谁知道呢。。。走着瞧吧。。。"></a>未来的道路在哪里？谁知道呢。。。走着瞧吧。。。</h3><h3 id="客户需求-成本控制-正确的技术路线"><a href="#客户需求-成本控制-正确的技术路线" class="headerlink" title="客户需求 + 成本控制 + 正确的技术路线"></a>客户需求 + 成本控制 + 正确的技术路线</h3><h3 id="听说把握好这三点，就能实现财务自由￼￼￼￼"><a href="#听说把握好这三点，就能实现财务自由￼￼￼￼" class="headerlink" title="听说把握好这三点，就能实现财务自由￼￼￼￼"></a>听说把握好这三点，就能实现财务自由￼￼￼￼</h3><h3 id="而我呢，目前能抓住一个半就好￼"><a href="#而我呢，目前能抓住一个半就好￼" class="headerlink" title="而我呢，目前能抓住一个半就好￼"></a>而我呢，目前能抓住一个半就好￼</h3><h3 id="to-be-continued"><a href="#to-be-continued" class="headerlink" title="to be continued"></a>to be continued</h3><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;曾经，通过CCD-CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。&quot;&gt;&lt;a href=&quot;#曾经，通过CCD-CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。&quot; class=&quot;headerlink&quot; title=&quot;曾经，通过C
+      
+    
+    </summary>
+    
+    
+      <category term="ToF" scheme="http://blog.tensor-robotics.com/categories/ToF/"/>
+    
+    
+      <category term="生产和分享知识" scheme="http://blog.tensor-robotics.com/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="ToF" scheme="http://blog.tensor-robotics.com/tags/ToF/"/>
+    
+  </entry>
   
   <entry>
     <title>Python ctypes的使用实例</title>
@@ -56,19 +114,19 @@
     <link href="http://blog.tensor-robotics.com/2020/03/19/the-first-blog/"/>
     <id>http://blog.tensor-robotics.com/2020/03/19/the-first-blog/</id>
     <published>2020-03-19T12:00:01.000Z</published>
-    <updated>2020-03-19T08:11:32.454Z</updated>
+    <updated>2020-03-22T04:01:49.488Z</updated>
     
-    <content type="html"><![CDATA[<p>安定了。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    <content type="html"><![CDATA[<p>安定了。<br>以后在考虑建个电报channel。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;安定了。&lt;/p&gt;
+        &lt;p&gt;安定了。&lt;br&gt;以后在考虑建个电报channel。&lt;/p&gt;
 &lt;script&gt;
         document.querySelectorAll(&#39;.github-emoji&#39;)
           .forEach(el =&gt; {
-            if (!el.dataset.src) { return
+            if (!el.
       
     
     </summary>
