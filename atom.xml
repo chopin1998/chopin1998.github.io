@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>tensor robotics</title>
+  <title>welcome</title>
   
   <subtitle>Tensor Robotics</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.tensor-robotics.com/"/>
-  <updated>2020-03-19T08:11:32.454Z</updated>
+  <updated>2020-03-22T03:59:27.926Z</updated>
   <id>http://blog.tensor-robotics.com/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python ctypes的使用实例</title>
+    <link href="http://blog.tensor-robotics.com/2020/03/22/python-ctypes-examples/"/>
+    <id>http://blog.tensor-robotics.com/2020/03/22/python-ctypes-examples/</id>
+    <published>2020-03-22T03:17:56.000Z</published>
+    <updated>2020-03-22T03:59:27.926Z</updated>
+    
+    <content type="html"><![CDATA[<p>Python中可以使用ctypes模块方便的调用C代码写的库， 而无须对C代码有任何多余的要求。</p><p>此仅列一例，权做记录。</p><hr><p><img src="ls.png" alt=""></p><p>首先有两个文件， C和对应的头文件。</p><p>在people.c中， 有三个非常简单的函数。 供日后调用。<br>而在people.h中， 是对应的函数声明， 在此不表。</p><p><img src="source.png" alt=""></p><hr><p>接下来的一步， 将这个C代码编译成库， 使用如下的命令<br><img src="compile.png" alt=""></p><p>这将生成一个叫 libpeople.so的库， 和平常编译库的方式完全一样。</p><hr><p>最后， 激动人心的时刻—-直接在python中调用这个C库。<br><img src="call.png" alt=""></p><p>进入ipython后， 首当其冲import ctypes， 然后用cdll里的LoadLibrary导入刚刚生成的库。</p><p>因为make_people使用了自定义的struct和指针， 所以需要现在Python里先建立对于的数据结构。</p><p>之后就能随心所欲的调用c库里的函数了。</p><hr><p>一些说明。<br>库导入后本身没有动态性， 也就是说在ipython里， 输入完mylib.之后，按tab键是不能自动补全所有的function的，但是手工输入一次之后， 还是能看到已经有的东西。</p><p>因为Python的脚本性， 如果C库没有做好类型检查，特别是指针相关的，而发生致命错误的，在Python动态运行时， Python解析器进程会崩溃。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Python中可以使用ctypes模块方便的调用C代码写的库， 而无须对C代码有任何多余的要求。&lt;/p&gt;
+&lt;p&gt;此仅列一例，权做记录。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;img src=&quot;ls.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;首先有两个文件， C和对应的头文件。&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="CS" scheme="http://blog.tensor-robotics.com/categories/CS/"/>
+    
+    
+      <category term="生产和分享知识" scheme="http://blog.tensor-robotics.com/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="Python" scheme="http://blog.tensor-robotics.com/tags/Python/"/>
+    
+      <category term="ctypes" scheme="http://blog.tensor-robotics.com/tags/ctypes/"/>
+    
+  </entry>
   
   <entry>
     <title>the first blog</title>

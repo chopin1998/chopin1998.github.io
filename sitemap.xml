@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.tensor-robotics.com/2020/03/22/python-ctypes-examples/</loc>
+    
+    <lastmod>2020-03-22T03:59:27.926Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.tensor-robotics.com/tags/index.html</loc>
     
     <lastmod>2020-03-19T08:11:53.721Z</lastmod>
