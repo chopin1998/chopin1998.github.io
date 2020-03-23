@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>DIY 示波器电流探头 | 电机系列 第一篇</title>
+      <link href="/2020/03/23/foc/foc-1/"/>
+      <url>/2020/03/23/foc/foc-1/</url>
+      
+        <content type="html"><![CDATA[<p>最近项目需要用到电流探头， 某宝一搜，心凉半截。国产靠谱品牌，最便宜的都要￥3、4000。性能略强一些的， 都得成倍成倍的往上翻。一年可能也就用那么十次八次，也不太好意思申请购买 卍</p><p><img src="strobe.jpg" alt=""></p><p>正巧， 前段时间有收到 电子发烧友 送测的 MAX40056 EVKIT，脑袋一拍，计上心头。</p><p><img src="max40056.jpg" alt=""></p><hr><p>美信的MAX40056是一颗 双向电流采样放大器。共模输入上限达到接近70伏，并且内建反向过冲电压防护。提供50V/V, 20V/V, 10V/V三种增益倍率的封装。</p><p>比起一般的差分放大器，这颗芯片采用针对性的技术，可以抑制PWM信号带来的噪声干扰。</p><p>MAX40056也集成了+1.5v的精密基准源，配合+3.3v单电源使用非常简单。</p><p><img src="max40056_block.jpg" alt=""></p><hr><p>根据内部框图， 可以看到还具有快速过流保护功能。</p><p>因此这颗芯片非常适合高阶电机驱动的电流采样方案。</p><p>一般电流采样方案使用低位电阻，好处是便宜，坏处是运放同样靠近地，噪声会比较大</p><p>稍微高级一点儿， 使用高位电阻配合高共模放大器，略贵一点儿的价格带来更干净的信号，同时有一个额外的好处是可以检测到负载的对地短路事件。</p><p>但是简单的电阻采样无论高低位都一个弊端， 在桥式结构的电路中电流采样都会存在窗口期， 需要精确配合pwm。</p><p>而使用更高级的 相电流采样 方案，则完全没有这个问题，可以在任何时段内采集电流。除了更贵一丢丢外，全是优点，没有任何缺点。</p><p>MAX40056 就可以这样用。</p><p>300kHz(-3dB)的 带宽， 刚好也和最低档次的CT探头一样规格。</p><hr><p>////<br>话不多说，直接开搞。<br>////</p><p>内部 +1.5v 电压基准。</p><p><img src="ref_voltage.jpg" alt=""></p><p>原板的采样电阻为 R050， 再加上 MAX40056F的增益是 50V/V， 所以默认配置只能采集 +/- 0.7A的电流， 果断拆了……<br>大厂原版开发板，就是严谨。教科书级的开尔文布线。</p><p><img src="layout.jpg" alt=""></p><p>换上小十倍的电阻， 采样量程扩大10倍。当然精度也随之下降。</p><p><img src="resistance.jpg" alt=""></p><p>完整的采样测试电路</p><p>便利性和成品CT探头肯定要差， 精度应该不落太多。</p><p>差着100+倍的成本 (=@__@=)</p><p><img src="circuit.jpg" alt=""></p><p>四通道示波器终于派上大用场。</p><p>要用的时候，它就在那儿，的感觉真好。<br>foc扭矩控制，单相电流终于有点儿正弦波的样子了￼￼！<br>老子等这天好久好久了￼<br>工具在手，天下我有！</p><p><img src="foc-1/scope.jpg" alt=""></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> FoC </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 生产和分享知识 </tag>
+            
+            <tag> FoC </tag>
+            
+            <tag> 电机驱动 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于ToF 番四</title>
       <link href="/2020/03/22/tof/tof-4/"/>
       <url>/2020/03/22/tof/tof-4/</url>
