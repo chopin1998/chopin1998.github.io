@@ -390,7 +390,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    722
+                    763
                 </div>
                 
 
@@ -458,12 +458,13 @@
 <p>激动人心的时刻， 运行</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anbox.appmgr</span><br></pre></td></tr></tbody></table></figure>
 
-<p>第一次运行的话， CPU会跑一会儿， 应该在加载android的系统环境，完了之后就能看到一个新窗口<br><img src="anbox_appmgr.jpg" alt=""></p>
+<p>第一次运行的话， CPU会加载android的系统环境， 在我电脑上大概几秒吧 ，完了之后就能看到一个新窗口<br><img src="anbox_appmgr.jpg" alt=""></p>
 <p>点开里面原生自带的应用，每一个都会是一个独立的窗口。</p>
 <hr>
 <p>这时可以用adb shell连进去看看。<br><img src="adb_shell.jpg" alt=""></p>
 <p>可以看到android显示的内核、硬件都是真机的，这就是Linux内核容器。</p>
 <p>不要惊讶分辨率，我用的是1440p+1080p双显示器</p>
+<p>此时android会用以太网卡和主机连接，而在主机端呢， 刚刚的内核驱动则会虚拟出一个anbox0网络设备。</p>
 <hr>
 <p>不爽之处</p>
 <ul>
