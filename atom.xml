@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.tensor-robotics.com/"/>
-  <updated>2020-03-23T14:22:27.937Z</updated>
+  <updated>2020-03-25T02:45:49.556Z</updated>
   <id>http://blog.tensor-robotics.com/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安德猴的另类玩法</title>
+    <link href="http://blog.tensor-robotics.com/2020/03/24/cs/anbox/"/>
+    <id>http://blog.tensor-robotics.com/2020/03/24/cs/anbox/</id>
+    <published>2020-03-24T12:41:59.000Z</published>
+    <updated>2020-03-25T02:45:49.556Z</updated>
+    
+    <content type="html"><![CDATA[<p>要耍安德猴，可以</p><ul><li>在装有android的平板、手机上使用</li><li>可以用android sdk自带的模拟器（基于qemu）</li><li>还可以使用virtualbox/ vmware这样的虚拟机运行x86 android</li></ul><p>体验从上到下， 以此80分，50分和10分。（iPhone是 100分的话）</p><hr><p>本文介绍一种新的方式，将安卓置于Linux内核原生的容器（container）中，具有基本的GPU硬件加速，同时自带android的核心系统服务。</p><p>说人话，就是让android app可以原生的运行在一台PC中， 仿佛有一台android设备运行在电脑里一样。但是并不是虚拟机或者模拟器，所以速度很快。</p><p>初步体验， 可以打到60~70分。</p><hr><p>主角： <a href="http://anbox.io" target="_blank" rel="noopener"><strong>ANBOX</strong></a></p><hr><p>官方网站的安装说明已经非常详细，这里只是大概记录一下。</p><p>首先Debian源里的并不是新版本，官方目前只支持snap包管理系统，所以如果你的Debian里还没有snap的话需要</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install snapd</span><br></pre></td></tr></tbody></table></figure><hr><p>Anbox安装</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install --devmode --beta anbox</span><br></pre></td></tr></tbody></table></figure><p>如果日后需要更新</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap refresh --beta --devmode anbox</span><br></pre></td></tr></tbody></table></figure><p>snap在国内访问会非常不和谐，但是snap又不能直接使用环境变量， 需要修改其配置</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl edit snapd.service</span><br></pre></td></tr></tbody></table></figure><p>修改或加入下面几行</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">Environment=http_proxy=http://127.0.0.1:8123</span><br><span class="line">Environment=https_proxy=http://127.0.0.1:8123</span><br></pre></td></tr></tbody></table></figure><hr><p>Anbox内核模块安装</p><p>需要首先apt安装 dkms和内核头文件。</p><p>之后从git clone内核模块的源代码</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/anbox/anbox-modules.git</span><br></pre></td></tr></tbody></table></figure><p>编译</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -rT ashmem /usr/src/anbox-ashmem-1</span><br><span class="line">sudo cp -rT binder /usr/src/anbox-binder-1</span><br><span class="line">sudo dkms install anbox-ashmem/1</span><br><span class="line">sudo dkms install anbox-binder/1</span><br></pre></td></tr></tbody></table></figure><p>加载测试</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe ashmem_linux</span><br><span class="line">sudo modprobe binder_linux</span><br></pre></td></tr></tbody></table></figure><p>正常情况下，lsmod应该就能看到刚刚加载的模块</p><p>/dev/下面也会出现对应的设备</p><ul><li>/dev/binder</li><li>/dev/ashmem</li></ul><p>需要修改这两个文件的访问权限， 让普通用户也能访问。</p><hr><p>激动人心的时刻， 运行</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anbox.appmgr</span><br></pre></td></tr></tbody></table></figure><p>第一次运行的话， CPU会跑一会儿， 应该在加载android的系统环境，完了之后就能看到一个新窗口<br><img src="anbox_appmgr.jpg" alt=""></p><p>点开里面原生自带的应用，每一个都会是一个独立的窗口。</p><hr><p>这时可以用adb shell连进去看看。<br><img src="adb_shell.jpg" alt=""></p><p>可以看到android显示的内核、硬件都是真机的，这就是Linux内核容器。</p><p>不要惊讶分辨率，我用的是1440p+1080p双显示器</p><hr><p>不爽之处</p><ul><li>目前的img只有 7.1</li><li>似乎并不支持摄像头</li></ul><hr><p>喔，对了， 有个脚本可以给默认的android image添加上google play，安装app方便很多</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/geeks-r-us/anbox-playstore-installer.git</span><br></pre></td></tr></tbody></table></figure><p><img src="google-play.jpg" alt=""></p><hr><p>就到这里，</p><p>下次再见。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;要耍安德猴，可以&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在装有android的平板、手机上使用&lt;/li&gt;
+&lt;li&gt;可以用android sdk自带的模拟器（基于qemu）&lt;/li&gt;
+&lt;li&gt;还可以使用virtualbox/ vmware这样的虚拟机运行x86 android&lt;/li&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="CS" scheme="http://blog.tensor-robotics.com/categories/CS/"/>
+    
+    
+      <category term="生产和分享知识" scheme="http://blog.tensor-robotics.com/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="android" scheme="http://blog.tensor-robotics.com/tags/android/"/>
+    
+      <category term="安德猴" scheme="http://blog.tensor-robotics.com/tags/%E5%AE%89%E5%BE%B7%E7%8C%B4/"/>
+    
+      <category term="anbox" scheme="http://blog.tensor-robotics.com/tags/anbox/"/>
+    
+  </entry>
   
   <entry>
     <title>ST MCSDK 的开箱使用 | 电机系列 第二篇</title>
@@ -202,10 +239,10 @@
   
   <entry>
     <title>Python ctypes的使用实例</title>
-    <link href="http://blog.tensor-robotics.com/2020/03/22/python-ctypes-examples/"/>
-    <id>http://blog.tensor-robotics.com/2020/03/22/python-ctypes-examples/</id>
+    <link href="http://blog.tensor-robotics.com/2020/03/22/cs/python-ctypes-examples/"/>
+    <id>http://blog.tensor-robotics.com/2020/03/22/cs/python-ctypes-examples/</id>
     <published>2020-03-22T03:17:56.000Z</published>
-    <updated>2020-03-22T03:59:27.926Z</updated>
+    <updated>2020-03-25T01:42:32.772Z</updated>
     
     <content type="html"><![CDATA[<p>Python中可以使用ctypes模块方便的调用C代码写的库， 而无须对C代码有任何多余的要求。</p><p>此仅列一例，权做记录。</p><hr><p><img src="ls.png" alt=""></p><p>首先有两个文件， C和对应的头文件。</p><p>在people.c中， 有三个非常简单的函数。 供日后调用。<br>而在people.h中， 是对应的函数声明， 在此不表。</p><p><img src="source.png" alt=""></p><hr><p>接下来的一步， 将这个C代码编译成库， 使用如下的命令<br><img src="compile.png" alt=""></p><p>这将生成一个叫 libpeople.so的库， 和平常编译库的方式完全一样。</p><hr><p>最后， 激动人心的时刻—-直接在python中调用这个C库。<br><img src="call.png" alt=""></p><p>进入ipython后， 首当其冲import ctypes， 然后用cdll里的LoadLibrary导入刚刚生成的库。</p><p>因为make_people使用了自定义的struct和指针， 所以需要现在Python里先建立对于的数据结构。</p><p>之后就能随心所欲的调用c库里的函数了。</p><hr><p>一些说明。<br>库导入后本身没有动态性， 也就是说在ipython里， 输入完mylib.之后，按tab键是不能自动补全所有的function的，但是手工输入一次之后， 还是能看到已经有的东西。</p><p>因为Python的脚本性， 如果C库没有做好类型检查，特别是指针相关的，而发生致命错误的，在Python动态运行时， Python解析器进程会崩溃。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
