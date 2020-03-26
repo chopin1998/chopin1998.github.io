@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="the first blog, welcome">
+    <meta name="keywords" content="关于ToF 番二, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>the first blog | welcome</title>
+    <title>关于ToF 番二 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">the first blog</h1>
+                    <h1 class="description center-align post-title">关于ToF 番二</h1>
                 </div>
             </div>
         </div>
@@ -344,12 +344,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/misc/">
-                                <span class="chip bg-color">misc</span>
+                            <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
+                                <span class="chip bg-color">生产和分享知识</span>
                             </a>
                         
-                            <a href="/tags/test/">
-                                <span class="chip bg-color">test</span>
+                            <a href="/tags/ToF/">
+                                <span class="chip bg-color">ToF</span>
                             </a>
                         
                     </div>
@@ -360,8 +360,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/misc/" class="post-category">
-                                misc
+                            <a href="/categories/ToF/" class="post-category">
+                                ToF
                             </a>
                         
                     </div>
@@ -373,7 +373,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-19
+                    2020-03-22
                 </div>
                 
 
@@ -382,7 +382,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    65
+                    1k
                 </div>
                 
 
@@ -395,7 +395,35 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>安定了。<br>以后在考虑建个电报channel。</p>
+                <p>书接前文。【关于ToF 番一】</p>
+<p>上回说到ToF的基本概念， 即LED/LD对着场景发射光线，如果场景中有物体反射光线回来，那么我们测定这道光线从发射到被接收的时间间隔， 就能计算出距该离物体的长度为 1/2 * c * t， c是光速。</p>
+<p>举个例子， 如果光线的旅行时间测得为 5ns， 取光速为30万千米每秒， 那么光线总的行走距离就是 300000000 * 0.000000005 = 1.5米， 因为是一来一回再除以二， 就知道有个物体距离接收器0.75米（光源和接收器在同一位置）</p>
+<p><img src="measure.png" alt=""></p>
+<hr>
+<p>对于一个直接ToF系统来说，精度和误差均只依赖于对时间的测量精度。</p>
+<p>当然，由于目前的技术限制，使用直接ToF的成本相对较高，单个diode的体积也很大，一般只用于单点或者几个点的方案。对于阵列式的图像ToF系统，使用的是间接ToF方式。 即不直接测量光线往返时间， 而是发射连续的调制光（例如正玄波）， 通过测量相位偏移的方式间接得出ToF。</p>
+<p>初始发射时从正玄波的0度角开始连续发射， 然后接收到光线时， 通过鉴相算法， 得到相位，通过这个相位差以及调制光的频率， 就能算出光线的飞行时间。 真TM高级！ 不过这也引入了一个雷达里的常用术语：maximum unambiguous range。 具体的算法以及处理，本文暂且按下不表，日后分解，下同。</p>
+<p><img src="phase.png" alt=""></p>
+<hr>
+<p>虽然降低了难度， 但是也引入更多噪音。 因为测量相移受到诸多因素的影响，例如系统时钟的ppm，传感器温度，物体反射强度，背景光线强度等。</p>
+<p>这回我们就简单说说ToF的工作、设计流程。</p>
+<p>从整个系统看， 首先要考虑的是测距范围问题。 因为光线强度的减弱是距离倒数的平方关系。 例如：期待的测距范围是 5cm ~ 5m， 假如在5cm时的照明输出强度是1的话， 满足5m处同样条件的输出强度得是1000。当然合理的设计光路和LED位置布局， 可以在一定程度上减少功率输出的需求。</p>
+<p>而如果被侧物体中有大量黑体，噗… 是对红外反射率较低的黑色物体， 那么对发射功率的要求又会提高。</p>
+<p>ToF阵列里的每个pixel， 都可以计算出它的振幅质量， 如果过低（欠曝）或者过高（过曝）都无法解析出距离信息， 需要在下一个周期中，进行曝光调整。</p>
+<p>如果需要更高的动态范围， 可以使用各类HDR技术，例如多帧曝光、行间切换曝光等。</p>
+<p>对于曝光时间的选择，还有另外一个问题需要考量，曝光时间越长，就会有越多的环境光被吸收， 这会伤害整体精度（环境光的变化？）。 同时过长的曝光时间， 也会造成帧率降低。 一般曝光时间不要超过1ms，或者可以使用带通滤光片过滤掉调制光频率以外的光线。</p>
+<p>一个典型的ToF计算流程包括：</p>
+<ul>
+<li>多次以不同时长曝光的ToF数据采样（用于鉴相，取得距离数据）</li>
+<li>一次最小曝光时间的灰度数据采集（用于过滤环境光线）</li>
+<li>周期性的传感器片上温度数据读取（用于温度补偿)</li>
+<li>根据算法取出有效数据（过滤掉过曝太多、欠曝过多或者振幅数值过小的数据集）</li>
+<li>温度补偿算法</li>
+<li>背景光补偿算法</li>
+<li>系统常量校准算法</li>
+</ul>
+<hr>
+<p>to be continued</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -439,7 +467,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/2020/03/19/the-first-blog/">http://blog.tensor-robotics.com/2020/03/19/the-first-blog/</a>
+                    <a href="http://blog.tensor-robotics.com/archives/78201d81.html">http://blog.tensor-robotics.com/archives/78201d81.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -477,12 +505,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/misc/">
-                                    <span class="chip bg-color">misc</span>
+                                <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
+                                    <span class="chip bg-color">生产和分享知识</span>
                                 </a>
                             
-                                <a href="/tags/test/">
-                                    <span class="chip bg-color">test</span>
+                                <a href="/tags/ToF/">
+                                    <span class="chip bg-color">ToF</span>
                                 </a>
                             
                         </div>
@@ -653,7 +681,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998@gmail.com",
-        id: '2020-03-19T20-00-01',
+        id: '2020-03-22T15-19-30',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -678,24 +706,22 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/22/cs/python-ctypes-examples/">
+                <a href="/archives/3a7c8b8c.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Python ctypes的使用实例">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="关于ToF 番三">
                         
-                        <span class="card-title">Python ctypes的使用实例</span>
+                        <span class="card-title">关于ToF 番三</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Python中可以使用ctypes模块方便的调用C代码写的库， 而无须对C代码有任何多余的要求。
-此仅列一例，权做记录。
+                            由于各种事物影响， ToF项目被暂缓了￼， 趁着公司再次搬家的这段时间，重新捡起来。
 
 
-首先有两个文件， C和对应的头文件。
-在people.c中， 有三个非常简单的函数。 供日后调用。而在people
+先是把代码又理了一遍，抽空学习了一下numpy， 搞一点儿opencv，tensorflow和pytorch，把第二编辑器换成了VSCode（顺便看了
                         
                     </div>
                     <div class="publish-info">
@@ -706,8 +732,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CS/" class="post-category">
-                                    CS
+                            <a href="/categories/ToF/" class="post-category">
+                                    ToF
                                 </a>
                             
                             
@@ -721,12 +747,8 @@
                         <span class="chip bg-color">生产和分享知识</span>
                     </a>
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
-                    <a href="/tags/ctypes/">
-                        <span class="chip bg-color">ctypes</span>
+                    <a href="/tags/ToF/">
+                        <span class="chip bg-color">ToF</span>
                     </a>
                     
                 </div>
@@ -737,50 +759,49 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/19/the-first-blog/">
+                <a href="/archives/43a03328.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="the first blog">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="关于ToF 番一">
                         
-                        <span class="card-title">the first blog</span>
+                        <span class="card-title">关于ToF 番一</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            安定了
+                            曾经，通过CCD/CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。现在，日新月异的传感器技术以及强大的移动计算能力，让计算机获得深度感知能力的可能性也越来越多。当获得一帧3D深度图景时，会收到一幅2D深度阵列， 其中的每
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-22
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/misc/" class="post-category">
-                                    misc
+                            <a href="/categories/ToF/" class="post-category">
+                                    ToF
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/misc/">
-                        <span class="chip bg-color">misc</span>
+                    <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">生产和分享知识</span>
                     </a>
                     
-                    <a href="/tags/test/">
-                        <span class="chip bg-color">test</span>
+                    <a href="/tags/ToF/">
+                        <span class="chip bg-color">ToF</span>
                     </a>
                     
                 </div>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于ToF 番三, welcome">
+    <meta name="keywords" content="ST MCSDK 的开箱使用 | 电机系列 第二篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于ToF 番三 | welcome</title>
+    <title>ST MCSDK 的开箱使用 | 电机系列 第二篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于ToF 番三</h1>
+                    <h1 class="description center-align post-title">ST MCSDK 的开箱使用 | 电机系列 第二篇</h1>
                 </div>
             </div>
         </div>
@@ -348,8 +348,12 @@
                                 <span class="chip bg-color">生产和分享知识</span>
                             </a>
                         
-                            <a href="/tags/ToF/">
-                                <span class="chip bg-color">ToF</span>
+                            <a href="/tags/FoC/">
+                                <span class="chip bg-color">FoC</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
+                                <span class="chip bg-color">电机驱动</span>
                             </a>
                         
                     </div>
@@ -360,8 +364,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/ToF/" class="post-category">
-                                ToF
+                            <a href="/categories/FoC/" class="post-category">
+                                FoC
                             </a>
                         
                     </div>
@@ -373,7 +377,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-22
+                    2020-03-23
                 </div>
                 
 
@@ -382,7 +386,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.5k
                 </div>
                 
 
@@ -395,35 +399,69 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>由于各种事物影响， ToF项目被暂缓了￼， 趁着公司再次搬家的这段时间，重新捡起来。</p>
-<iframe frameborder="0" src="https://v.qq.com/txp/iframe/player.html?vid=o1357dpu781" allowfullscreen="true"></iframe>
-
-<p>先是把代码又理了一遍，抽空学习了一下numpy， 搞一点儿opencv，tensorflow和pytorch，把第二编辑器换成了VSCode（顺便看了一下markdown和简单的Latex语法），换用Python 3.7，还有vrep， openscad，steamVR HDK什么的……咦，好像扯远了……然后继续攻目前的障碍。这把终于弄通了￼ 其实很简单的嘛。。。。</p>
+                <p>因为工作的关系，接触到一些电机的驱动。最早是BLDC，跟着老工程师后面，从懵懵懂懂，到稍微有了一点儿概念。之后自己憋出一个能走微步的步进电机驱动。满满的成就感记忆犹新。</p>
+<p>后面的项目，用集成驱动芯片独立完成了一些其它的电机驱动。</p>
+<p>前二年的学习过程中，听说了FOC这个词，似乎各种厉害各种邪乎。</p>
 <hr>
-<p>非英语母语国家的厂家写的英文文档遇上了半吊子英语水平的我的结果是世界上最远的距离变成了本来往后退一步就能到达的地方却要拼命往前跑￼</p>
-<p>是的，我看文档时就和你读上句话的感受是一样的￼</p>
-<p><img src="blurred.webp" alt=""><br> 这是我用mardkdown做的笔记， 数学公式真的好漂亮。有多漂亮呢？为了让人看不清楚，我特地使用了高斯模糊处理了一下</p>
+<p><img src="foc_feature.jpg" alt=""></p>
+<p>于是各种买书，各种懵逼。心潮澎湃想自己从零实现一整套，搞了一段时间，越搞坑越深，最后FOC没搞出来，传统六步方波式的驱动器倒是攒出来。不甘心啊。</p>
+<p>也有一些优秀的厂家提供了不错的集成方案，套片解决问题，不过因为项目使用限制，虽然已经调通了demo但是并没有实际使用上。</p>
+<p>9102年就要过去，年初制定的年度计划眼看着又有一项要完不成（为什么说”又”呢。。。淡淡的忧伤……）</p>
+<p>突然得知ST的电机驱动库发布了重要的更新，并且全部开源（有一定限制）。抓着最后几周，调通demo。并且有继续深入下去的可能了。</p>
+<p>////<br>本番废话略多，下面进入正题。<br>////</p>
 <hr>
-<p>前面两番已经交代了深度视觉特别是ToF技术的概况，今天来谈一谈ToF具体实现上的大坑（之一，我预感我还会面临最后一个坑）。</p>
-<p>ToF是一把用来测量距离的尺子，造一把尺子的关注点是精度，而造一批尺子关注的是制造精度的分布。</p>
+<p>相比六步方波，FOC驱动中包含诸如Park/Clark变换等带有大量三角函数的矩阵计算，以前的8/16单片机就有些捉襟见肘（XMEGA系列处于勉强够用的边缘）。</p>
+<p>因此这里选择了STM32F303REt6作为主控。72Mhz 带硬件数学单元的Cortex M4算力够强，此外它内建了为高阶电机驱动优化过的定时器，特别是还集成了大量的模拟比较器，运算放大器和ADC。将来自己做PCB的话，只要配合桥驱动器和mosfet就可以。</p>
+<p>ST 提供的MCSDK提供了FOC的底层库，以及一些实用程序。ST官网给出了两个版本，MCSDK，以及MCSDK-FULL，二者的区别是MCSDK中的部分高阶算法（比如状态观测器、前馈控制等）只以二进制库的方式提供，而full的版本则包含全部的源代码。</p>
+<p>可能是刚刚出新的原因，目前MCSDK仅提供了m$ windows版本，只能在虚拟机里搞搞，不过ST承诺会在2020年推出重构的MCSDK，将全平台支持。</p>
+<p><img src="linux_version.jpg" alt=""></p>
 <hr>
-<p>一把尺子造出来， 如何知道它是准的？有多么不准？不准了怎么办？￼</p>
-<p>这就涉及到标定 &amp; 补偿</p>
+<p>装好后，得到一些新图标</p>
+<p><img src="icon.jpg" alt=""></p>
+<hr>
+<p>使用Keil/IAR等其它ide的，STM32CUBEIDE就不再需要。重要的是左边上下的两个。Motor Profiler和 MotorControl Workbench</p>
+<p>Motor Profiler是一套很好玩儿的实用程序。它使用内置的固件（因此目前只能支持官方开发板）自动侦测电机的各种参数，以待后用。</p>
+<p>打开它，界面如下</p>
+<p><img src="gui.jpg" alt=""></p>
+<hr>
+<p>选择好手上的控制板和驱动后，需要填写电机极对数，不知道的话可以用下面的方法测定：<br>使用恒流源接入电机的任意两相，然后手动转动电机转子一圈，边转边计数有几次咯噔咯噔（术语：掣子），如果是4次，那么电机就是4对磁极。</p>
+<p>如果使用的驱动板能力远远大过电机或者电源的额定电流，需要正确填写电机的最大电流，否则驱动板会尝试使用很大的电流测试电机。</p>
+<p>剩下的参数，可填可不填。</p>
+<p>完了就可以点击connect和Start Profile。<br>程序会先后测定电机的</p>
 <ul>
-<li>标定，是指出厂前，使用另外一把更准的尺子教新尺子重新做人，标定后会得到一组标定数据</li>
-<li>补偿，是在运行时，利用出厂前的标定数据，实时地对当前原始数据进行算法处理，得到最终的结果</li>
+<li>相 电阻</li>
+<li>相 电感</li>
+<li>反电动势常数</li>
+<li>转动惯量</li>
+<li>机械摩擦系数</li>
 </ul>
-<p>那么为什么从传感器直接得到的原始数据不能拿来用呢？我也想呀！可我们面对的是裸片，是真实的物理世界，搞不好还有量子效应。</p>
-<p>因为NDA的缘故， 我不能说得太具体￼ 但参考各家公开的文档，基本情况大差不差。</p>
-<p>造成ToF系统产生误差的重要原因是“热”  中医分内热和外热两种，电烙铁也是如此… 热导致电信号（电子、空穴移动）在硅基芯片内的传导时间发生变化，而ToF高度依赖时间测量的精度。 光速大约 30厘米/纳秒， 若要达到厘米级的测距精度，对时间的测量精度不能低于30皮秒级别￼</p>
-<p>然而环境温度的变化， 芯片工作时的温升， 都会导致精度的大规模失准， 特别是像素和像素之间的温差和其它工艺因素的差别会更加劣化这种情况￼</p>
-<p>不同厂家针对器件的特性，都有各自的办法来解决这个问题。有些厂家的的设计比较独到，为批量化自动生产打开了便利之门。</p>
-<p>另外一个造成误差的主要因素是环境光， 虽说相位检测的ToF系统天生具有差分读取结构，但是过强的环境光或者环境光扰动会使得调制信号的信噪比降低。 </p>
-<p>对于这种情况，补偿算法是一方面，加强调制光照明强度，减少曝光时间，以及光学滤镜都是可以尝试的手段。</p>
-<p>当然还有一些其它的因素，有些是特定器件相关的， 有些影响相对较小，这里不再一一熬述￼</p>
-<p>听上去有点儿复杂，实现起来细节也确实很多，但 是可行的。</p>
-<p>我想这就是个机会，将来总会有厂家把这些算法ASIC化，或者有人给出更简单的打包方案，不过目前，我将会来完成这些￼</p>
-<p>毕竟朕是在暴风雨里单日骑行超过400km的人， 老子的目标在很远的地方。</p>
+<p>将测定参数命名后保存待用。</p>
+<hr>
+<p>接下来打开Motor Control Workbench这个程序， 并选择新建一个项目</p>
+<p><img src="mc_wb.jpg" alt=""></p>
+<p>与Motor Profiler不同，workbench是支持自定义板级的，这里还是先用开发板</p>
+<p>配置核心在此。<br><img src="mc_wb_config.jpg" alt=""></p>
+<p>这里可以选择底层驱动相关的各种参数，包括：</p>
+<ul>
+<li>母线电压相关</li>
+<li>温度监控相关</li>
+<li>制动器相关</li>
+<li>电机选择（这里可以使用刚刚用Motor Profiler测量的参数，也可以- 根据电机厂商的datasheet直接填写）</li>
+<li>驱动桥相关</li>
+<li>电流检测配置</li>
+<li>速度、位置检测配置</li>
+<li>IO/模拟电路配置</li>
+<li>等等</li>
+</ul>
+<hr>
+<p>根据硬件配置好后，就可以电机生成按钮，生成配置好的初始化框架。然后点击Run Cube。进一步配置和MCSDK无关的其它CUBE配置。<br>常规的cube配置完成后，再点击gennerate code就完成的所有外设，和库的初始化代码， 以及一个空的 main() （如果没有配置freeRTOS的话）</p>
+<p>我一开始下载的版本是 5.4.1， 配合cube的常规固件库 stm32f303 1.10.0，经常会出现一些奇奇怪怪的问题，这个不能编译，那个少个依赖什么的。</p>
+<p>后来更新到了 5.4.3似乎好了一点儿。。但是总是很悬的感觉。因为就算是5.4.3生成出来的代码，我也是修改了一点点东西才能编译……还是期望Linux版本早点儿出来吧。。。</p>
+<p>ST还提供了测试界面， 如果代码生产正常，就可以简单驱动起来。</p>
+<p><img src="run.jpg" alt=""></p>
+<p>能够正确编译以后，就可以把代码拷出虚拟机，转到Linux真机后续开发，只要不动mcsdk的结构配置，倒也不再需要虚拟机。</p>
+<p>后续将结合FOC一起介绍MCSDK的结构和开发过程。</p>
+<p>本番结束。<br>to be continued</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -467,7 +505,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/2020/03/22/tof/tof-3/">http://blog.tensor-robotics.com/2020/03/22/tof/tof-3/</a>
+                    <a href="http://blog.tensor-robotics.com/archives/b19fd6ba.html">http://blog.tensor-robotics.com/archives/b19fd6ba.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -509,8 +547,12 @@
                                     <span class="chip bg-color">生产和分享知识</span>
                                 </a>
                             
-                                <a href="/tags/ToF/">
-                                    <span class="chip bg-color">ToF</span>
+                                <a href="/tags/FoC/">
+                                    <span class="chip bg-color">FoC</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
+                                    <span class="chip bg-color">电机驱动</span>
                                 </a>
                             
                         </div>
@@ -681,7 +723,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998@gmail.com",
-        id: '2020-03-22T16-03-06',
+        id: '2020-03-23T22-13-04',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -706,36 +748,37 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/22/tof/tof-4/">
+                <a href="/archives/75e36441.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="关于ToF 番四">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="安德猴的另类玩法">
                         
-                        <span class="card-title">关于ToF 番四</span>
+                        <span class="card-title">安德猴的另类玩法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            由于各种原因，和本番相关的工作被严重耽误……以至于错过大好机会
-痛定思痛 痛何如哉
+                            要耍安德猴，可以
 
-本番行文后，将在另外一种形式上重启
+在装有android的平板、手机上使用
+可以用android sdk自带的模拟器（基于qemu）
+还可以使用virtualbox/ vmware这样的虚拟机运行x86 android
 
-在 【关于ToF 番二】 中介绍的ToF系统，使用连续调制光照射外界，并通过多帧数据，计算得出反射光的相位偏移角度，
+体验从上到下， 依次80分，50分
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-24
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ToF/" class="post-category">
-                                    ToF
+                            <a href="/categories/CS/" class="post-category">
+                                    CS
                                 </a>
                             
                             
@@ -749,8 +792,16 @@
                         <span class="chip bg-color">生产和分享知识</span>
                     </a>
                     
-                    <a href="/tags/ToF/">
-                        <span class="chip bg-color">ToF</span>
+                    <a href="/tags/android/">
+                        <span class="chip bg-color">android</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%BE%B7%E7%8C%B4/">
+                        <span class="chip bg-color">安德猴</span>
+                    </a>
+                    
+                    <a href="/tags/anbox/">
+                        <span class="chip bg-color">anbox</span>
                     </a>
                     
                 </div>
@@ -764,33 +815,33 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/22/tof/tof-2/">
+                <a href="/archives/c122089a.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="关于ToF 番二">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="DIY 示波器电流探头 | 电机系列 第一篇">
                         
-                        <span class="card-title">关于ToF 番二</span>
+                        <span class="card-title">DIY 示波器电流探头 | 电机系列 第一篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            书接前文。【关于ToF 番一】
-上回说到ToF的基本概念， 即LED/LD对着场景发射光线，如果场景中有物体反射光线回来，那么我们测定这道光线从发射到被接收的时间间隔， 就能计算出距该离物体的长度为 1/2 * c * t， c是光速。
-举
+                            最近项目需要用到电流探头， 某宝一搜，心凉半截。国产靠谱品牌，最便宜的都要￥3、4000。性能略强一些的， 都得成倍成倍的往上翻。一年可能也就用那么十次八次，也不太好意思申请购买 卍
+
+正巧， 前段时间有收到 电子发烧友 送测的 MAX40
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ToF/" class="post-category">
-                                    ToF
+                            <a href="/categories/FoC/" class="post-category">
+                                    FoC
                                 </a>
                             
                             
@@ -804,8 +855,12 @@
                         <span class="chip bg-color">生产和分享知识</span>
                     </a>
                     
-                    <a href="/tags/ToF/">
-                        <span class="chip bg-color">ToF</span>
+                    <a href="/tags/FoC/">
+                        <span class="chip bg-color">FoC</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
+                        <span class="chip bg-color">电机驱动</span>
                     </a>
                     
                 </div>

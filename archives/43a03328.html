@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ST MCSDK 的开箱使用 | 电机系列 第二篇, welcome">
+    <meta name="keywords" content="关于ToF 番一, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ST MCSDK 的开箱使用 | 电机系列 第二篇 | welcome</title>
+    <title>关于ToF 番一 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ST MCSDK 的开箱使用 | 电机系列 第二篇</h1>
+                    <h1 class="description center-align post-title">关于ToF 番一</h1>
                 </div>
             </div>
         </div>
@@ -348,12 +348,8 @@
                                 <span class="chip bg-color">生产和分享知识</span>
                             </a>
                         
-                            <a href="/tags/FoC/">
-                                <span class="chip bg-color">FoC</span>
-                            </a>
-                        
-                            <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
-                                <span class="chip bg-color">电机驱动</span>
+                            <a href="/tags/ToF/">
+                                <span class="chip bg-color">ToF</span>
                             </a>
                         
                     </div>
@@ -364,8 +360,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/FoC/" class="post-category">
-                                FoC
+                            <a href="/categories/ToF/" class="post-category">
+                                ToF
                             </a>
                         
                     </div>
@@ -377,7 +373,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-23
+                    2020-03-22
                 </div>
                 
 
@@ -386,7 +382,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.3k
                 </div>
                 
 
@@ -399,70 +395,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>因为工作的关系，接触到一些电机的驱动。最早是BLDC，跟着老工程师后面，从懵懵懂懂，到稍微有了一点儿概念。之后自己憋出一个能走微步的步进电机驱动。满满的成就感记忆犹新。</p>
-<p>后面的项目，用集成驱动芯片独立完成了一些其它的电机驱动。</p>
-<p>前二年的学习过程中，听说了FOC这个词，似乎各种厉害各种邪乎。</p>
-<hr>
-<p><img src="foc_feature.jpg" alt=""></p>
-<p>于是各种买书，各种懵逼。心潮澎湃想自己从零实现一整套，搞了一段时间，越搞坑越深，最后FOC没搞出来，传统六步方波式的驱动器倒是攒出来。不甘心啊。</p>
-<p>也有一些优秀的厂家提供了不错的集成方案，套片解决问题，不过因为项目使用限制，虽然已经调通了demo但是并没有实际使用上。</p>
-<p>9102年就要过去，年初制定的年度计划眼看着又有一项要完不成（为什么说”又”呢。。。淡淡的忧伤……）</p>
-<p>突然得知ST的电机驱动库发布了重要的更新，并且全部开源（有一定限制）。抓着最后几周，调通demo。并且有继续深入下去的可能了。</p>
-<p>////<br>本番废话略多，下面进入正题。<br>////</p>
-<hr>
-<p>相比六步方波，FOC驱动中包含诸如Park/Clark变换等带有大量三角函数的矩阵计算，以前的8/16单片机就有些捉襟见肘（XMEGA系列处于勉强够用的边缘）。</p>
-<p>因此这里选择了STM32F303REt6作为主控。72Mhz 带硬件数学单元的Cortex M4算力够强，此外它内建了为高阶电机驱动优化过的定时器，特别是还集成了大量的模拟比较器，运算放大器和ADC。将来自己做PCB的话，只要配合桥驱动器和mosfet就可以。</p>
-<p>ST 提供的MCSDK提供了FOC的底层库，以及一些实用程序。ST官网给出了两个版本，MCSDK，以及MCSDK-FULL，二者的区别是MCSDK中的部分高阶算法（比如状态观测器、前馈控制等）只以二进制库的方式提供，而full的版本则包含全部的源代码。</p>
-<p>可能是刚刚出新的原因，目前MCSDK仅提供了m$ windows版本，只能在虚拟机里搞搞，不过ST承诺会在2020年推出重构的MCSDK，将全平台支持。</p>
-<p><img src="linux_version.jpg" alt=""></p>
-<hr>
-<p>装好后，得到一些新图标</p>
-<p><img src="icon.jpg" alt=""></p>
-<hr>
-<p>使用Keil/IAR等其它ide的，STM32CUBEIDE就不再需要。重要的是左边上下的两个。Motor Profiler和 MotorControl Workbench</p>
-<p>Motor Profiler是一套很好玩儿的实用程序。它使用内置的固件（因此目前只能支持官方开发板）自动侦测电机的各种参数，以待后用。</p>
-<p>打开它，界面如下</p>
-<p><img src="gui.jpg" alt=""></p>
-<hr>
-<p>选择好手上的控制板和驱动后，需要填写电机极对数，不知道的话可以用下面的方法测定：<br>使用恒流源接入电机的任意两相，然后手动转动电机转子一圈，边转边计数有几次咯噔咯噔（术语：掣子），如果是4次，那么电机就是4对磁极。</p>
-<p>如果使用的驱动板能力远远大过电机或者电源的额定电流，需要正确填写电机的最大电流，否则驱动板会尝试使用很大的电流测试电机。</p>
-<p>剩下的参数，可填可不填。</p>
-<p>完了就可以点击connect和Start Profile。<br>程序会先后测定电机的</p>
-<ul>
-<li>相 电阻</li>
-<li>相 电感</li>
-<li>反电动势常数</li>
-<li>转动惯量</li>
-<li>机械摩擦系数</li>
-</ul>
-<p>将测定参数命名后保存待用。</p>
-<hr>
-<p>接下来打开Motor Control Workbench这个程序， 并选择新建一个项目</p>
-<p><img src="mc_wb.jpg" alt=""></p>
-<p>与Motor Profiler不同，workbench是支持自定义板级的，这里还是先用开发板</p>
-<p>配置核心在此。<br><img src="mc_wb_config.jpg" alt=""></p>
-<p>这里可以选择底层驱动相关的各种参数，包括：</p>
-<ul>
-<li>母线电压相关</li>
-<li>温度监控相关</li>
-<li>制动器相关</li>
-<li>电机选择（这里可以使用刚刚用Motor Profiler测量的参数，也可以- 根据电机厂商的datasheet直接填写）</li>
-<li>驱动桥相关</li>
-<li>电流检测配置</li>
-<li>速度、位置检测配置</li>
-<li>IO/模拟电路配置</li>
-<li>等等</li>
-</ul>
-<hr>
-<p>根据硬件配置好后，就可以电机生成按钮，生成配置好的初始化框架。然后点击Run Cube。进一步配置和MCSDK无关的其它CUBE配置。<br>常规的cube配置完成后，再点击gennerate code就完成的所有外设，和库的初始化代码， 以及一个空的 main() （如果没有配置freeRTOS的话）</p>
-<p>我一开始下载的版本是 5.4.1， 配合cube的常规固件库 stm32f303 1.10.0，经常会出现一些奇奇怪怪的问题，这个不能编译，那个少个依赖什么的。</p>
-<p>后来更新到了 5.4.3似乎好了一点儿。。但是总是很悬的感觉。因为就算是5.4.3生成出来的代码，我也是修改了一点点东西才能编译……还是期望Linux版本早点儿出来吧。。。</p>
-<p>ST还提供了测试界面， 如果代码生产正常，就可以简单驱动起来。</p>
-<p><img src="run.jpg" alt=""></p>
-<p>能够正确编译以后，就可以把代码拷出虚拟机，转到Linux真机后续开发，只要不动mcsdk的结构配置，倒也不再需要虚拟机。</p>
-<p>后续将结合FOC一起介绍MCSDK的结构和开发过程。</p>
-<p>本番结束。<br>to be continued</p>
-<script>
+                <h2 id="曾经，通过CCD-CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。"><a href="#曾经，通过CCD-CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。" class="headerlink" title="曾经，通过CCD/CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。"></a>曾经，通过CCD/CMOS等图像阵列传感器以及光学镜头，可以获取一帧帧平面2D的图像。</h2><h2 id="现在，日新月异的传感器技术以及强大的移动计算能力，让计算机获得深度感知能力的可能性也越来越多。"><a href="#现在，日新月异的传感器技术以及强大的移动计算能力，让计算机获得深度感知能力的可能性也越来越多。" class="headerlink" title="现在，日新月异的传感器技术以及强大的移动计算能力，让计算机获得深度感知能力的可能性也越来越多。"></a>现在，日新月异的传感器技术以及强大的移动计算能力，让计算机获得深度感知能力的可能性也越来越多。</h2><h2 id="当获得一帧3D深度图景时，会收到一幅2D深度阵列，-其中的每个”pixel”都代表了该点对应物体的实际距离。闭上眼睛想象一下，那是一堆密密麻麻的点云。机器人将更容易的进行自主定位，计算机能更轻易的识别目标，也许新的测量工具，新的交互方式也会应运而生。"><a href="#当获得一帧3D深度图景时，会收到一幅2D深度阵列，-其中的每个”pixel”都代表了该点对应物体的实际距离。闭上眼睛想象一下，那是一堆密密麻麻的点云。机器人将更容易的进行自主定位，计算机能更轻易的识别目标，也许新的测量工具，新的交互方式也会应运而生。" class="headerlink" title="当获得一帧3D深度图景时，会收到一幅2D深度阵列， 其中的每个”pixel”都代表了该点对应物体的实际距离。闭上眼睛想象一下，那是一堆密密麻麻的点云。机器人将更容易的进行自主定位，计算机能更轻易的识别目标，也许新的测量工具，新的交互方式也会应运而生。"></a>当获得一帧3D深度图景时，会收到一幅2D深度阵列， 其中的每个”pixel”都代表了该点对应物体的实际距离。闭上眼睛想象一下，那是一堆密密麻麻的点云。机器人将更容易的进行自主定位，计算机能更轻易的识别目标，也许新的测量工具，新的交互方式也会应运而生。</h2><h2 id="双眼（和大脑）是人类获得深度感知最自然的渠道。通过长在不同地方的两只眼睛￼，视网膜上被投影了两帧“略有差异”的倒影，大脑根据几十年来的习得，分析出这两个影像中相同的物体，以及它们距离我们自身的大致距离。"><a href="#双眼（和大脑）是人类获得深度感知最自然的渠道。通过长在不同地方的两只眼睛￼，视网膜上被投影了两帧“略有差异”的倒影，大脑根据几十年来的习得，分析出这两个影像中相同的物体，以及它们距离我们自身的大致距离。" class="headerlink" title="双眼（和大脑）是人类获得深度感知最自然的渠道。通过长在不同地方的两只眼睛￼，视网膜上被投影了两帧“略有差异”的倒影，大脑根据几十年来的习得，分析出这两个影像中相同的物体，以及它们距离我们自身的大致距离。"></a>双眼（和大脑）是人类获得深度感知最自然的渠道。通过长在不同地方的两只眼睛￼，视网膜上被投影了两帧“略有差异”的倒影，大脑根据几十年来的习得，分析出这两个影像中相同的物体，以及它们距离我们自身的大致距离。</h2><h2 id="这个原理也是计算机目前深度视觉原理的三大流派之一：-双目视觉。-另外两个技术流，一个基于ToF测距技术，-另外一个基于Structured-Light技术。当然这是主要的分类，具体场景，具体产品，可能会相互融合，或者辅以其它技术、算法。"><a href="#这个原理也是计算机目前深度视觉原理的三大流派之一：-双目视觉。-另外两个技术流，一个基于ToF测距技术，-另外一个基于Structured-Light技术。当然这是主要的分类，具体场景，具体产品，可能会相互融合，或者辅以其它技术、算法。" class="headerlink" title="这个原理也是计算机目前深度视觉原理的三大流派之一： 双目视觉。 另外两个技术流，一个基于ToF测距技术， 另外一个基于Structured Light技术。当然这是主要的分类，具体场景，具体产品，可能会相互融合，或者辅以其它技术、算法。"></a>这个原理也是计算机目前深度视觉原理的三大流派之一： 双目视觉。 另外两个技术流，一个基于ToF测距技术， 另外一个基于Structured Light技术。当然这是主要的分类，具体场景，具体产品，可能会相互融合，或者辅以其它技术、算法。</h2><h2 id="此番将大致比较一下这三个技术流的主要特征。-下一更将重点介绍本屌目前正在玩儿的ToF方案原理。"><a href="#此番将大致比较一下这三个技术流的主要特征。-下一更将重点介绍本屌目前正在玩儿的ToF方案原理。" class="headerlink" title="此番将大致比较一下这三个技术流的主要特征。 下一更将重点介绍本屌目前正在玩儿的ToF方案原理。"></a>此番将大致比较一下这三个技术流的主要特征。 下一更将重点介绍本屌目前正在玩儿的ToF方案原理。</h2><hr>
+<h3 id="就双目视觉来说，-对前端硬件特殊性的要求很低，两个普通摄像头即可（或许有同步采样要求）。但要从两张平面图像恢复出原本的深度信息，重建工作对于算力、算法的要求可是相当相当的高。此外对于弱光环境、光线扰动、无特征的面（一堵白墙）都无法很好处理。其速度响应、帧率、可靠性都会多少有问题。至于它的优点嘛。。除了刚刚说的硬件比较便宜外，还有一个就是分辨率理论上可以做得比较高（受限于算力）。"><a href="#就双目视觉来说，-对前端硬件特殊性的要求很低，两个普通摄像头即可（或许有同步采样要求）。但要从两张平面图像恢复出原本的深度信息，重建工作对于算力、算法的要求可是相当相当的高。此外对于弱光环境、光线扰动、无特征的面（一堵白墙）都无法很好处理。其速度响应、帧率、可靠性都会多少有问题。至于它的优点嘛。。除了刚刚说的硬件比较便宜外，还有一个就是分辨率理论上可以做得比较高（受限于算力）。" class="headerlink" title="就双目视觉来说， 对前端硬件特殊性的要求很低，两个普通摄像头即可（或许有同步采样要求）。但要从两张平面图像恢复出原本的深度信息，重建工作对于算力、算法的要求可是相当相当的高。此外对于弱光环境、光线扰动、无特征的面（一堵白墙）都无法很好处理。其速度响应、帧率、可靠性都会多少有问题。至于它的优点嘛。。除了刚刚说的硬件比较便宜外，还有一个就是分辨率理论上可以做得比较高（受限于算力）。"></a>就双目视觉来说， 对前端硬件特殊性的要求很低，两个普通摄像头即可（或许有同步采样要求）。但要从两张平面图像恢复出原本的深度信息，重建工作对于算力、算法的要求可是相当相当的高。此外对于弱光环境、光线扰动、无特征的面（一堵白墙）都无法很好处理。其速度响应、帧率、可靠性都会多少有问题。至于它的优点嘛。。除了刚刚说的硬件比较便宜外，还有一个就是分辨率理论上可以做得比较高（受限于算力）。</h3><h3 id="而Structured-Light呢，翻译过来是“结构光”。-是一种很好玩儿的技术。-最新的Apple-iPhone-X应该就是这个技术的一个变种。"><a href="#而Structured-Light呢，翻译过来是“结构光”。-是一种很好玩儿的技术。-最新的Apple-iPhone-X应该就是这个技术的一个变种。" class="headerlink" title="而Structured Light呢，翻译过来是“结构光”。 是一种很好玩儿的技术。 最新的Apple iPhone X应该就是这个技术的一个变种。"></a>而Structured Light呢，翻译过来是“结构光”。 是一种很好玩儿的技术。 最新的Apple iPhone X应该就是这个技术的一个变种。</h3><h3 id="基于结构光技术的深度系统，有一个主动（红外）光源，像外界投射设计过的点阵，或者干涉条纹或者别的什么pattern。这些pattern光遇到物体反射回摄像头。后端算法会根据这些点在摄像头里的位置推出物体实际的距离。"><a href="#基于结构光技术的深度系统，有一个主动（红外）光源，像外界投射设计过的点阵，或者干涉条纹或者别的什么pattern。这些pattern光遇到物体反射回摄像头。后端算法会根据这些点在摄像头里的位置推出物体实际的距离。" class="headerlink" title="基于结构光技术的深度系统，有一个主动（红外）光源，像外界投射设计过的点阵，或者干涉条纹或者别的什么pattern。这些pattern光遇到物体反射回摄像头。后端算法会根据这些点在摄像头里的位置推出物体实际的距离。"></a>基于结构光技术的深度系统，有一个主动（红外）光源，像外界投射设计过的点阵，或者干涉条纹或者别的什么pattern。这些pattern光遇到物体反射回摄像头。后端算法会根据这些点在摄像头里的位置推出物体实际的距离。</h3><h3 id="结构光技术对算法、算力的要求比起双面视觉来说下降很多。因为是主动投射，对弱光环境下的效果显著提升。但因为需要投影pattern，对超强光下的应用反而是受限的。此外结构光技术的深度系统，只能测定极短-中短距离的物体，搞不远。。。分辨精度在mm-cm级别。"><a href="#结构光技术对算法、算力的要求比起双面视觉来说下降很多。因为是主动投射，对弱光环境下的效果显著提升。但因为需要投影pattern，对超强光下的应用反而是受限的。此外结构光技术的深度系统，只能测定极短-中短距离的物体，搞不远。。。分辨精度在mm-cm级别。" class="headerlink" title="结构光技术对算法、算力的要求比起双面视觉来说下降很多。因为是主动投射，对弱光环境下的效果显著提升。但因为需要投影pattern，对超强光下的应用反而是受限的。此外结构光技术的深度系统，只能测定极短-中短距离的物体，搞不远。。。分辨精度在mm-cm级别。"></a>结构光技术对算法、算力的要求比起双面视觉来说下降很多。因为是主动投射，对弱光环境下的效果显著提升。但因为需要投影pattern，对超强光下的应用反而是受限的。此外结构光技术的深度系统，只能测定极短-中短距离的物体，搞不远。。。分辨精度在mm-cm级别。</h3><h3 id="intel的realsense和老款m-Kinect是代表产品。"><a href="#intel的realsense和老款m-Kinect是代表产品。" class="headerlink" title="intel的realsense和老款m$ Kinect是代表产品。"></a>intel的realsense和老款m$ Kinect是代表产品。</h3><h3 id="传统的固定pattern投影技术，深度分辨率也受到pattern发生器的限制。"><a href="#传统的固定pattern投影技术，深度分辨率也受到pattern发生器的限制。" class="headerlink" title="传统的固定pattern投影技术，深度分辨率也受到pattern发生器的限制。"></a>传统的固定pattern投影技术，深度分辨率也受到pattern发生器的限制。</h3><h3 id="苹果那个就比较牛逼，传说pattern是可变的，分辨精度在极短距离内可以达到惊人的um级别，分辨率在适当的范围内也相对喜人。"><a href="#苹果那个就比较牛逼，传说pattern是可变的，分辨精度在极短距离内可以达到惊人的um级别，分辨率在适当的范围内也相对喜人。" class="headerlink" title="苹果那个就比较牛逼，传说pattern是可变的，分辨精度在极短距离内可以达到惊人的um级别，分辨率在适当的范围内也相对喜人。"></a>苹果那个就比较牛逼，传说pattern是可变的，分辨精度在极短距离内可以达到惊人的um级别，分辨率在适当的范围内也相对喜人。</h3><h3 id="ToF的全称是”Time-of-Flight”。本意是通过测量光线的折返时间来算出距离。我们都知道-距离-速度-×-时间。光速爱因斯坦告诉我们不变了，现在只要测定光线从物体反射回来的时间就能很容易算出距离来了。听上去是不是很酷！要测定一秒绕地球七圈的光，行走很短距离的时间？具体原理和操作，下一弹说￼。"><a href="#ToF的全称是”Time-of-Flight”。本意是通过测量光线的折返时间来算出距离。我们都知道-距离-速度-×-时间。光速爱因斯坦告诉我们不变了，现在只要测定光线从物体反射回来的时间就能很容易算出距离来了。听上去是不是很酷！要测定一秒绕地球七圈的光，行走很短距离的时间？具体原理和操作，下一弹说￼。" class="headerlink" title="ToF的全称是”Time of Flight”。本意是通过测量光线的折返时间来算出距离。我们都知道 距离 = 速度 × 时间。光速爱因斯坦告诉我们不变了，现在只要测定光线从物体反射回来的时间就能很容易算出距离来了。听上去是不是很酷！要测定一秒绕地球七圈的光，行走很短距离的时间？具体原理和操作，下一弹说￼。"></a>ToF的全称是”Time of Flight”。本意是通过测量光线的折返时间来算出距离。我们都知道 距离 = 速度 × 时间。光速爱因斯坦告诉我们不变了，现在只要测定光线从物体反射回来的时间就能很容易算出距离来了。听上去是不是很酷！要测定一秒绕地球七圈的光，行走很短距离的时间？具体原理和操作，下一弹说￼。</h3><h3 id="和结构光一样，ToF同样需要主动发射光线。当然不是“结构”的，它只是亮和暗，视界内全面覆盖。所以功耗会比结构光的大一丢丢，特别是远距离的时候，喔，对了反正结构光也搞不远…"><a href="#和结构光一样，ToF同样需要主动发射光线。当然不是“结构”的，它只是亮和暗，视界内全面覆盖。所以功耗会比结构光的大一丢丢，特别是远距离的时候，喔，对了反正结构光也搞不远…" class="headerlink" title="和结构光一样，ToF同样需要主动发射光线。当然不是“结构”的，它只是亮和暗，视界内全面覆盖。所以功耗会比结构光的大一丢丢，特别是远距离的时候，喔，对了反正结构光也搞不远…"></a>和结构光一样，ToF同样需要主动发射光线。当然不是“结构”的，它只是亮和暗，视界内全面覆盖。所以功耗会比结构光的大一丢丢，特别是远距离的时候，喔，对了反正结构光也搞不远…</h3><h3 id="新款m-Kinect是这个架构的代表。"><a href="#新款m-Kinect是这个架构的代表。" class="headerlink" title="新款m$ Kinect是这个架构的代表。"></a>新款m$ Kinect是这个架构的代表。</h3><h3 id="ToF技术架构的优势之一就是计算相对最简单，几乎是传感器直接测量。帧率高并因此响应极快。抗外界光线干扰能力很强。长、短距离皆可应用。分辨精度在mm～cm级别之间。"><a href="#ToF技术架构的优势之一就是计算相对最简单，几乎是传感器直接测量。帧率高并因此响应极快。抗外界光线干扰能力很强。长、短距离皆可应用。分辨精度在mm～cm级别之间。" class="headerlink" title="ToF技术架构的优势之一就是计算相对最简单，几乎是传感器直接测量。帧率高并因此响应极快。抗外界光线干扰能力很强。长、短距离皆可应用。分辨精度在mm～cm级别之间。"></a>ToF技术架构的优势之一就是计算相对最简单，几乎是传感器直接测量。帧率高并因此响应极快。抗外界光线干扰能力很强。长、短距离皆可应用。分辨精度在mm～cm级别之间。</h3><h3 id="缺陷除了刚刚提到的功耗外，分辨率是最大硬伤。目前-320x240算旗舰，640x480等更高规格器件或许在路线图上"><a href="#缺陷除了刚刚提到的功耗外，分辨率是最大硬伤。目前-320x240算旗舰，640x480等更高规格器件或许在路线图上" class="headerlink" title="缺陷除了刚刚提到的功耗外，分辨率是最大硬伤。目前~320x240算旗舰，640x480等更高规格器件或许在路线图上"></a>缺陷除了刚刚提到的功耗外，分辨率是最大硬伤。目前~320x240算旗舰，640x480等更高规格器件或许在路线图上</h3><h3 id="未来的道路在哪里？谁知道呢。。。走着瞧吧。。。"><a href="#未来的道路在哪里？谁知道呢。。。走着瞧吧。。。" class="headerlink" title="未来的道路在哪里？谁知道呢。。。走着瞧吧。。。"></a>未来的道路在哪里？谁知道呢。。。走着瞧吧。。。</h3><h3 id="客户需求-成本控制-正确的技术路线"><a href="#客户需求-成本控制-正确的技术路线" class="headerlink" title="客户需求 + 成本控制 + 正确的技术路线"></a>客户需求 + 成本控制 + 正确的技术路线</h3><h3 id="听说把握好这三点，就能实现财务自由￼￼￼￼"><a href="#听说把握好这三点，就能实现财务自由￼￼￼￼" class="headerlink" title="听说把握好这三点，就能实现财务自由￼￼￼￼"></a>听说把握好这三点，就能实现财务自由￼￼￼￼</h3><h3 id="而我呢，目前能抓住一个半就好￼"><a href="#而我呢，目前能抓住一个半就好￼" class="headerlink" title="而我呢，目前能抓住一个半就好￼"></a>而我呢，目前能抓住一个半就好￼</h3><h3 id="to-be-continued"><a href="#to-be-continued" class="headerlink" title="to be continued"></a>to be continued</h3><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -505,7 +439,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/2020/03/23/foc/foc-2/">http://blog.tensor-robotics.com/2020/03/23/foc/foc-2/</a>
+                    <a href="http://blog.tensor-robotics.com/archives/43a03328.html">http://blog.tensor-robotics.com/archives/43a03328.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -547,12 +481,8 @@
                                     <span class="chip bg-color">生产和分享知识</span>
                                 </a>
                             
-                                <a href="/tags/FoC/">
-                                    <span class="chip bg-color">FoC</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
-                                    <span class="chip bg-color">电机驱动</span>
+                                <a href="/tags/ToF/">
+                                    <span class="chip bg-color">ToF</span>
                                 </a>
                             
                         </div>
@@ -723,7 +653,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998@gmail.com",
-        id: '2020-03-23T22-13-04',
+        id: '2020-03-22T14-32-01',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -748,31 +678,85 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/24/cs/anbox/">
+                <a href="/archives/78201d81.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="安德猴的另类玩法">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="关于ToF 番二">
                         
-                        <span class="card-title">安德猴的另类玩法</span>
+                        <span class="card-title">关于ToF 番二</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            要耍安德猴，可以
-
-在装有android的平板、手机上使用
-可以用android sdk自带的模拟器（基于qemu）
-还可以使用virtualbox/ vmware这样的虚拟机运行x86 android
-
-体验从上到下， 依次80分，50分
+                            书接前文。【关于ToF 番一】
+上回说到ToF的基本概念， 即LED/LD对着场景发射光线，如果场景中有物体反射光线回来，那么我们测定这道光线从发射到被接收的时间间隔， 就能计算出距该离物体的长度为 1/2 * c * t， c是光速。
+举
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-24
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-22
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ToF/" class="post-category">
+                                    ToF
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">生产和分享知识</span>
+                    </a>
+                    
+                    <a href="/tags/ToF/">
+                        <span class="chip bg-color">ToF</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/b396a14c.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Python ctypes的使用实例">
+                        
+                        <span class="card-title">Python ctypes的使用实例</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Python中可以使用ctypes模块方便的调用C代码写的库， 而无须对C代码有任何多余的要求。
+此仅列一例，权做记录。
+
+
+首先有两个文件， C和对应的头文件。
+在people.c中， 有三个非常简单的函数。 供日后调用。而在people
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -792,75 +776,12 @@
                         <span class="chip bg-color">生产和分享知识</span>
                     </a>
                     
-                    <a href="/tags/android/">
-                        <span class="chip bg-color">android</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
-                    <a href="/tags/%E5%AE%89%E5%BE%B7%E7%8C%B4/">
-                        <span class="chip bg-color">安德猴</span>
-                    </a>
-                    
-                    <a href="/tags/anbox/">
-                        <span class="chip bg-color">anbox</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/03/23/foc/foc-1/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="DIY 示波器电流探头 | 电机系列 第一篇">
-                        
-                        <span class="card-title">DIY 示波器电流探头 | 电机系列 第一篇</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            最近项目需要用到电流探头， 某宝一搜，心凉半截。国产靠谱品牌，最便宜的都要￥3、4000。性能略强一些的， 都得成倍成倍的往上翻。一年可能也就用那么十次八次，也不太好意思申请购买 卍
-
-正巧， 前段时间有收到 电子发烧友 送测的 MAX40
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-23
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/FoC/" class="post-category">
-                                    FoC
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">生产和分享知识</span>
-                    </a>
-                    
-                    <a href="/tags/FoC/">
-                        <span class="chip bg-color">FoC</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
-                        <span class="chip bg-color">电机驱动</span>
+                    <a href="/tags/ctypes/">
+                        <span class="chip bg-color">ctypes</span>
                     </a>
                     
                 </div>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="安德猴的另类玩法, welcome">
+    <meta name="keywords" content="DIY 示波器电流探头 | 电机系列 第一篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>安德猴的另类玩法 | welcome</title>
+    <title>DIY 示波器电流探头 | 电机系列 第一篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">安德猴的另类玩法</h1>
+                    <h1 class="description center-align post-title">DIY 示波器电流探头 | 电机系列 第一篇</h1>
                 </div>
             </div>
         </div>
@@ -348,16 +348,12 @@
                                 <span class="chip bg-color">生产和分享知识</span>
                             </a>
                         
-                            <a href="/tags/android/">
-                                <span class="chip bg-color">android</span>
+                            <a href="/tags/FoC/">
+                                <span class="chip bg-color">FoC</span>
                             </a>
                         
-                            <a href="/tags/%E5%AE%89%E5%BE%B7%E7%8C%B4/">
-                                <span class="chip bg-color">安德猴</span>
-                            </a>
-                        
-                            <a href="/tags/anbox/">
-                                <span class="chip bg-color">anbox</span>
+                            <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
+                                <span class="chip bg-color">电机驱动</span>
                             </a>
                         
                     </div>
@@ -368,8 +364,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/CS/" class="post-category">
-                                CS
+                            <a href="/categories/FoC/" class="post-category">
+                                FoC
                             </a>
                         
                     </div>
@@ -381,7 +377,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-24
+                    2020-03-23
                 </div>
                 
 
@@ -390,7 +386,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    763
+                    746
                 </div>
                 
 
@@ -403,82 +399,39 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>要耍安德猴，可以</p>
-<ul>
-<li>在装有android的平板、手机上使用</li>
-<li>可以用android sdk自带的模拟器（基于qemu）</li>
-<li>还可以使用virtualbox/ vmware这样的虚拟机运行x86 android</li>
-</ul>
-<p>体验从上到下， 依次80分，50分和10分。（iPhone是 100分的话）</p>
+                <p>最近项目需要用到电流探头， 某宝一搜，心凉半截。国产靠谱品牌，最便宜的都要￥3、4000。性能略强一些的， 都得成倍成倍的往上翻。一年可能也就用那么十次八次，也不太好意思申请购买 卍</p>
+<p><img src="strobe.jpg" alt=""></p>
+<p>正巧， 前段时间有收到 电子发烧友 送测的 MAX40056 EVKIT，脑袋一拍，计上心头。</p>
+<p><img src="max40056.jpg" alt=""></p>
 <hr>
-<p>本文介绍一种新的方式，将安卓置于Linux内核原生的容器（container）中，具有基本的GPU硬件加速，同时自带android的核心系统服务。</p>
-<p>说人话，就是让android app原生的运行在一台PC中</p>
-<p>仿佛有一台android设备运行在电脑里一样。但是并不是虚拟机或者模拟器，所以速度很快。</p>
-<p>初步体验， 可以打到60~70分。</p>
+<p>美信的MAX40056是一颗 双向电流采样放大器。共模输入上限达到接近70伏，并且内建反向过冲电压防护。提供50V/V, 20V/V, 10V/V三种增益倍率的封装。</p>
+<p>比起一般的差分放大器，这颗芯片采用针对性的技术，可以抑制PWM信号带来的噪声干扰。</p>
+<p>MAX40056也集成了+1.5v的精密基准源，配合+3.3v单电源使用非常简单。</p>
+<p><img src="max40056_block.jpg" alt=""></p>
 <hr>
-<p>主角： <a href="http://anbox.io" target="_blank" rel="noopener"><strong>ANBOX</strong></a></p>
+<p>根据内部框图， 可以看到还具有快速过流保护功能。</p>
+<p>因此这颗芯片非常适合高阶电机驱动的电流采样方案。</p>
+<p>一般电流采样方案使用低位电阻，好处是便宜，坏处是运放同样靠近地，噪声会比较大</p>
+<p>稍微高级一点儿， 使用高位电阻配合高共模放大器，略贵一点儿的价格带来更干净的信号，同时有一个额外的好处是可以检测到负载的对地短路事件。</p>
+<p>但是简单的电阻采样无论高低位都一个弊端， 在桥式结构的电路中电流采样都会存在窗口期， 需要精确配合pwm。</p>
+<p>而使用更高级的 相电流采样 方案，则完全没有这个问题，可以在任何时段内采集电流。除了更贵一丢丢外，全是优点，没有任何缺点。</p>
+<p>MAX40056 就可以这样用。</p>
+<p>300kHz(-3dB)的 带宽， 刚好也和最低档次的CT探头一样规格。</p>
 <hr>
-<p>官方网站的安装说明已经非常详细，这里只是大概记录一下。</p>
-<p>首先Debian源里的并不是新版本，官方目前只支持snap包管理系统，所以如果你的Debian里还没有snap的话需要</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install snapd</span><br></pre></td></tr></tbody></table></figure>
-
-<hr>
-<p>Anbox安装</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install --devmode --beta anbox</span><br></pre></td></tr></tbody></table></figure>
-
-<p>如果日后需要更新</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap refresh --beta --devmode anbox</span><br></pre></td></tr></tbody></table></figure>
-
-<p>snap在国内访问会非常不和谐，但是snap又不能直接使用环境变量， 需要修改其配置</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl edit snapd.service</span><br></pre></td></tr></tbody></table></figure>
-
-<p>修改或加入下面几行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">Environment=http_proxy=http://127.0.0.1:8123</span><br><span class="line">Environment=https_proxy=http://127.0.0.1:8123</span><br></pre></td></tr></tbody></table></figure>
-
-<hr>
-<p>Anbox内核模块安装</p>
-<p>需要首先apt安装 dkms和内核头文件。</p>
-<p>之后从git clone内核模块的源代码</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/anbox/anbox-modules.git</span><br></pre></td></tr></tbody></table></figure>
-
-<p>编译</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -rT ashmem /usr/src/anbox-ashmem-1</span><br><span class="line">sudo cp -rT binder /usr/src/anbox-binder-1</span><br><span class="line">sudo dkms install anbox-ashmem/1</span><br><span class="line">sudo dkms install anbox-binder/1</span><br></pre></td></tr></tbody></table></figure>
-
-<p>加载测试</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe ashmem_linux</span><br><span class="line">sudo modprobe binder_linux</span><br></pre></td></tr></tbody></table></figure>
-
-<p>正常情况下，lsmod应该就能看到刚刚加载的模块</p>
-<p>/dev/下面也会出现对应的设备</p>
-<ul>
-<li>/dev/binder</li>
-<li>/dev/ashmem</li>
-</ul>
-<p>需要修改这两个文件的访问权限， 让普通用户也能访问。</p>
-<hr>
-<p>激动人心的时刻， 运行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anbox.appmgr</span><br></pre></td></tr></tbody></table></figure>
-
-<p>第一次运行的话， CPU会加载android的系统环境， 在我电脑上大概几秒吧 ，完了之后就能看到一个新窗口<br><img src="anbox_appmgr.jpg" alt=""></p>
-<p>点开里面原生自带的应用，每一个都会是一个独立的窗口。</p>
-<hr>
-<p>这时可以用adb shell连进去看看。<br><img src="adb_shell.jpg" alt=""></p>
-<p>可以看到android显示的内核、硬件都是真机的，这就是Linux内核容器。</p>
-<p>不要惊讶分辨率，我用的是1440p+1080p双显示器</p>
-<p>此时android会用以太网卡和主机连接，而在主机端呢， 刚刚的内核驱动则会虚拟出一个anbox0网络设备。</p>
-<hr>
-<p>不爽之处</p>
-<ul>
-<li>目前的img只有 7.1</li>
-<li>似乎并不支持摄像头</li>
-</ul>
-<hr>
-<p>喔，对了， 有个脚本可以给默认的android image添加上google play，安装app方便很多</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/geeks-r-us/anbox-playstore-installer.git</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="google-play.jpg" alt=""></p>
-<hr>
-<p>就到这里，</p>
-<p>下次再见。</p>
+<p>////<br>话不多说，直接开搞。<br>////</p>
+<p>内部 +1.5v 电压基准。</p>
+<p><img src="ref_voltage.jpg" alt=""></p>
+<p>原板的采样电阻为 R050， 再加上 MAX40056F的增益是 50V/V， 所以默认配置只能采集 +/- 0.7A的电流， 果断拆了……<br>大厂原版开发板，就是严谨。教科书级的开尔文布线。</p>
+<p><img src="layout.jpg" alt=""></p>
+<p>换上小十倍的电阻， 采样量程扩大10倍。当然精度也随之下降。</p>
+<p><img src="resistance.jpg" alt=""></p>
+<p>完整的采样测试电路</p>
+<p>便利性和成品CT探头肯定要差， 精度应该不落太多。</p>
+<p>差着100+倍的成本 (=@__@=)</p>
+<p><img src="circuit.jpg" alt=""></p>
+<p>四通道示波器终于派上大用场。</p>
+<p>要用的时候，它就在那儿，的感觉真好。<br>foc扭矩控制，单相电流终于有点儿正弦波的样子了￼￼！<br>老子等这天好久好久了￼<br>工具在手，天下我有！</p>
+<p><img src="foc-1/scope.jpg" alt=""></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -522,7 +475,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/2020/03/24/cs/anbox/">http://blog.tensor-robotics.com/2020/03/24/cs/anbox/</a>
+                    <a href="http://blog.tensor-robotics.com/archives/c122089a.html">http://blog.tensor-robotics.com/archives/c122089a.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -564,16 +517,12 @@
                                     <span class="chip bg-color">生产和分享知识</span>
                                 </a>
                             
-                                <a href="/tags/android/">
-                                    <span class="chip bg-color">android</span>
+                                <a href="/tags/FoC/">
+                                    <span class="chip bg-color">FoC</span>
                                 </a>
                             
-                                <a href="/tags/%E5%AE%89%E5%BE%B7%E7%8C%B4/">
-                                    <span class="chip bg-color">安德猴</span>
-                                </a>
-                            
-                                <a href="/tags/anbox/">
-                                    <span class="chip bg-color">anbox</span>
+                                <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
+                                    <span class="chip bg-color">电机驱动</span>
                                 </a>
                             
                         </div>
@@ -744,7 +693,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998@gmail.com",
-        id: '2020-03-24T20-41-59',
+        id: '2020-03-23T21-18-57',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -765,80 +714,11 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
-            <div class="card">
-                <a href="/2020/03/24/cs/anbox/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="安德猴的另类玩法">
-                        
-                        <span class="card-title">安德猴的另类玩法</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            要耍安德猴，可以
-
-在装有android的平板、手机上使用
-可以用android sdk自带的模拟器（基于qemu）
-还可以使用virtualbox/ vmware这样的虚拟机运行x86 android
-
-体验从上到下， 依次80分，50分
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-24
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/CS/" class="post-category">
-                                    CS
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">生产和分享知识</span>
-                    </a>
-                    
-                    <a href="/tags/android/">
-                        <span class="chip bg-color">android</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%AE%89%E5%BE%B7%E7%8C%B4/">
-                        <span class="chip bg-color">安德猴</span>
-                    </a>
-                    
-                    <a href="/tags/anbox/">
-                        <span class="chip bg-color">anbox</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/23/foc/foc-2/">
+                <a href="/archives/b19fd6ba.html">
                     <div class="card-image">
                         
                         
@@ -856,9 +736,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-23
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-23
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -884,6 +764,64 @@
                     
                     <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
                         <span class="chip bg-color">电机驱动</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/76aee792.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="关于ToF 番四">
+                        
+                        <span class="card-title">关于ToF 番四</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            由于各种原因，和本番相关的工作被严重耽误……以至于错过大好机会
+痛定思痛 痛何如哉
+
+本番行文后，将在另外一种形式上重启
+
+在 【关于ToF 番二】 中介绍的ToF系统，使用连续调制光照射外界，并通过多帧数据，计算得出反射光的相位偏移角度，
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ToF/" class="post-category">
+                                    ToF
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">生产和分享知识</span>
+                    </a>
+                    
+                    <a href="/tags/ToF/">
+                        <span class="chip bg-color">ToF</span>
                     </a>
                     
                 </div>
