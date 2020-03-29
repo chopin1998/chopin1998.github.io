@@ -402,15 +402,15 @@
                 <p>Python中可以使用ctypes模块方便的调用C代码写的库， 而无须对C代码有任何多余的要求。</p>
 <p>此仅列一例，权做记录。</p>
 <hr>
-<p><img src="ls.png" alt=""></p>
+<p><img src="b396a14c/ls.png" alt=""></p>
 <p>首先有两个文件， C和对应的头文件。</p>
 <p>在people.c中， 有三个非常简单的函数。 供日后调用。<br>而在people.h中， 是对应的函数声明， 在此不表。</p>
-<p><img src="source.png" alt=""></p>
+<p><img src="b396a14c/source.png" alt=""></p>
 <hr>
-<p>接下来的一步， 将这个C代码编译成库， 使用如下的命令<br><img src="compile.png" alt=""></p>
+<p>接下来的一步， 将这个C代码编译成库， 使用如下的命令<br><img src="b396a14c/compile.png" alt=""></p>
 <p>这将生成一个叫 libpeople.so的库， 和平常编译库的方式完全一样。</p>
 <hr>
-<p>最后， 激动人心的时刻—-直接在python中调用这个C库。<br><img src="call.png" alt=""></p>
+<p>最后， 激动人心的时刻—-直接在python中调用这个C库。<br><img src="b396a14c/call.png" alt=""></p>
 <p>进入ipython后， 首当其冲import ctypes， 然后用cdll里的LoadLibrary导入刚刚生成的库。</p>
 <p>因为make_people使用了自定义的struct和指针， 所以需要现在Python里先建立对于的数据结构。</p>
 <p>之后就能随心所欲的调用c库里的函数了。</p>
