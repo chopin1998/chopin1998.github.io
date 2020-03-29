@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="安德猴的另类玩法, welcome">
+    <meta name="keywords" content="闭门造车日记 第一篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>安德猴的另类玩法 | welcome</title>
+    <title>闭门造车日记 第一篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">安德猴的另类玩法</h1>
+                    <h1 class="description center-align post-title">闭门造车日记 第一篇</h1>
                 </div>
             </div>
         </div>
@@ -344,20 +344,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
-                                <span class="chip bg-color">生产和分享知识</span>
+                            <a href="/tags/%E5%88%86%E4%BA%AB%E5%92%8C%E7%94%9F%E4%BA%A7%E7%9F%A5%E8%AF%86/">
+                                <span class="chip bg-color">分享和生产知识</span>
                             </a>
                         
-                            <a href="/tags/android/">
-                                <span class="chip bg-color">android</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%AE%89%E5%BE%B7%E7%8C%B4/">
-                                <span class="chip bg-color">安德猴</span>
-                            </a>
-                        
-                            <a href="/tags/anbox/">
-                                <span class="chip bg-color">anbox</span>
+                            <a href="/tags/%E5%B0%8F%E8%BD%A6/">
+                                <span class="chip bg-color">小车</span>
                             </a>
                         
                     </div>
@@ -368,8 +360,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/CS/" class="post-category">
-                                CS
+                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/" class="post-category">
+                                造车日记
                             </a>
                         
                     </div>
@@ -381,7 +373,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-24
+                    2020-03-29
                 </div>
                 
 
@@ -390,7 +382,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    763
+                    808
                 </div>
                 
 
@@ -403,83 +395,43 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>要耍安德猴，可以</p>
+                <h1 id="造车日记-开篇"><a href="#造车日记-开篇" class="headerlink" title="造车日记 - 开篇"></a>造车日记 - 开篇</h1><h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>看到<a href="https://www.dji.com/cn/robomaster-s1" target="_blank" rel="noopener">大疆 RoboMaster S1</a>之后，就有了自己也做一台小车的想法。</p>
+<p>当然除了以后给女儿当玩具玩儿之外，目的还是非常明确的。</p>
+<h3 id="在硬件层面"><a href="#在硬件层面" class="headerlink" title="在硬件层面"></a>在硬件层面</h3><p>主要是尝试新技术以及为一些技术的工程化积累经验。包含但不限于</p>
 <ul>
-<li>在装有android的平板、手机上使用</li>
-<li>可以用android sdk自带的模拟器（基于qemu）</li>
-<li>还可以使用virtualbox/ vmware这样的虚拟机运行x86 android</li>
+<li>CAN/ ehtercat等现场总线</li>
+<li>高等级嵌入式芯片和开发</li>
+<li>各种新传感器</li>
 </ul>
-<p>体验从上到下， 依次80分，50分和10分。（iPhone是 100分的话）</p>
+<h3 id="在软件层"><a href="#在软件层" class="headerlink" title="在软件层"></a>在软件层</h3><p>有一个专一但是庞大的目标：实践<a href="https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping" target="_blank" rel="noopener">vSLAM</a></p>
+<p>在目前已知的室内定位技术中，总感觉 基于RGB-D的vSLAM是才王道，其它都是异端，虽然异端也有异端的作用。</p>
 <hr>
-<p>本文介绍一种新的方式，将安卓置于Linux内核原生的容器（container）中，具有基本的GPU硬件加速，同时自带android的核心系统服务。</p>
-<p>说人话，就是让android app原生的运行在一台PC中</p>
-<p>仿佛有一台android设备运行在电脑里一样。但是并不是虚拟机或者模拟器，所以速度很快。</p>
-<p>初步体验， 可以打到60~70分。</p>
-<hr>
-<p>主角： <a href="http://anbox.io" target="_blank" rel="noopener"><strong>ANBOX</strong></a></p>
-<hr>
-<p>官方网站的安装说明已经非常详细，这里只是大概记录一下。</p>
-<p>首先Debian源里的并不是新版本，官方目前只支持snap包管理系统，所以如果你的Debian里还没有snap的话需要</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install snapd</span><br></pre></td></tr></tbody></table></figure>
-
-<hr>
-<p>Anbox安装</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install --devmode --beta anbox</span><br></pre></td></tr></tbody></table></figure>
-
-<p>如果日后需要更新</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap refresh --beta --devmode anbox</span><br></pre></td></tr></tbody></table></figure>
-
-<p>snap在国内访问会非常不和谐，但是snap又不能直接使用环境变量， 需要修改其配置</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl edit snapd.service</span><br></pre></td></tr></tbody></table></figure>
-
-<p>修改或加入下面几行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">Environment=http_proxy=http://127.0.0.1:8123</span><br><span class="line">Environment=https_proxy=http://127.0.0.1:8123</span><br></pre></td></tr></tbody></table></figure>
-
-<hr>
-<p>Anbox内核模块安装</p>
-<p>需要首先apt安装 dkms和内核头文件。</p>
-<p>之后从git clone内核模块的源代码</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/anbox/anbox-modules.git</span><br></pre></td></tr></tbody></table></figure>
-
-<p>编译</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -rT ashmem /usr/src/anbox-ashmem-1</span><br><span class="line">sudo cp -rT binder /usr/src/anbox-binder-1</span><br><span class="line">sudo dkms install anbox-ashmem/1</span><br><span class="line">sudo dkms install anbox-binder/1</span><br></pre></td></tr></tbody></table></figure>
-
-<p>加载测试</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe ashmem_linux</span><br><span class="line">sudo modprobe binder_linux</span><br></pre></td></tr></tbody></table></figure>
-
-<p>正常情况下，lsmod应该就能看到刚刚加载的模块</p>
-<p>/dev/下面也会出现对应的设备</p>
+<h2 id="首批硬件"><a href="#首批硬件" class="headerlink" title="首批硬件"></a>首批硬件</h2><h3 id="底盘"><a href="#底盘" class="headerlink" title="底盘"></a>底盘</h3><p>本来因为工作原因多少接触了一些CAD软件，本来想着能自己画图开料，但是比较不是本行，时间花在这个上面不是太划算，于是就花了几个晚上逛了逛 <del>窑子</del> 不对淘宝。终于找到了还算满意的小平台。四麦克纳姆轮。</p>
+<p><img src="chassis.jpg" alt=""></p>
+<p>和老板哭了一会儿穷（真穷），饶了我￥40块，尽管如此，心还是在滴血…</p>
+<p><img src="b_joint.jpg" alt=""></p>
+<p>底部的一个设计还是挺好的，虽然买不起四轴独立悬架版本，好歹有一个低成本板车方案 ^_^</p>
+<p>因为成本问题， 这版就先用有刷电机，等我FoC完全整明白了， 再给换上无刷电机。</p>
+<h3 id="动力电池"><a href="#动力电池" class="headerlink" title="动力电池"></a>动力电池</h3><p><img src="batt.jpg" alt=""></p>
+<p>采用了特斯拉 3系同款的 21700电池，3s2p结构。相比比传统的18650电池</p>
 <ul>
-<li>/dev/binder</li>
-<li>/dev/ashmem</li>
+<li>价格更低</li>
+<li>容量更高</li>
+<li>内阻更低</li>
+<li>一致性更好</li>
+<li>寿命更长</li>
 </ul>
-<p>需要修改这两个文件的访问权限， 让普通用户也能访问。</p>
+<p>本来想自己做BMS的，后来想想，一共就6芯，好像啥管理必要了，直接让卖家给我封了一块充放电同口的保护板进去了事。￥170块。</p>
+<h3 id="遥控"><a href="#遥控" class="headerlink" title="遥控"></a>遥控</h3><p>第一阶段的调试，也是为了好玩，一个能直接用的手柄还是需要的。<br><img src="remote_ctrl.jpg" alt=""></p>
+<p>taobao又搜了一个晚上，发现这个。乐视的手柄。虽然我对乐视完全无感，但是￥40块钱，无线，还能说啥。</p>
+<p>然后，到手之后发现， 手感还不错。就是有一个按键不太灵光，和老板反应了，他居然说要不就退款，这个就算送给我，要不就再给我寄一个，这个也送给我。。。</p>
+<p>那个坏的键， 我拆开看过， 其实内部开关都是好的， 就是磨具有点儿问题， 中间垫点儿东西就几乎完美。于是我花了￥40块买了两个手柄。</p>
+<p>这个手柄在LinuX可以使用大部分功能，目前震动还不知道怎么搞出来，似乎不是标准协议…问题不大。</p>
+<h3 id="主控（暂定）"><a href="#主控（暂定）" class="headerlink" title="主控（暂定）"></a>主控（暂定）</h3><p>RK3399</p>
+<p><img src="rk3399.jpg" alt=""></p>
+<p>双摄也有，倒是看看同步的情况，以及适合不适合跑slam。</p>
 <hr>
-<p>激动人心的时刻， 运行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anbox.appmgr</span><br></pre></td></tr></tbody></table></figure>
-
-<p>第一次运行的话， CPU会加载android的系统环境， 在我电脑上大概几秒吧 ，完了之后就能看到一个新窗口<br><img src="anbox_appmgr.jpg" alt=""></p>
-<p>点开里面原生自带的应用，每一个都会是一个独立的窗口。</p>
-<hr>
-<p>这时可以用adb shell连进去看看。<br><img src="adb_shell.jpg" alt=""></p>
-<p>可以看到android显示的内核、硬件都是真机的，这就是Linux内核容器。</p>
-<p>不要惊讶分辨率，我用的是1440p+1080p双显示器</p>
-<p>此时android会用以太网卡和主机连接，而在主机端呢， 刚刚的内核驱动则会虚拟出一个anbox0网络设备。</p>
-<hr>
-<p>不爽之处</p>
-<ul>
-<li>目前的img只有 7.1</li>
-<li>似乎并不支持摄像头</li>
-</ul>
-<hr>
-<p>喔，对了， 有个脚本可以给默认的android image添加上google play，安装app方便很多</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/geeks-r-us/anbox-playstore-installer.git</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="google-play.jpg" alt=""></p>
-<hr>
-<p>就到这里，</p>
-<p>下次再见。</p>
-<script>
+<h2 id="下一步计划"><a href="#下一步计划" class="headerlink" title="下一步计划"></a>下一步计划</h2><h3 id="规划驱动板，选定互联总线，用遥控器自由控制"><a href="#规划驱动板，选定互联总线，用遥控器自由控制" class="headerlink" title="规划驱动板，选定互联总线，用遥控器自由控制"></a>规划驱动板，选定互联总线，用遥控器自由控制</h3><h3 id="开始构建和实践SLAM"><a href="#开始构建和实践SLAM" class="headerlink" title="开始构建和实践SLAM"></a>开始构建和实践SLAM</h3><h3 id="其它好玩儿的附加功能"><a href="#其它好玩儿的附加功能" class="headerlink" title="其它好玩儿的附加功能"></a>其它好玩儿的附加功能</h3><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -522,7 +474,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/archives/75e36441.html">http://blog.tensor-robotics.com/archives/75e36441.html</a>
+                    <a href="http://blog.tensor-robotics.com/archives/f7aec936.html">http://blog.tensor-robotics.com/archives/f7aec936.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -560,20 +512,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
-                                    <span class="chip bg-color">生产和分享知识</span>
+                                <a href="/tags/%E5%88%86%E4%BA%AB%E5%92%8C%E7%94%9F%E4%BA%A7%E7%9F%A5%E8%AF%86/">
+                                    <span class="chip bg-color">分享和生产知识</span>
                                 </a>
                             
-                                <a href="/tags/android/">
-                                    <span class="chip bg-color">android</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%AE%89%E5%BE%B7%E7%8C%B4/">
-                                    <span class="chip bg-color">安德猴</span>
-                                </a>
-                            
-                                <a href="/tags/anbox/">
-                                    <span class="chip bg-color">anbox</span>
+                                <a href="/tags/%E5%B0%8F%E8%BD%A6/">
+                                    <span class="chip bg-color">小车</span>
                                 </a>
                             
                         </div>
@@ -744,7 +688,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998@gmail.com",
-        id: '2020-03-24T20-41-59',
+        id: '2020-03-29T14-31-39',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -765,9 +709,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/archives/f7aec936.html">
                     <div class="card-image">
@@ -789,9 +734,9 @@ CAN/ eh
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -804,6 +749,7 @@ CAN/ eh
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -826,33 +772,37 @@ CAN/ eh
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/b19fd6ba.html">
+                <a href="/archives/75e36441.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="ST MCSDK 的开箱使用 | 电机系列 第二篇">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="安德猴的另类玩法">
                         
-                        <span class="card-title">ST MCSDK 的开箱使用 | 电机系列 第二篇</span>
+                        <span class="card-title">安德猴的另类玩法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            因为工作的关系，接触到一些电机的驱动。最早是BLDC，跟着老工程师后面，从懵懵懂懂，到稍微有了一点儿概念。之后自己憋出一个能走微步的步进电机驱动。满满的成就感记忆犹新。
-后面的项目，用集成驱动芯片独立完成了一些其它的电机驱动。
-前二年的学习
+                            要耍安德猴，可以
+
+在装有android的平板、手机上使用
+可以用android sdk自带的模拟器（基于qemu）
+还可以使用virtualbox/ vmware这样的虚拟机运行x86 android
+
+体验从上到下， 依次80分，50分
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/FoC/" class="post-category">
-                                    FoC
+                            <a href="/categories/CS/" class="post-category">
+                                    CS
                                 </a>
                             
                             
@@ -866,12 +816,16 @@ CAN/ eh
                         <span class="chip bg-color">生产和分享知识</span>
                     </a>
                     
-                    <a href="/tags/FoC/">
-                        <span class="chip bg-color">FoC</span>
+                    <a href="/tags/android/">
+                        <span class="chip bg-color">android</span>
                     </a>
                     
-                    <a href="/tags/%E7%94%B5%E6%9C%BA%E9%A9%B1%E5%8A%A8/">
-                        <span class="chip bg-color">电机驱动</span>
+                    <a href="/tags/%E5%AE%89%E5%BE%B7%E7%8C%B4/">
+                        <span class="chip bg-color">安德猴</span>
+                    </a>
+                    
+                    <a href="/tags/anbox/">
+                        <span class="chip bg-color">anbox</span>
                     </a>
                     
                 </div>
