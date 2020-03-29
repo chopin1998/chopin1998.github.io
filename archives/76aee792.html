@@ -403,7 +403,7 @@
 <p>在 【关于ToF 番二】 中介绍的ToF系统，使用连续调制光照射外界，并通过多帧数据，计算得出反射光的相位偏移角度， 从而间接计算出光线行走距离。</p>
 <p>但，这不是唯一的方式，本文介绍另外一种ToF相机的操作原理：脉冲式ToF</p>
 <p>让我们来构建一个和连续调制方式ToF的有点儿相似但不完全相同的像素结构</p>
-<p><img src="pulse_tof_gate.webp" alt=""></p>
+<p><img src="76aee792/pulse_tof_gate.webp" alt=""></p>
 <ul>
 <li>首先操作时， chg会打开，对两侧两颗电容充电</li>
 <li>然后S0(或S1)进行开关操作，开关时机由调制模块控制</li>
@@ -412,7 +412,7 @@
 <li>最后读取电容中的剩余电压</li>
 </ul>
 <p>然后有下图</p>
-<p><img src="op.webp" alt=""></p>
+<p><img src="76aee792/op.webp" alt=""></p>
 <ul>
 <li>第一行 代表受控的LED输出，正是因为这个，才被称之为脉冲式</li>
 <li>第二行 代表实际的光线反射回波</li>
@@ -434,7 +434,7 @@
 </ul>
 <hr>
 <p>最后附上一种连续调制式ToF的像素结构图</p>
-<p><img src="tune.jpeg" alt=""></p>
+<p><img src="76aee792/tune.jpeg" alt=""></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
