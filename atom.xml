@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.tensor-robotics.com/"/>
-  <updated>2020-03-29T08:22:36.905Z</updated>
+  <updated>2020-04-09T15:21:11.609Z</updated>
   <id>http://blog.tensor-robotics.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>闭门造车日记 第二篇</title>
+    <link href="http://blog.tensor-robotics.com/archives/c7b825ee.html"/>
+    <id>http://blog.tensor-robotics.com/archives/c7b825ee.html</id>
+    <published>2020-04-08T12:21:57.000Z</published>
+    <updated>2020-04-09T15:21:11.609Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="造车日记-驱动板规划"><a href="#造车日记-驱动板规划" class="headerlink" title="造车日记 - 驱动板规划"></a>造车日记 - 驱动板规划</h1><h2 id="总线之首选-gt-EtherCAT"><a href="#总线之首选-gt-EtherCAT" class="headerlink" title="总线之首选 -> EtherCAT"></a>总线之首选 -&gt; EtherCAT</h2><p>久闻 <a href="https://www.ethercat.org/" target="_blank" rel="noopener">EtherCAT</a>大名，想着就以帅的名义学习一番，看看能不能用作小车的内部主干总线。</p><p>经过几个晚上的学习，大概摸清了Ethercat的毛皮。</p><p>EtherCAT， 是一个以以太网为基础的工作现场总线。它完全沿用了<a href="https://en.wikipedia.org/wiki/Ethernet" target="_blank" rel="noopener">以太网</a>的物理层，并延续了标准的<a href="https://en.wikipedia.org/wiki/Ethernet_frame" target="_blank" rel="noopener">以太帧</a>，但后面的使用上则完全不同。</p><hr><h3 id="常规以太网"><a href="#常规以太网" class="headerlink" title="常规以太网"></a>常规以太网</h3><p>在常规的以太网中，并没有中心节点，每个节点都可以占用网络，并相应发展出载波监听/冲突检测技术，当多个节点同时想收发信息时，必定会有不确定的延时。</p><p>此外虽然以太网的基础速率较高，但是对于高频次的短小消息来说，整体总线利用率可以说非常低（2-5%）</p><hr><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>在一个EtherCAT网络有且只有唯一的<strong>主站</strong>，<strong>从站</strong>节点则可以多达六万多个。而网络利用率却可以达到~97%，同时，从站间的同步偏差小于1us，在包含100个伺服轴节点的系统中，可以以10kHz的速度更新它们的状态信息。</p><p>这对于一个有众多执行机构，并且需要可控同步的机器人系统来说太美好了。</p><p>基本上主站的网络设备可以使用常规的以太网卡。EtherCAT改造的是从站节点的“网卡”。</p><p>在EtherCAT中每个从节点都有一个特制的网卡，该卡有2个独立的port（也有的有3个）。其中一个连接上行设备（或者主站），另外一个连接下行设备（或者留空）。</p><p>EtherCAT子设备网卡，支持一种被称为“Processing On the Fly”的技术，当一个从站收到上游发来的数据时，立即在硬件上将属于自己的数据更新，并立刻从下游端口发出新的数据。</p><p>维基百科上的一个动图很好的解释了这一点。<br><img src="c7b825ee/EthercatOperatingPrinciple.svg" alt=""></p><hr><h3 id="网卡"><a href="#网卡" class="headerlink" title="网卡"></a>网卡</h3><p>从站的EtherCAT网络方案有大概三种</p><ul><li>SOC， ARM核心带ethercat控制器</li><li>FPGA Core</li><li><strong>收发器</strong></li></ul><p>使用SoC的芯片应该是更合理的方式，不过当前支持EtherCAT的SoC并不算多，所以我重点看了两款独立的收发器芯片，这样搭配自己的处理器会灵活一些。</p><ul><li>LAN9252</li><li>AX58100</li></ul><p>基本大同小异吧， 以AX58100为例， 内部框图如下<br><img src="c7b825ee/ax58100_block.jpg" alt=""></p><p>典型系统构成<br><img src="c7b825ee/ethercat_system.jpg" alt=""></p><p>感觉开发从站的话应该是指工作量的问题，并没有明显障碍。</p><hr><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>目前为止，一起都很美好，除了EtherCAT的性能对于一个玩具小车来说有些overkill。</p><p>直到我大略的看了一下<strong>主站方案</strong>……问题出来了。</p><p>似乎主流的Linux主站方案都停留在2013年左右，对LinuX内核支持停留在 2.6/3.x的时代，而我电脑目前的内核版本是5.5.9……</p><p>更为头疼的是因为EtherCAT的实时性非常高，似乎如果主站不是实时操作系统的话，从节点会因为得不到及时相应而罢工……</p><p>看了一圈，似乎目前的方案是引入这个项目</p><p><strong><a href="https://gitlab.denx.de/Xenomai/xenomai/-/wikis/home" target="_blank" rel="noopener">Xenomai</a></strong></p><p>这是一个让计算机运行双内核的东西。标准LinuX内核+实时内核。</p><p>这玩笑就开大了……完全搞定这个，似乎研究生都能毕业一回。而我要的只是一个能控制小车的总线……</p><hr><h3 id="最终选择"><a href="#最终选择" class="headerlink" title="最终选择"></a>最终选择</h3><p>EtherCAT性能确实优异，看上去也很好玩，再合适的场景下确实相当帅。</p><p>我会继续看下去，但是恐怕不是在小车这个东西上了。</p><p>所以最终，小车的主控（暂定RK3399）和电机板之间的总线为</p><p><strong>USB</strong></p><hr><h2 id="驱动板MCU"><a href="#驱动板MCU" class="headerlink" title="驱动板MCU"></a>驱动板MCU</h2><p>这里先透露一下 <strong><a href="https://blog.tensor-robotics.com/categories/FoC/">FoC计划</a></strong> 的首款PCB<br><img src="c7b825ee/stm32-foc-v1.jpg" alt=""></p><p>小车的话，打算采用同款MCU <strong>STM32F303RET6</strong></p><p>有四个QD，在CubeMX里试了一下，有足够的资源硬件解码。<br><img src="c7b825ee/cube_qd.jpg" alt=""></p><p>USB也靠它片上实现</p><p>此外8根PWM，驱动电机</p><p>说不定灯效也放在它身上，到时候看</p><hr><h2 id="电机驱动器"><a href="#电机驱动器" class="headerlink" title="电机驱动器"></a>电机驱动器</h2><p>作为MPS脑残粉，电源、驱动之类的肯定首选MPS。</p><p>本来看中 <strong><a href="https://www.monolithicpower.com/en/mp6519.html" target="_blank" rel="noopener">MP6519</a></strong> </p><p>这是一颗28v 5A的可控恒流源。本来想着可以对付因为感抗造成的DC启动性能差的问题，不过后经高人提醒，电机的调速用电流源的话，会非常不线性。</p><p>最后基本确定为 <strong>MP6612</strong> 这颗。</p><hr><p>不日将开工画板。</p><p>to be continued..</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;造车日记-驱动板规划&quot;&gt;&lt;a href=&quot;#造车日记-驱动板规划&quot; class=&quot;headerlink&quot; title=&quot;造车日记 - 驱动板规划&quot;&gt;&lt;/a&gt;造车日记 - 驱动板规划&lt;/h1&gt;&lt;h2 id=&quot;总线之首选-gt-EtherCAT&quot;&gt;&lt;a href=&quot;#
+      
+    
+    </summary>
+    
+    
+      <category term="造车日记" scheme="http://blog.tensor-robotics.com/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="分享和生产知识" scheme="http://blog.tensor-robotics.com/tags/%E5%88%86%E4%BA%AB%E5%92%8C%E7%94%9F%E4%BA%A7%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="小车" scheme="http://blog.tensor-robotics.com/tags/%E5%B0%8F%E8%BD%A6/"/>
+    
+      <category term="EtherCAT" scheme="http://blog.tensor-robotics.com/tags/EtherCAT/"/>
+    
+  </entry>
   
   <entry>
     <title>闭门造车日记 第一篇</title>
@@ -303,7 +333,7 @@
     <link href="http://blog.tensor-robotics.com/archives/ef0a297a.html"/>
     <id>http://blog.tensor-robotics.com/archives/ef0a297a.html</id>
     <published>2020-03-19T12:00:01.000Z</published>
-    <updated>2020-03-26T01:33:47.787Z</updated>
+    <updated>2020-04-08T09:27:23.557Z</updated>
     
     <content type="html"><![CDATA[<p>安定了。<br>以后在考虑建个电报channel。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
