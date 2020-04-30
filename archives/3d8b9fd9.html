@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="闭门造车日记 第三篇, welcome">
+    <meta name="keywords" content="闭门造车日记 第四篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>闭门造车日记 第三篇 | welcome</title>
+    <title>闭门造车日记 第四篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">闭门造车日记 第三篇</h1>
+                    <h1 class="description center-align post-title">闭门造车日记 第四篇</h1>
                 </div>
             </div>
         </div>
@@ -373,7 +373,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-18
+                    2020-04-30
                 </div>
                 
 
@@ -382,7 +382,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    731
+                    838
                 </div>
                 
 
@@ -395,42 +395,60 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="造车日记-驱动板预备"><a href="#造车日记-驱动板预备" class="headerlink" title="造车日记 - 驱动板预备"></a>造车日记 - 驱动板预备</h1><p>经过几个晚上加周六断断续续的折腾， 首块驱动板终于快要问世。</p>
-<p>下周再抽一个晚上检查检查就准备外发。实在搞不动了，明天周日好好休息一下。。</p>
-<p>调试顺利结束后，会在github放出相关设计。</p>
+                <h1 id="造车日记-收到驱动板"><a href="#造车日记-收到驱动板" class="headerlink" title="造车日记 - 收到驱动板"></a>造车日记 - 收到驱动板</h1><h2 id="延时"><a href="#延时" class="headerlink" title="延时"></a>延时</h2><p>快到五月份，PCB厂家的产能依然被COVID-19病毒深深影响。</p>
+<p>日盼夜盼，延误两天。总算厂家良心，帮我免费升了航空件。</p>
 <hr>
-<h2 id="KiCAD已经用到炉火纯青"><a href="#KiCAD已经用到炉火纯青" class="headerlink" title="KiCAD已经用到炉火纯青"></a>KiCAD已经用到炉火纯青</h2><p>原理图继续采用结构化（自顶向下）设计。</p>
-<p><img src="8aa686bc/sch_top.jpg" alt="非常喜欢这种方式，取代了之前的平铺地板流"></p>
-<h2 id="STM32持续熟悉中"><a href="#STM32持续熟悉中" class="headerlink" title="STM32持续熟悉中"></a>STM32持续熟悉中</h2><hr>
-<p>这是第一次完全独立使用STM32（之前有过一次，但是更多是依据参考设计）。</p>
-<p>相比用了好多年的AVR XMEGA，无论内核还是外设，都是碾压式超越，就算考虑到性价比，可能也是被完胜。</p>
-<p>不过也更复杂一些，有一些外设，我专门花了两天时间去看文档，还是有点儿稀里糊涂的感觉。</p>
-<p><strong>XMEGA</strong>比STM32好的地方之一，是它的外设、寄存器规划得都非常整齐，使用、记忆起来极其方便。STM32的规划完全就是<strong>一坨屎</strong>……</p>
-<p>不服来辩。</p>
-<p>当然ST自己也是知道这种鬼情况的，所以搞出一套CUBEMX，使用起来还算愉快。</p>
-<p>基本上，外设规划能做到可视化，初始代码生成器也工作良好。</p>
-<p><img src="8aa686bc/cube_io.jpg" alt=""></p>
+<h2 id="设计和实体同框"><a href="#设计和实体同框" class="headerlink" title="设计和实体同框"></a>设计和实体同框</h2><p><img src="3d8b9fd9/design_body.jpg" alt="真是开心呀"></p>
+<p>除非特殊的版型，一般的长方形板，倒角的个数代表了我的重视程度。</p>
+<ol>
+<li>紧急的快速原型板，完全<strong>不倒角</strong></li>
+<li>一般的设计，倒<strong>两个</strong></li>
+<li>比较在意的设计，倒<strong>三个</strong></li>
+<li>特别中意才会倒<strong>全部的四个</strong>角</li>
+</ol>
+<p><img src="3d8b9fd9/bottom.jpg" alt="背面依然是【藤原佐为】"></p>
 <hr>
-<h2 id="电源"><a href="#电源" class="headerlink" title="电源"></a>电源</h2><p>本来计划只用一颗开关电源，降压到５ｖ，后来发现目前计划使用的<strong>RK3399</strong>，上面有一些电路不能直接工作在超过１６ｖ电压，而且万一以后要换用别的板子，说不定也要用到１２ｖ，所以最终用了两颗MPS <strong>MP8715</strong>。</p>
-<p>这是一种同步整流DCDC，４Ａ持续能力，并且拥有100%占空比。因为电池的电压大致在１２ｖ～１６．８ｖ，普通的电源芯片有可能在低压条件下无法正常输出。</p>
-<p>系统５ｖ的使能接上拉，并且留了一个开关，可以接地关机。</p>
-<p>１２ｖ供电的使能由５ｖ上拉，同时接入单片机的OC输出，允许单片机控制。</p>
-<h2 id="充电口"><a href="#充电口" class="headerlink" title="充电口"></a>充电口</h2><p>充电口使用了理想二极管控制电路，保证充电触电上不会有电压，直接短路也没事儿。同时有充电信号告知单片机。</p>
-<h2 id="其它电路"><a href="#其它电路" class="headerlink" title="其它电路"></a>其它电路</h2><ul>
-<li>整机放电电流检测</li>
-<li>电池电压检测</li>
-<li>ws2813驱动</li>
-<li>蜂鸣器</li>
-<li>SHT30温度和湿度度传感器</li>
+<h2 id="小车有了名字"><a href="#小车有了名字" class="headerlink" title="小车有了名字"></a>小车有了名字</h2><p>实在喜欢《三体》，捉摸着什么时候要再读一遍。<br>向大刘致敬。<br><img src="3d8b9fd9/name.jpg" alt="也向章北海致敬"></p>
+<p>是的，<strong>自然选择号</strong>！</p>
+<p>等待我喊出 <strong>“前进四”</strong> 的那一刻吧！</p>
+<p>中二完毕……下面来仔细看看。</p>
+<hr>
+<h2 id="纳尼？！なに"><a href="#纳尼？！なに" class="headerlink" title="纳尼？！なに"></a>纳尼？！なに</h2><p>在检(xin)查(shang)的时候，目光突然聚焦到这个地方……</p>
+<p><img src="3d8b9fd9/mask_error.jpg" alt="这是什么鬼"></p>
+<p>U2芯片阻焊层错误？！赶紧打开<strong>KiCAD</strong>，对的呀。。。用的标准库。</p>
+<p>又打开了gerberview，检查了一下也没问题。</p>
+<p>不放心，再去生产板子的厂家下载了当时上传的工程文件核对，依然ok……</p>
+<p>投诉！</p>
+<p>果然是大厂，两个小时不到的功夫，二话不说，直接退款。</p>
+<p><img src="3d8b9fd9/refund.jpg" alt="这样的厂家值得称赞"></p>
+<p>不过好在这颗U2，是我画板子的时候拍脑袋加上去的，一枚温、湿度传感器。不是核心功能。</p>
+<p>更何况，还有这种操作。</p>
+<p><img src="3d8b9fd9/unmask.jpg" alt="又不是不能用"></p>
+<p>除此之外，似乎没有其它问题…<strong>白嫖石锤</strong>……</p>
+<p>突然之间，觉得自己有点儿不厚道 ;-)</p>
+<hr>
+<h2 id="一帆风顺？不能存在的"><a href="#一帆风顺？不能存在的" class="headerlink" title="一帆风顺？不能存在的"></a>一帆风顺？不能存在的</h2><p>机缘巧合之下，我读了一篇文档，就在我看到下表之后…<br><img src="3d8b9fd9/stm32f3_no_pull_up_on_usb_dp.jpg" alt="一口鲜血吐在屏幕上"></p>
+<p>在我之前使用的所有USB芯片中</p>
+<ul>
+<li>上古的 PDIUSBD12</li>
+<li>Cypress FX3</li>
+<li>一众 USB转接芯片</li>
+<li>等等</li>
 </ul>
-<h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><p>电子是自学的，不专业，不过画图，我是认真的。<br>当然在内心深处，我一直觉得自己是程序员。<br>所以，懂的，还请多多指教。</p>
-<p><img src="8aa686bc/drv_board_top.jpg" alt="顶层"></p>
-<p>得到MPS的芯片赞助，顺手板子上打个广告。</p>
-<p>脑残粉得到主的恩典，开心^_^</p>
-<p><img src="8aa686bc/drv_board_b.jpg" alt="底层"></p>
-<p><img src="8aa686bc/layers.gif" alt="内层"></p>
-<hr>
-<p>今天就水一番，实在太累了。。。</p>
+<p>无一例外是内建了USB DP管脚上拉电阻的。</p>
+<p>这是USB的底层热拔插检测机制。上行端口的DP/DM被弱下拉，而一旦检测到DP或者DM脚有被1.5k电阻上拉后，就会通知USB主机进行相应的枚举操作。</p>
+<p><strong>BUT</strong> STM32F303这个系列居然<strong>没有</strong>内置这个电阻……STM32全家都有，就这个系列没有？！哇咔咔……(V^V)</p>
+<p>要怪也只能怪自己对STM32还是不熟，不过这也算逐步达成了既定的目标之一：通过实际项目达到对更多技术工程化水平的程度。</p>
+<p>好在，简单飞飞线什么的，也就能搞定了。</p>
+<h2 id="固件初步"><a href="#固件初步" class="headerlink" title="固件初步"></a>固件初步</h2><p>按住BOOT pin开关（接到+3v3），插入USB， 哈！出现了！</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">usb 1-2: new full-speed USB device number 5 using xhci_hcd</span><br><span class="line">usb 1-2: New USB device found, idVendor=0483, idProduct=df11, bcdDevice=22.00</span><br><span class="line">usb 1-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3</span><br><span class="line">usb 1-2: Product: STM32  BOOTLOADER</span><br><span class="line">usb 1-2: Manufacturer: STMicroelectronics</span><br><span class="line">usb 1-2: SerialNumber: 2049B8382031</span><br></pre></td></tr></tbody></table></figure>
+
+<p>虽然来了新同事后，很久没有动过烙铁了，不过功夫还在嘛，一把成功。</p>
+<p>随即写入恭候多时的代码框架。重启。</p>
+<p><img src="3d8b9fd9/plugin.jpg" alt="哟西"></p>
+<h2 id="后续进度"><a href="#后续进度" class="headerlink" title="后续进度"></a>后续进度</h2><p>五一期间不知道能捞到多少时间搞…</p>
+<p>希望6-1之前能进入 使用遥控器 ＋ 真人▪工智能的操作模式吧。</p>
+<p>那之后，就该去叩动<strong>vSLAM</strong>的大门。</p>
 <p>to be continued..</p>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -475,7 +493,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/archives/8aa686bc.html">http://blog.tensor-robotics.com/archives/8aa686bc.html</a>
+                    <a href="http://blog.tensor-robotics.com/archives/3d8b9fd9.html">http://blog.tensor-robotics.com/archives/3d8b9fd9.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -689,7 +707,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998",
-        id: '2020-04-18T21-38-35',
+        id: '2020-04-30T20-54-10',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -710,9 +728,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/archives/3d8b9fd9.html">
                     <div class="card-image">
@@ -736,9 +755,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -751,6 +770,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -773,26 +793,28 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/c7b825ee.html">
+                <a href="/archives/8aa686bc.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="闭门造车日记 第二篇">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="闭门造车日记 第三篇">
                         
-                        <span class="card-title">闭门造车日记 第二篇</span>
+                        <span class="card-title">闭门造车日记 第三篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            造车日记 - 驱动板规划总线之首选 -&gt; EtherCAT久闻 EtherCAT大名，想着就以帅的名义学习一番，看看能不能用作小车的内部主干总线。
-经过几个晚上的学习，大概摸清了Ethercat的毛皮。
-EtherCAT， 是一个以以
+                            造车日记 - 驱动板预备经过几个晚上加周六断断续续的折腾， 首块驱动板终于快要问世。
+下周再抽一个晚上检查检查就准备外发。实在搞不动了，明天周日好好休息一下。。
+调试顺利结束后，会在github放出相关设计。
+
+KiCAD已经用到炉火纯青原
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
                             </span>
                         <span class="publish-author">
                             
@@ -815,10 +837,6 @@ EtherCAT， 是一个以以
                     
                     <a href="/tags/%E5%B0%8F%E8%BD%A6/">
                         <span class="chip bg-color">小车</span>
-                    </a>
-                    
-                    <a href="/tags/EtherCAT/">
-                        <span class="chip bg-color">EtherCAT</span>
                     </a>
                     
                 </div>
