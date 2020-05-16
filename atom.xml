@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.tensor-robotics.com/"/>
-  <updated>2020-05-06T01:53:27.282Z</updated>
+  <updated>2020-05-16T14:02:42.826Z</updated>
   <id>http://blog.tensor-robotics.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>毫米波雷达 第一篇</title>
+    <link href="http://blog.tensor-robotics.com/archives/a8c20115.html"/>
+    <id>http://blog.tensor-robotics.com/archives/a8c20115.html</id>
+    <published>2020-05-14T12:43:25.000Z</published>
+    <updated>2020-05-16T14:02:42.826Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="关于毫米波雷达"><a href="#关于毫米波雷达" class="headerlink" title="关于毫米波雷达"></a>关于毫米波雷达</h1><h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><h3 id="幼时"><a href="#幼时" class="headerlink" title="幼时"></a>幼时</h3><p>是在小学的时候，第一次听到“<strong>雷达</strong>”这个词。大概是在一副关于武器的扑克牌上。</p><p>感觉酷酷的。</p><p>然而一直到最近， 我才知道“雷达”这个音译的来源——<a href="https://en.wikipedia.org/wiki/Radar" target="_blank" rel="noopener"><strong>RADAR</strong></a>，原来是一个递归缩写</p><ul><li>最早的定义来自1940年鹰酱海军的造字 <strong>RA</strong>dio <strong>D</strong>etection <strong>A</strong>nd <strong>R</strong>anging</li><li>而后又有了一个似乎更贴切的定义 <strong>R</strong>adio <strong>A</strong>zimuth <strong>D</strong>irection <strong>A</strong>nd <strong>R</strong>anging</li></ul><p>细品之下，<strong>雷</strong>和<strong>达</strong>这俩字太传神了，简直不像是音译。</p><p>再大一点儿，学校有无线电小组，当时觉得拿着别人做的东西，听着滴滴响，到底找东西有啥意思？还不如坐在电脑前操着<a href="https://zh.wikipedia.org/wiki/Logo_(%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80)" target="_blank" rel="noopener">小龟头</a>画出各种奇怪的图形比较对我胃口。</p><p>就这样因为年少无知，错过了入门版的雷达，大概也错过了科班EE的经历。</p><h3 id="大学毕业"><a href="#大学毕业" class="headerlink" title="大学毕业"></a>大学毕业</h3><p>做毕业设计的时候，认识了一个朋友，后来他去了国内某研究所，听说和雷达有点儿关系。</p><h3 id="老婆"><a href="#老婆" class="headerlink" title="老婆"></a>老婆</h3><p>领导曾经在一家船舶雷达公司工作。</p><h3 id="如今"><a href="#如今" class="headerlink" title="如今"></a>如今</h3><p>真没想到，如今的我居然会再次接触雷达，像个孩子一样。</p><hr><h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>雷达，首先向空间<strong>发射</strong>电磁波，在测量距离内的物体会<strong>反射</strong>电磁波，雷达<strong>监听并处理</strong>信号，得到物体的位置信息。</p><p>等等！<br>这不是和<strong>ToF</strong>很像？！</p><ul><li><a href="/archives/43a03328.html" title="关于ToF 番一">关于ToF 番一</a></li><li><a href="/archives/78201d81.html" title="关于ToF 番二">关于ToF 番二</a></li><li><a href="/archives/3a7c8b8c.html" title="关于ToF 番三">关于ToF 番三</a></li><li><a href="/archives/76aee792.html" title="关于ToF 番四">关于ToF 番四</a></li></ul><p>一想也是， 大家原来都是电磁波。</p><p><img src="a8c20115/spectrum.jpg" alt="只是红外光波的频率更高，波长更短"></p><p>地球人实际运用雷达始于二战。</p><p>因为战争，港口变得异常繁忙，北大西洋的军港经常处于浓雾之中不时有船舶碰撞。</p><p>为了解决这个问题，同时也帮助船舶能在夜间作业，英、德两国秘密研发雷达。</p><p>英国选择了<strong>3MHz-30MHz</strong>的频率，因为当时电子技术还十分有限，这是日不落帝国的频率上限。较低的频率导致天线异常庞大，较长的波长也导致分辨率不佳。 但已经能作为岸基固定雷达站，超视距侦测敌方目标。</p><p>而当时的德国掌握了大量黑科技，一上来就是短波雷达，频率在<strong>十个Ghz到40GHz</strong>。并且功率更大。因为频率高，所以天线可以比较小，后来被安装在飞机上。然而德国人的雷达频率过于接近水蒸气的谐振波长，在大气中存在衰减，距离较短，并且容易受到雨雪影响。</p><p>之后的雷达技术，日新月异，已经不是我这种门外汉能痴心妄想的了…</p><hr><h3 id="那么为什么不用ToF"><a href="#那么为什么不用ToF" class="headerlink" title="那么为什么不用ToF"></a>那么为什么不用ToF</h3><p>谁说不用了？等我ToF搞定，也是要用的，小孩子才做选择题。</p><p>老子大小通吃，上下全要。</p><p>不过有一说一，为什么有了ToF还要去看毫米波雷达？</p><p>让我们来比较一下ToF和毫米波雷达的主要特性</p><table><thead><tr><th align="center"></th><th align="center">ToF</th><th align="center">毫米波雷达</th></tr></thead><tbody><tr><td align="center"><em>最大距离</em></td><td align="center">~十几米</td><td align="center"><strong>轻松过百米</strong></td></tr><tr><td align="center"><em>分辨率</em></td><td align="center"><strong>mm级</strong></td><td align="center">cm级</td></tr><tr><td align="center"><em>精度</em></td><td align="center">高</td><td align="center"><strong>更高</strong></td></tr><tr><td align="center"><em>烟雾</em></td><td align="center">严重影响</td><td align="center"><strong>毫无影响</strong></td></tr><tr><td align="center"><em>透明物体</em></td><td align="center">几近失能</td><td align="center"><strong>毫无影响</strong></td></tr><tr><td align="center"><em>测速</em></td><td align="center">-</td><td align="center"><strong>直接测量</strong></td></tr></tbody></table><p>可以看到，毫米波雷达并没有在所有领域内碾压ToF。</p><p>特别是分辨率。这是物理限制，你只能用更短的波长观察更细小的物体。但是在恶略环境，以及玻璃这种属性的物体上，毫米波完胜。</p><p>虽然毫米波雷达的绝对分辨率一般，但神奇的是它却可以检测出物体极细小的速度变化（青蛙？）这点后面会细说。</p><p>另外，还有一个也许不值一提的特性，在某些特别注重隐私的场合，ToF的“摄像头”模样大概不受欢迎。</p><p>至于价格，非常迷。基本所有国际大厂的ToF开发板的价格都很贵，而且还一副爱买不买的气派。批量价格也不算便宜，特别是分辨率稍微高一些的产品，而且还要考虑生产校准的成本。不过国产ToF上线后，这种情况会极大改观。</p><p>毫米波雷达方便，一线大厂的原厂开发板也不是遥不可及，批量价格也能接受，而且似乎有一波国产厂家也在路上。</p><hr><h3 id="为什么以前没有"><a href="#为什么以前没有" class="headerlink" title="为什么以前没有"></a>为什么以前没有</h3><p>也有，但是很贵很贵，这两年技术进步，厂家已经可以把几乎所有的东西集成在一颗芯片里，好戏开始。</p><hr><h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><h3 id="集成毫米波SoC"><a href="#集成毫米波SoC" class="headerlink" title="集成毫米波SoC"></a>集成毫米波SoC</h3><p>完整的毫米波雷达系统包括：</p><ul><li>TX</li><li>RX</li><li>时钟</li><li>ADC</li><li>MCU</li><li>DSP</li><li>等</li></ul><p>在高精度雷达中，有两种常见的调制技术</p><ul><li><a href="https://en.wikipedia.org/wiki/Continuous-wave_radar" target="_blank" rel="noopener"><strong>FMCW</strong></a> 连续调制</li><li><a href="https://en.wikipedia.org/wiki/Monopulse_radar" target="_blank" rel="noopener"><strong>Monopulse</strong></a> 单脉冲调制</li></ul><p>这和<a href="/archives/76aee792.html" title="TOF">TOF</a>也是惊人的相似。</p><h3 id="TI的产品线"><a href="#TI的产品线" class="headerlink" title="TI的产品线"></a>TI的产品线</h3><p>目前TI的毫米波雷达分成</p><ul><li>IWR 工业等级</li><li>AWR 汽车等级</li></ul><p>似乎是一样的，只是AWR等级的器件通过了更多车规。</p><p>以<strong>IWR1443</strong>为例</p><ul><li>IWR 代表工业级</li><li>第一位1 代表 77GHz系列， 如果是60GHz产品，会是 IWR6xxx</li><li>第二位4 代表 集成了FFT硬件加速器和MCU， 如果只有RF前端就是2， 如果是RF+MCU+DSP就是6，如果是RF+MCU+FFT+DSP就是8</li><li>第三位4 代表RX数量</li><li>第四位3 代表TX数量</li></ul><p>比如 IWR6843， 就是60Ghz射频，同时集成DSP/ FFT和MCU， 天线为3发射，4接收。</p><hr><p>在<strong>毫米波雷达</strong>的后续文章中， 将详细介绍其内在原理。</p><p>to be continued…</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;关于毫米波雷达&quot;&gt;&lt;a href=&quot;#关于毫米波雷达&quot; class=&quot;headerlink&quot; title=&quot;关于毫米波雷达&quot;&gt;&lt;/a&gt;关于毫米波雷达&lt;/h1&gt;&lt;h2 id=&quot;缘起&quot;&gt;&lt;a href=&quot;#缘起&quot; class=&quot;headerlink&quot; title=&quot;缘
+      
+    
+    </summary>
+    
+    
+      <category term="毫米波雷达" scheme="http://blog.tensor-robotics.com/categories/%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE/"/>
+    
+    
+      <category term="分享和生产知识" scheme="http://blog.tensor-robotics.com/tags/%E5%88%86%E4%BA%AB%E5%92%8C%E7%94%9F%E4%BA%A7%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="雷达" scheme="http://blog.tensor-robotics.com/tags/%E9%9B%B7%E8%BE%BE/"/>
+    
+      <category term="毫米波" scheme="http://blog.tensor-robotics.com/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>闭门造车日记 第四篇</title>
