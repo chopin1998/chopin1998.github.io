@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="毫米波雷达 第一篇, welcome">
+    <meta name="keywords" content="毫米波雷达 第二篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>毫米波雷达 第一篇 | welcome</title>
+    <title>毫米波雷达 第二篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">毫米波雷达 第一篇</h1>
+                    <h1 class="description center-align post-title">毫米波雷达 第二篇</h1>
                 </div>
             </div>
         </div>
@@ -377,7 +377,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-14
+                    2020-05-19
                 </div>
                 
 
@@ -386,7 +386,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.6k
                 </div>
                 
 
@@ -399,125 +399,101 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于毫米波雷达"><a href="#关于毫米波雷达" class="headerlink" title="关于毫米波雷达"></a>关于毫米波雷达</h1><h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><h3 id="幼时"><a href="#幼时" class="headerlink" title="幼时"></a>幼时</h3><p>是在小学的时候，第一次听到“<strong>雷达</strong>”这个词。大概是在一副关于武器的扑克牌上。</p>
-<p>感觉酷酷的。</p>
-<p>然而一直到最近， 我才知道“雷达”这个音译的来源——<a href="https://en.wikipedia.org/wiki/Radar" target="_blank" rel="noopener"><strong>RADAR</strong></a>，原来是一个递归缩写</p>
+                <h1 id="毫米波雷达的基本工作原理"><a href="#毫米波雷达的基本工作原理" class="headerlink" title="毫米波雷达的基本工作原理"></a>毫米波雷达的基本工作原理</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="/archives/a8c20115.html" title="上一篇">上一篇</a>中介绍了雷达的基本概念</p>
 <ul>
-<li>最早的定义来自1940年鹰酱海军的造字 <strong>RA</strong>dio <strong>D</strong>etection <strong>A</strong>nd <strong>R</strong>anging</li>
-<li>而后又有了一个似乎更贴切的定义 <strong>R</strong>adio <strong>A</strong>zimuth <strong>D</strong>irection <strong>A</strong>nd <strong>R</strong>anging</li>
+<li>雷达系统<strong>发射</strong>电磁波信号</li>
+<li>路径中的物体<strong>反射该</strong>电磁波</li>
+<li>雷达系统<strong>处理和分析</strong>反射波，计算出目标的距离、速度和方位角等信息</li>
 </ul>
-<p>细品之下，<strong>雷</strong>和<strong>达</strong>这俩字太传神了，简直不像是音译。</p>
-<p>再大一点儿，学校有无线电小组，当时觉得拿着别人做的东西，听着滴滴响，到底找东西有啥意思？还不如坐在电脑前操着<a href="https://zh.wikipedia.org/wiki/Logo_(%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80)" target="_blank" rel="noopener">小龟头</a>画出各种奇怪的图形比较对我胃口。</p>
-<p>就这样因为年少无知，错过了入门版的雷达，大概也错过了科班EE的经历。</p>
-<h3 id="大学毕业"><a href="#大学毕业" class="headerlink" title="大学毕业"></a>大学毕业</h3><p>做毕业设计的时候，认识了一个朋友，后来他去了国内某研究所，听说和雷达有点儿关系。</p>
-<h3 id="老婆"><a href="#老婆" class="headerlink" title="老婆"></a>老婆</h3><p>领导曾经在一家船舶雷达公司工作。</p>
-<h3 id="如今"><a href="#如今" class="headerlink" title="如今"></a>如今</h3><p>真没想到，如今的我居然会再次接触雷达，像个孩子一样。</p>
+<p>本番将从更进一步展开毫米波雷达的工作细节。</p>
+<p>再次声明，本人业余电子工程师，雷达更是首次解除，如有理解不当，还请多多指教。</p>
+<p>下面进入正文。</p>
+<p>不同的雷达使用不同的波段， 波长在1mm 至 100m的广阔频段都可以用于雷达。</p>
+<p>既然被称为<strong>毫米波</strong>雷达，那主要波段就是1mm~10mm之间， 对应于300GHz ~ 30GHz<br><img src="98d4edcd/wavelen2freq.png" alt=" $f = \frac c\lambda$ "></p>
+<p>不过目前因为法规和技术的原因，典型的毫米波雷达频段主要有：</p>
+<ul>
+<li>24GHz  ~12mm</li>
+<li>60GHz  ~5mm</li>
+<li>77GHz ~4mm (其中77.5—78.0GHz为汽车雷达专用的无线电频段)</li>
+</ul>
+<p>下文中，以60GHz/ 77GHz 的雷达为例。</p>
 <hr>
-<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>雷达，首先向空间<strong>发射</strong>电磁波，在测量距离内的物体会<strong>反射</strong>电磁波，雷达<strong>监听并处理</strong>信号，得到物体的位置信息。</p>
-<p>等等！<br>这不是和<strong>ToF</strong>很像？！</p>
-<ul>
-<li><a href="/archives/43a03328.html" title="关于ToF 番一">关于ToF 番一</a></li>
-<li><a href="/archives/78201d81.html" title="关于ToF 番二">关于ToF 番二</a></li>
-<li><a href="/archives/3a7c8b8c.html" title="关于ToF 番三">关于ToF 番三</a></li>
-<li><a href="/archives/76aee792.html" title="关于ToF 番四">关于ToF 番四</a>
-
-</li>
-</ul>
-<p>一想也是， 大家原来都是电磁波。</p>
-<p><img src="a8c20115/spectrum.jpg" alt="只是红外光波的频率更高，波长更短"></p>
-<p>地球人实际运用雷达始于二战。</p>
-<p>因为战争，港口变得异常繁忙，北大西洋的军港经常处于浓雾之中不时有船舶碰撞。</p>
-<p>为了解决这个问题，同时也帮助船舶能在夜间作业，英、德两国秘密研发雷达。</p>
-<p>英国选择了<strong>3MHz-30MHz</strong>的频率，因为当时电子技术还十分有限，这是日不落帝国的频率上限。较低的频率导致天线异常庞大，较长的波长也导致分辨率不佳。 但已经能作为岸基固定雷达站，超视距侦测敌方目标。</p>
-<p>而当时的德国掌握了大量黑科技，一上来就是短波雷达，频率在<strong>十个Ghz到40GHz</strong>。并且功率更大。因为频率高，所以天线可以比较小，后来被安装在飞机上。然而德国人的雷达频率过于接近水蒸气的谐振波长，在大气中存在衰减，距离较短，并且容易受到雨雪影响。</p>
-<p>之后的雷达技术，日新月异，已经不是我这种门外汉能痴心妄想的了…</p>
+<h2 id="系统框图"><a href="#系统框图" class="headerlink" title="系统框图"></a>系统框图</h2><p>正如前文所述的雷达基本系统构成<br><img src="98d4edcd/block.png" alt="系统框图"></p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Synthesizer" target="_blank" rel="noopener">synth</a> <strong>合成器</strong>，产生调制信号</li>
+<li>TX ant, <strong>发射天线</strong>将无线电波送出系统</li>
+<li>RX ant, <strong>接收天线</strong>将拾取被目标反射的电波</li>
+<li><a href="https://en.wikipedia.org/wiki/Frequency_mixer" target="_blank" rel="noopener">mixer</a>, <strong>混频器</strong>将接收到的信号和发射信号作为输入，并产生一个中间结果，供后级进一步处理</li>
+</ol>
 <hr>
-<h3 id="那么为什么不用ToF"><a href="#那么为什么不用ToF" class="headerlink" title="那么为什么不用ToF"></a>那么为什么不用ToF</h3><p>谁说不用了？等我ToF搞定，也是要用的，小孩子才做选择题。</p>
-<p>老子大小通吃，上下全要。</p>
-<p>不过有一说一，为什么有了ToF还要去看毫米波雷达？</p>
-<p>让我们来比较一下ToF和毫米波雷达的主要特性</p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">ToF</th>
-<th align="center">毫米波雷达</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><em>最大距离</em></td>
-<td align="center">~十几米</td>
-<td align="center"><strong>轻松过百米</strong></td>
-</tr>
-<tr>
-<td align="center"><em>分辨率</em></td>
-<td align="center"><strong>mm级</strong></td>
-<td align="center">cm级</td>
-</tr>
-<tr>
-<td align="center"><em>精度</em></td>
-<td align="center">高</td>
-<td align="center"><strong>更高</strong></td>
-</tr>
-<tr>
-<td align="center"><em>烟雾</em></td>
-<td align="center">严重影响</td>
-<td align="center"><strong>毫无影响</strong></td>
-</tr>
-<tr>
-<td align="center"><em>透明物体</em></td>
-<td align="center">几近失能</td>
-<td align="center"><strong>毫无影响</strong></td>
-</tr>
-<tr>
-<td align="center"><em>测速</em></td>
-<td align="center">-</td>
-<td align="center"><strong>直接测量</strong></td>
-</tr>
-</tbody></table>
-<p>可以看到，毫米波雷达并没有在所有领域内碾压ToF。</p>
-<p>特别是分辨率。这是物理限制，你只能用更短的波长观察更细小的物体。但是在恶略环境，以及玻璃这种属性的物体上，毫米波完胜。</p>
-<p>虽然毫米波雷达的绝对分辨率一般，但神奇的是它却可以检测出物体极细小的速度变化（青蛙？）这点后面会细说。</p>
-<p>另外，还有一个也许不值一提的特性，在某些特别注重隐私的场合，ToF的“摄像头”模样大概不受欢迎。</p>
-<p>至于价格，非常迷。基本所有国际大厂的ToF开发板的价格都很贵，而且还一副爱买不买的气派。批量价格也不算便宜，特别是分辨率稍微高一些的产品，而且还要考虑生产校准的成本。不过国产ToF上线后，这种情况会极大改观。</p>
-<p>毫米波雷达方便，一线大厂的原厂开发板也不是遥不可及，批量价格也能接受，而且似乎有一波国产厂家也在路上。</p>
+<h3 id="合成器"><a href="#合成器" class="headerlink" title="合成器"></a>合成器</h3><p>雷达的发射信号是经过调制的，调制的手段有很多，这里只说明FMCW（调频连续波）方式。在一个FMCW周期中，是一个频率会随时间线性增加的正弦波信号，一个这样的周期也叫一个<strong>啁啾（Chirp）</strong></p>
+<p>我plot了一个可能不太标准的Chirp<br><img src="98d4edcd/chirp.png" alt="啁啾 Twitter"></p>
+<p>上图的坐标系是 <strong>振幅-时间</strong>，<br>对于同一个啁啾信号，如果改用 <strong>频率-时间</strong> 坐标系的话，会像下面这个样子</p>
+<p><img src="98d4edcd/chirp_ft.png" alt="频率-时间坐标表达"></p>
+<p>在这幅图中，</p>
+<ul>
+<li>啁啾的<strong>起始频率</strong> $f_c = 77GHz$</li>
+<li>结束频率$81GHz$， 因此<strong>带宽</strong>$B = 4GHz$</li>
+<li><strong>周期</strong>$Tc = 40us$， 因此<strong>斜率</strong>$S = 100MHz/us$</li>
+</ul>
+<p>合成器的工作就是周而复始的产生这种Chrip信号。</p>
 <hr>
-<h3 id="为什么以前没有"><a href="#为什么以前没有" class="headerlink" title="为什么以前没有"></a>为什么以前没有</h3><p>也有，但是整个系统比较复杂和庞大，而且很贵很贵。</p>
-<p>这两年技术进步，厂家已经可以把几乎所有的东西集成在一颗芯片里，使用常规工艺，好戏开始。</p>
+<h3 id="混频器"><a href="#混频器" class="headerlink" title="混频器"></a>混频器</h3><p>混频率是一种非线性电路，它接受两路输入信号，并产生出一路新的信号。</p>
+<p>而内部的处理则会根据不同的应用而异。</p>
 <hr>
-<h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><h3 id="集成毫米波SoC"><a href="#集成毫米波SoC" class="headerlink" title="集成毫米波SoC"></a>集成毫米波SoC</h3><p>完整的毫米波雷达系统包括：</p>
-<ul>
-<li>TX</li>
-<li>RX</li>
-<li>Clocks</li>
-<li>ADC</li>
-<li>MCU</li>
-<li>DSP</li>
-<li>,etc</li>
-</ul>
-<p>在高精度雷达中，有两种常见的调制技术</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Continuous-wave_radar" target="_blank" rel="noopener"><strong>FMCW</strong></a> 连续调制</li>
-<li><a href="https://en.wikipedia.org/wiki/Monopulse_radar" target="_blank" rel="noopener"><strong>Monopulse</strong></a> 单脉冲调制</li>
-</ul>
-<p>这和<a href="/archives/76aee792.html" title="TOF">TOF</a>也是惊人的相似。</p>
-<h3 id="TI的产品线"><a href="#TI的产品线" class="headerlink" title="TI的产品线"></a>TI的产品线</h3><p>目前TI的毫米波雷达分成</p>
-<ul>
-<li>IWR 工业等级</li>
-<li>AWR 汽车等级</li>
-</ul>
-<p>似乎是一样的，只是AWR等级的器件通过了更多车规。</p>
-<p>以<strong>IWR1443</strong>为例</p>
-<ul>
-<li>IWR 代表工业级</li>
-<li>第一位1 代表 77GHz系列， 如果是60GHz产品，会是 IWR6xxx</li>
-<li>第二位4 代表 集成了FFT硬件加速器和MCU， 如果只有RF前端就是2， 如果是RF+MCU+DSP就是6，如果是RF+MCU+FFT+DSP就是8</li>
-<li>第三位4 代表RX数量</li>
-<li>第四位3 代表TX数量</li>
-</ul>
-<p>比如 IWR6843， 就是60Ghz射频，同时集成DSP/ FFT和MCU， 天线为3发射，4接收。</p>
+<h2 id="测距"><a href="#测距" class="headerlink" title="测距"></a>测距</h2><h3 id="测距原理"><a href="#测距原理" class="headerlink" title="测距原理"></a>测距原理</h3><p>假设$t$时刻的<strong>TX信号</strong>为（如前文，调制信号为随时间变化的正弦波）：</p>
+<p>$y_{tx} = sin(\omega_{tx} t + \phi_{tx})$</p>
+<p>而<strong>RX信号</strong>呢，电波从天线发射，到被目标反射折回，需要一定的时间，因此RX信号，只是被“延时”了TX波形（怀念开发<a href="https://blog.tensor-robotics.com/categories/ToF/">TOF</a>的日子…）：</p>
+<p>$y_{rx} = sin(\omega_{rx} t) + \phi_{rx})$</p>
+<p>雷达中的混频器的工作就是得到一个新函数：</p>
+<p>$y_{if} = sin[(\omega_{tx}-\omega_{rx})t + (\phi_{tx} - \phi_{rx})]$</p>
+<p>这个输出也被称为<strong>中频</strong>(intermediate frequency)。</p>
+<p>聪明如我的你应该要发出<strong>wow</strong>的声音了吧？</p>
+<p>这个中频实际包含了RX和TX信号的<strong>频差</strong>和<strong>相位差</strong>！</p>
 <hr>
-<p>在<strong>毫米波雷达</strong>的后续文章中， 将详细介绍其内在原理。</p>
+<p>如果还没懂的话，那就看图说话吧。</p>
+<p><img src="98d4edcd/if_signal_info.png" alt="中频信号包含的信息"></p>
+<p>根据初等物理($时间=\frac{路程}{速度}$）我们知道TX/RX两个信号的延时等于</p>
+<p>$\tau = \frac{2*d}{c}$</p>
+<ul>
+<li>$d$ 是目标和雷达之间的距离</li>
+<li>$c$ 是电磁波的速度，也就是光速</li>
+</ul>
+<p>需要注意的是，中频信号仅在TX和RX的重叠期有效（因为中频信号由混频器产生）。</p>
+<p>而中频信号的起始相位$\boldsymbol{\phi_0}$，就是TX和RX信号在该时刻的相位差。</p>
+<p>同时根据上图，也可以得到：<br>$\phi_0 = 2\pi f_c \tau$ ($f_c \rightarrow $TX啁啾的起始频率)</p>
+<p>将$\tau$带入上式，又可以得到：<br>$\phi = \frac{4\pi d}{\lambda}$</p>
+<p>不过这只是一个近似，因为频率在变化，更精确的表述应该是：<br>$\Delta\phi = 4\pi \Delta\frac{d}{\lambda}$</p>
+<hr>
+<p>总结一下，当<strong>一个</strong> <strong>静态</strong>目标出现在在雷达区间内时，IF信号会是一个正弦波：</p>
+<p>$IF\rightarrow Asin(2\pi f_0 + \phi_0)$</p>
+<ul>
+<li>$f_0 = \frac{S2d}{c}$</li>
+<li>$\phi_0 = \frac{4\pi d}{\lambda}$</li>
+</ul>
+<p>前面强调静态的原因是，如果目标相对雷达有运动，那么会有<a href="https://en.wikipedia.org/wiki/Doppler_effect" target="_blank" rel="noopener">多普勒效应</a>。不过在快速FMCW系统中，这个效应非常轻微，并且会在后续的信号处理中被修正。</p>
+<hr>
+<h3 id="多目标测距"><a href="#多目标测距" class="headerlink" title="多目标测距"></a>多目标测距</h3><p>那么如果有多个目标出现在不同的区域呢？</p>
+<p>雷达会收到多个啁啾回波。</p>
+<p>而每个回波， 回因为远近距离不同，而有不同程度的“延时”。</p>
+<p><img src="98d4edcd/multi_object_if.jpg" alt="原谅我不羁的画风"></p>
+<p>更远的目标意味着更大的回波延时，也就意味着更大的频差。</p>
+<p>那么如何从一个混叠了多个波的信号中，还原出每个信号的调性呢？</p>
+<p><a href="https://en.wikipedia.org/wiki/Fourier_transform" target="_blank" rel="noopener"><strong>傅里叶变换</strong></a>！！</p>
+<p><del>数学家，是一群脑子有病的人。我的脑子也有病，可我数学很渣。。。可见得的不是一种病</del></p>
+<hr>
+<h3 id="测距分辨率"><a href="#测距分辨率" class="headerlink" title="测距分辨率"></a>测距分辨率</h3><p>对于电波雷达来说，<strong>距离分辨率</strong>是衡量其性能的主要指标。当两个物体过于接近时，雷达无法将它们分开。按照上文的分析，这是因为中频区域内有两个过于靠近的横线。</p>
+<p>根据傅里叶变换，如果想增加距离分辨率，需要增加中频信号的长度（横着的长度），也就是增加<strong>带宽</strong>。</p>
+<p>同时，观测窗口$T$可以分辨间隔$\frac{1}{THz}$ (1ps)的频率分量。这意味着，只要偏差满足下列关系，就可以被分辨：</p>
+<p>$\Delta f &gt; \frac{1}{T_c}$</p>
+<p>其中$T_c$是观测时间长度。</p>
+<p>而频差 $\Delta f = \frac{S2\Delta d}{c}$， 所以上面的式子整理得到：</p>
+<p>$\Delta d &gt; \frac{c}{2ST_c} = \frac{c}{2B}$</p>
+<p>通过一顿操作，发现原来距离分辨率仅仅取决于啁啾的<strong>带宽</strong>！</p>
+<p>道理都懂，但是结论怎么如此神奇了？！</p>
+<p>对于4GHz带宽的雷达，距离分辨率就是 大约29.979mm。</p>
+<hr>
+<h2 id="下回预告"><a href="#下回预告" class="headerlink" title="下回预告"></a>下回预告</h2><p>在<strong>毫米波雷达</strong>的后续文章中， 将进一步介绍<strong>测速</strong>、<strong>方位测定</strong>等原理</p>
 <p>to be continued…</p>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -562,7 +538,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/archives/a8c20115.html">http://blog.tensor-robotics.com/archives/a8c20115.html</a>
+                    <a href="http://blog.tensor-robotics.com/archives/98d4edcd.html">http://blog.tensor-robotics.com/archives/98d4edcd.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -780,7 +756,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998",
-        id: '2020-05-14T20-43-25',
+        id: '2020-05-19T21-37-42',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -801,9 +777,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/archives/98d4edcd.html">
                     <div class="card-image">
@@ -828,9 +805,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -843,6 +820,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -869,37 +847,35 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/3d8b9fd9.html">
+                <a href="/archives/a8c20115.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="闭门造车日记 第四篇">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="毫米波雷达 第一篇">
                         
-                        <span class="card-title">闭门造车日记 第四篇</span>
+                        <span class="card-title">毫米波雷达 第一篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            造车日记 - 收到驱动板延时快到五月份，PCB厂家的产能依然被COVID-19病毒深深影响。
-日盼夜盼，延误两天。总算厂家良心，帮我免费升了航空件。
+                            关于毫米波雷达缘起幼时是在小学的时候，第一次听到“雷达”这个词。大概是在一副关于武器的扑克牌上。
+感觉酷酷的。
+然而一直到最近， 我才知道“雷达”这个音译的来源——RADAR，原来是一个递归缩写
 
-设计和实体同框
-除非特殊的版型，一般的长方形板，倒角的个数代表了我的重视程度。
-
-紧急的
+最早的定义来自1940年鹰酱海军的造字 R
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/" class="post-category">
-                                    造车日记
+                            <a href="/categories/%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE/" class="post-category">
+                                    毫米波雷达
                                 </a>
                             
                             
@@ -913,8 +889,12 @@
                         <span class="chip bg-color">分享和生产知识</span>
                     </a>
                     
-                    <a href="/tags/%E5%B0%8F%E8%BD%A6/">
-                        <span class="chip bg-color">小车</span>
+                    <a href="/tags/%E9%9B%B7%E8%BE%BE/">
+                        <span class="chip bg-color">雷达</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/">
+                        <span class="chip bg-color">毫米波</span>
                     </a>
                     
                 </div>
@@ -1089,6 +1069,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
     <footer class="page-footer bg-color">
