@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="毫米波雷达 第二篇, welcome">
+    <meta name="keywords" content="毫米波雷达 第三篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>毫米波雷达 第二篇 | welcome</title>
+    <title>毫米波雷达 第三篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">毫米波雷达 第二篇</h1>
+                    <h1 class="description center-align post-title">毫米波雷达 第三篇</h1>
                 </div>
             </div>
         </div>
@@ -377,7 +377,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-19
+                    2020-05-21
                 </div>
                 
 
@@ -386,7 +386,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.4k
                 </div>
                 
 
@@ -399,102 +399,66 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="毫米波雷达的基本工作原理"><a href="#毫米波雷达的基本工作原理" class="headerlink" title="毫米波雷达的基本工作原理"></a>毫米波雷达的基本工作原理</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="/archives/a8c20115.html" title="上一篇">上一篇</a>中介绍了雷达的基本概念</p>
-<ul>
-<li>雷达系统<strong>发射</strong>电磁波信号</li>
-<li>路径中的物体<strong>反射该</strong>电磁波</li>
-<li>雷达系统<strong>处理和分析</strong>反射波，计算出目标的距离、速度和方位角等信息</li>
-</ul>
-<p>本番将从更进一步展开毫米波雷达的工作细节。</p>
-<p>再次声明，本人业余电子工程师，雷达更是首次接触，如有理解不当，还请多多指教。</p>
-<p>下面进入正文。</p>
-<p>不同的雷达使用不同的波段， 波长在1mm 至 100m的广阔频段都可以用于雷达。</p>
-<p>既然被称为<strong>毫米波</strong>雷达，那主要波段就是1mm~10mm之间， 对应于300GHz ~ 30GHz<br><img src="98d4edcd/wavelen2freq.png" alt=" $f = \frac c\lambda$ "></p>
-<p>不过目前因为法规和技术的原因，典型的毫米波雷达频段主要有：</p>
-<ul>
-<li>24GHz  ~12mm</li>
-<li>60GHz  ~5mm</li>
-<li>77GHz ~4mm (其中77.5—78.0GHz为汽车雷达专用的无线电频段)</li>
-</ul>
-<p>下文中，以60GHz/ 77GHz 的雷达为例。</p>
+                <h1 id="毫米波雷达的基本工作原理-续"><a href="#毫米波雷达的基本工作原理-续" class="headerlink" title="毫米波雷达的基本工作原理 续"></a>毫米波雷达的基本工作原理 续</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="/archives/98d4edcd.html" title="毫米波雷达第二篇">毫米波雷达第二篇</a>进一步介绍了毫米波雷达的内部构成，和基本测距原理。</p>
+<p>本番将介绍毫米波雷达测速功能和方位角测定功能的基本原理。</p>
 <hr>
-<h2 id="系统框图"><a href="#系统框图" class="headerlink" title="系统框图"></a>系统框图</h2><p>正如前文所述的雷达基本系统构成<br><img src="98d4edcd/block.png" alt="系统框图"></p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Synthesizer" target="_blank" rel="noopener">synth</a> <strong>合成器</strong>，产生调制信号</li>
-<li>TX ant, <strong>发射天线</strong>将无线电波送出系统</li>
-<li>RX ant, <strong>接收天线</strong>将拾取被目标反射的电波</li>
-<li><a href="https://en.wikipedia.org/wiki/Frequency_mixer" target="_blank" rel="noopener">mixer</a>, <strong>混频器</strong>将接收到的信号和发射信号作为输入，并产生一个中间结果，供后级进一步处理</li>
-</ol>
+<h2 id="速度测量"><a href="#速度测量" class="headerlink" title="速度测量"></a>速度测量</h2><h3 id="单一目标测速"><a href="#单一目标测速" class="headerlink" title="单一目标测速"></a>单一目标测速</h3><p>在<a href="/archives/a8c20115.html" title="毫米波雷达第一篇">毫米波雷达第一篇</a>中，提到雷达具有对目标测速的能力加成，以及对目标微小移动的检测能力。</p>
+<p>在FMCW雷达技术中，可以通过发射两次间隔为$T_c$的啁啾信号来获取速度信息。</p>
+<p>对于两次反射来的信号，通过上一回说的FFT技术来提取其“调性”（<strong>中频频峰</strong>和<strong>相位差</strong>）。</p>
+<p>因为两次啁啾的时间间隔非常短，就算物体移动很快，在这段微小时间内的位移也不会很大，所以对应的中频频率差别可能小到无法分别。</p>
+<p>不过此时它们的相位差将会出现巨大变化，哪怕目标运动速度很低，由此可以计算出速度。</p>
+<p>在上一篇中，已经知道相位差：<br>$\phi = \frac{4\pi d}{\lambda}$</p>
+<p>取其微分形式：<br>$\Delta \phi = \frac{4\pi v T_c}{\lambda}$</p>
+<p>这里，假定两次啁啾期间物体运动了1mm（使用5mm波长）， 那么相位差将有144°的巨大差异！</p>
+<p>将$v$放在等式最左边，得到：<br>$v = \frac{\lambda \Delta \phi}{4 \pi T_c }$</p>
+<p>由此求得目标速度。</p>
+<p>然而，由于速度信息隐藏在相位中，就会带来一个问题：<strong>ambiguity（模糊性）</strong>， 在<a href="/archives/78201d81.html" title="关于ToF 番二">关于ToF 番二</a> 中其实也有类似的问题。</p>
+<p>只有当$\left| \Delta \phi\right| &lt; \pi$的时候，测得量才有正确的意义。</p>
+<p>也就是说，速度$v$需要小于$\frac{\lambda}{4 T_c}$</p>
+<p>用公式表达雷达能接受的最快运动速度：<br>$v_{max} = \frac{\lambda}{4 T_c}$</p>
+<p>不过需要说明的是，这里求出目标速度，应该说是目标相对雷达平面移动的速度分量，是径向速度。</p>
 <hr>
-<h3 id="合成器"><a href="#合成器" class="headerlink" title="合成器"></a>合成器</h3><p>雷达的发射信号是经过调制的，调制的手段有很多，这里只说明FMCW（调频连续波）方式。在一个FMCW周期中，是一个频率会随时间线性增加的正弦波信号，一个这样的周期也叫一个<strong>啁啾（Chirp）</strong></p>
-<p>我plot了一个可能不太标准的Chirp<br><img src="98d4edcd/chirp.png" alt="啁啾 Twitter"></p>
-<p>上图的坐标系是 <strong>振幅-时间</strong>，<br>对于同一个啁啾信号，如果改用 <strong>频率-时间</strong> 坐标系的话，会像下面这个样子</p>
-<p><img src="98d4edcd/chirp_ft.png" alt="频率-时间坐标表达"></p>
-<p>在这幅图中，</p>
-<ul>
-<li>啁啾的<strong>起始频率</strong> $f_c = 77GHz$</li>
-<li>结束频率$81GHz$， 因此<strong>带宽</strong>$B = 4GHz$</li>
-<li><strong>周期</strong>$Tc = 40us$， 因此<strong>斜率</strong>$S = 100MHz/us$</li>
-</ul>
-<p>合成器的工作就是周而复始的产生这种Chrip信号。</p>
+<h3 id="多目标测速"><a href="#多目标测速" class="headerlink" title="多目标测速"></a>多目标测速</h3><p>然而，这种方式无法应对相对雷达等距的两个以上目标的测速。因为若两个目标相对雷达距离相同，其各自回波延时也相同，因此中频信号中的相位信息会混叠在一起。</p>
+<p>为此，人们想出其它的办法：</p>
+<p>雷达发射更多的Chirp。</p>
+<p>一组<strong>N</strong>个等时间隔的Chrips序列，被称为一个<strong>啁啾帧</strong>。</p>
+<p>假如有两个与雷达等距的目标A、B，它们的速度分别为$v_a$、$v_b$。</p>
+<p>可以想象，中频信号在经过FFT后，会得到<strong>N</strong>个几乎在同一位置的波峰，但是每个峰都会有一个不同的相位信息。</p>
+<p>而每个相位信息都是A、B的相位角的融合。所以需要做的就是将N个相位角，恢复成两个相位角……</p>
+<p>说起来有点儿绕，看图吧<br><img src="d5ca4e9f/multi_object_v.jpg" alt="从一组向量中恢复出两个独立的向量"></p>
+<p>怎么做呢？这是数学家又跑出来了，他们说：</p>
+<p>把那组<strong>和</strong>的向量塞进我的黑箱子，我的黑箱子就能还给你两个<strong>加数</strong>。<br>我的黑箱子叫：“<strong>Doppler FFT</strong>” <strong>多普勒-傅里叶变换</strong></p>
+<p>这波Doppler FFT操作之后，又会得到两个峰，分别叫$\omega_A$和$\omega_B$。</p>
+<p>由此得到两个物体分别的速度：<br>$\begin{cases}<br>    v_A = \frac{\lambda \omega_A}{4\pi T_c}\\<br>    v_B = \frac{\lambda \omega_B}{4\pi T_c}<br>\end{cases}$</p>
+<p>Oh my lady gaga……</p>
+<p>如果世间没有数学家，人类就得倒退回每天收集果子的时代，那该多美好呀……</p>
 <hr>
-<h3 id="混频器"><a href="#混频器" class="headerlink" title="混频器"></a>混频器</h3><p>混频率是一种非线性电路，它接受两路输入信号，并产生出一路新的信号。</p>
-<p>而内部的处理则会根据不同的应用而异。</p>
+<h3 id="测速分辨率"><a href="#测速分辨率" class="headerlink" title="测速分辨率"></a>测速分辨率</h3><p>根据离散傅里叶变换理论可知，当两个离散频率$\omega_1$和$\omega_2$的差，大于$\frac{2\pi}{N}$ 时，就可以被分辨。</p>
+<p>而$\Delta \omega = \frac{4\pi v T_c}{\lambda}$</p>
+<p>又有 $v_{res} T_f = N T_c$</p>
+<p>可以得到速度分辨率$v_{rev} = \frac{\lambda}{2T_f}$</p>
+<p>既$\rightarrow$ 雷达速度分辨率与帧时间$T_f$成反比， 帧时间越短，速度分辨率越高。</p>
 <hr>
-<h2 id="测距"><a href="#测距" class="headerlink" title="测距"></a>测距</h2><h3 id="测距原理"><a href="#测距原理" class="headerlink" title="测距原理"></a>测距原理</h3><p>假设$t$时刻的<strong>TX信号</strong>为（如前文，调制信号为随时间变化的正弦波）：</p>
-<p>$y_{tx} = sin(\omega_{tx} t + \phi_{tx})$</p>
-<p>而<strong>RX信号</strong>呢，电波从天线发射，到被目标反射折回，需要一定的时间，因此RX信号，只是被“延时”了TX波形（怀念开发<a href="https://blog.tensor-robotics.com/categories/ToF/">TOF</a>的日子…）：</p>
-<p>$y_{rx} = sin(\omega_{rx} t) + \phi_{rx})$</p>
-<p>雷达中的混频器的工作就是得到一个新函数：</p>
-<p>$y_{if} = sin[(\omega_{tx}-\omega_{rx})t + (\phi_{tx} - \phi_{rx})]$</p>
-<p>这个输出也被称为<strong>中频</strong>(intermediate frequency)。</p>
-<p>聪明如我的你应该要发出<strong>wow</strong>的声音了吧？</p>
-<p>这个中频实际包含了RX和TX信号的<strong>频差</strong>和<strong>相位差</strong>！</p>
+<h2 id="方位角测定"><a href="#方位角测定" class="headerlink" title="方位角测定"></a>方位角测定</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>FMCW雷达可以在其水平面估计反射波角度。这是一种被称为 <strong>到达角(AoA)</strong> 检测的技<br>术。</p>
+<p><img src="d5ca4e9f/aoa.png" alt="AoA"></p>
+<p>让我想到<strong>UWB定位</strong>和最新的<strong>蓝牙定位</strong>技术，也用到了类似的技术。</p>
+<p>要使用AoA，需要用到RX天线阵列。目标的反射回波，到达不同的RX天线时，会有一个空间上的距离差异，在中频信号经过FFT或者Doppler-FFT的时候，会看到不同。而这个不同包含了角度的信息。</p>
+<p>以最简化的例子<br><img src="d5ca4e9f/aoa_cal.png" alt="双天线的角度估计"></p>
+<p>同一个目标回波到达两个RX天线的相位差：<br>$\Delta \Phi = \frac{2\pi \Delta d}{\lambda}$</p>
+<p>根据几何， $\Delta d = l \sin(\theta)$，其中$l\rightarrow$天线间距。</p>
+<p>因此得到到达角：<br>$\theta = sin^{-1}(\frac{\lambda \Delta \phi}{2\pi l})$</p>
+<p>带入后会得到 $\theta = \sin(\theta)$的奇怪结果。这被称为非线性近似。</p>
+<p>只有当$\theta$较小时，才会更加准确。</p>
 <hr>
-<p>如果还没懂的话，那就看图说话吧。</p>
-<p><img src="98d4edcd/if_signal_info.png" alt="中频信号包含的信息"></p>
-<p>根据初等物理($时间=\frac{路程}{速度}$）我们知道TX/RX两个信号的延时等于</p>
-<p>$\tau = \frac{2*d}{c}$</p>
-<ul>
-<li>$d$ 是目标和雷达之间的距离</li>
-<li>$c$ 是电磁波的速度，也就是光速</li>
-</ul>
-<p>需要注意的是，中频信号仅在TX和RX的重叠期有效（因为中频信号由混频器产生）。</p>
-<p>而中频信号的起始相位$\boldsymbol{\phi_0}$，就是TX和RX信号在该时刻的相位差。</p>
-<p>同时根据上图，也可以得到：<br>$\phi_0 = 2\pi f_c \tau$ ($f_c \rightarrow $TX啁啾的起始频率)</p>
-<p>将$\tau$带入上式，又可以得到：<br>$\phi = \frac{4\pi d}{\lambda}$</p>
-<p>不过这只是一个近似，因为频率在变化，更精确的表述应该是：<br>$\Delta\phi = 4\pi \Delta\frac{d}{\lambda}$</p>
+<h3 id="雷达视场-FoV"><a href="#雷达视场-FoV" class="headerlink" title="雷达视场 FoV"></a>雷达视场 FoV</h3><p>因为AoA使用相位测定， 所以依旧绕不开 $\left| \Delta \phi \right| &lt; 180^\circ$ 的非模糊性问题。</p>
+<p>由上面的公式，得到：<br>$\theta_{max} = \pm sin^{-1}(\frac{\lambda}{2l})$</p>
+<p>例如， 如果天线之间间隔$l = \frac{\lambda}{2}$， 那么最大视场角度就是$\pm 90^\circ$</p>
 <hr>
-<p>总结一下，当<strong>一个</strong> <strong>静态</strong>目标出现在在雷达区间内时，IF信号会是一个正弦波：</p>
-<p>$IF\rightarrow Asin(2\pi f_0 + \phi_0)$</p>
-<ul>
-<li>$f_0 = \frac{S2d}{c}$</li>
-<li>$\phi_0 = \frac{4\pi d}{\lambda}$</li>
-</ul>
-<p>前面强调静态的原因是，如果目标相对雷达有运动，那么会有<a href="https://en.wikipedia.org/wiki/Doppler_effect" target="_blank" rel="noopener">多普勒效应</a>。不过在快速FMCW系统中，这个效应非常轻微，并且会在后续的信号处理中被修正。</p>
-<hr>
-<h3 id="多目标测距"><a href="#多目标测距" class="headerlink" title="多目标测距"></a>多目标测距</h3><p>那么如果有多个目标出现在不同的区域呢？</p>
-<p>雷达会收到多个啁啾回波。</p>
-<p>而每个回波， 回因为远近距离不同，而有不同程度的“延时”。</p>
-<p><img src="98d4edcd/multi_object_if.jpg" alt="原谅我不羁的画风"></p>
-<p>更远的目标意味着更大的回波延时，也就意味着更大的频差。</p>
-<p>那么如何从一个混叠了多个波的信号中，还原出每个信号的调性呢？</p>
-<p><a href="https://en.wikipedia.org/wiki/Fourier_transform" target="_blank" rel="noopener"><strong>傅里叶变换</strong></a>！！</p>
-<p><del>数学家，是一群脑子有病的人。我的脑子也有病，可我数学很渣。。。可见得的不是一种病</del></p>
-<hr>
-<h3 id="测距分辨率"><a href="#测距分辨率" class="headerlink" title="测距分辨率"></a>测距分辨率</h3><p>对于电波雷达来说，<strong>距离分辨率</strong>是衡量其性能的主要指标。当两个物体过于接近时，雷达无法将它们分开。按照上文的分析，这是因为中频区域内有两个过于靠近的横线。</p>
-<p>根据傅里叶变换，如果想增加距离分辨率，需要增加中频信号的长度（横着的长度），也就是增加<strong>带宽</strong>。</p>
-<p>同时，观测窗口$T$可以分辨间隔$\frac{1}{THz}$ (1ps)的频率分量。这意味着，只要偏差满足下列关系，就可以被分辨：</p>
-<p>$\Delta f &gt; \frac{1}{T_c}$</p>
-<p>其中$T_c$是观测时间长度。</p>
-<p>而频差 $\Delta f = \frac{S2\Delta d}{c}$， 所以上面的式子整理得到：</p>
-<p>$\Delta d &gt; \frac{c}{2ST_c} = \frac{c}{2B}$</p>
-<p>通过一顿操作，发现原来距离分辨率仅仅取决于啁啾的<strong>带宽</strong>！</p>
-<p>道理都懂，但是结论怎么如此神奇了？！</p>
-<p>对于<strong>5GHz</strong>啁啾带宽的雷达，距离分辨率就是 大约29.979mm。</p>
-<hr>
-<h2 id="下回预告"><a href="#下回预告" class="headerlink" title="下回预告"></a>下回预告</h2><p>在<strong>毫米波雷达</strong>的后续文章中， 将进一步介绍<strong>测速</strong>、<strong>方位测定</strong>等原理</p>
-<p>to be continued…</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过三篇blog完整描述了毫米波雷达的特点、基本工作原理。</p>
+<p>是一头雾水呢，还是一头雾水？</p>
+<p>在后续的文章中，将进行实际的毫米波雷达开发和评估。</p>
+<p><img src="d5ca4e9f/antenna.jpg" alt="真实的毫米波雷达天线"></p>
+<p>敬请期待<br>to be continued…</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -538,7 +502,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/archives/98d4edcd.html">http://blog.tensor-robotics.com/archives/98d4edcd.html</a>
+                    <a href="http://blog.tensor-robotics.com/archives/d5ca4e9f.html">http://blog.tensor-robotics.com/archives/d5ca4e9f.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -756,7 +720,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998",
-        id: '2020-05-19T21-37-42',
+        id: '2020-05-21T20-28-37',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -777,9 +741,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/archives/d5ca4e9f.html">
                     <div class="card-image">
@@ -800,9 +765,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -815,6 +780,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -841,28 +807,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/a8c20115.html">
+                <a href="/archives/98d4edcd.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="毫米波雷达 第一篇">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="毫米波雷达 第二篇">
                         
-                        <span class="card-title">毫米波雷达 第一篇</span>
+                        <span class="card-title">毫米波雷达 第二篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于毫米波雷达缘起幼时是在小学的时候，第一次听到“雷达”这个词。大概是在一副关于武器的扑克牌上。
-感觉酷酷的。
-然而一直到最近， 我才知道“雷达”这个音译的来源——RADAR，原来是一个递归缩写
+                            毫米波雷达的基本工作原理前言在上一篇中介绍了雷达的基本概念
 
-最早的定义来自1940年鹰酱海军的造字 R
+雷达系统发射电磁波信号
+路径中的物体反射该电磁波
+雷达系统处理和分析反射波，计算出目标的距离、速度和方位角等信息
+
+本番将从更进一步展开毫米波雷达的工作细节。
+再次声明，本人业余
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
                             </span>
                         <span class="publish-author">
                             
