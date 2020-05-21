@@ -426,9 +426,9 @@
 <p>可以想象，中频信号在经过FFT后，会得到<strong>N</strong>个几乎在同一位置的波峰，但是每个峰都会有一个不同的相位信息。</p>
 <p>而每个相位信息都是A、B的相位角的融合。所以需要做的就是将N个相位角，恢复成两个相位角……</p>
 <p>说起来有点儿绕，看图吧<br><img src="d5ca4e9f/multi_object_v.jpg" alt="从一组向量中恢复出两个独立的向量"></p>
-<p>怎么做呢？这是数学家又跑出来了，他们说：</p>
+<p>怎么做呢？这时数学家又跑出来了，他们说：</p>
 <p>把那组<strong>和</strong>的向量塞进我的黑箱子，我的黑箱子就能还给你两个<strong>加数</strong>。<br>我的黑箱子叫：“<strong>Doppler FFT</strong>” <strong>多普勒-傅里叶变换</strong></p>
-<p>这波Doppler FFT操作之后，又会得到两个峰，分别叫$\omega_A$和$\omega_B$。</p>
+<p>这波Doppler FFT操作之后，又会得到两个峰，分别是$\omega_A$和$\omega_B$。</p>
 <p>由此得到两个物体分别的速度：<br>$\begin{cases}<br>    v_A = \frac{\lambda \omega_A}{4\pi T_c}\\<br>    v_B = \frac{\lambda \omega_B}{4\pi T_c}<br>\end{cases}$</p>
 <p>Oh my lady gaga……</p>
 <p>如果世间没有数学家，人类就得倒退回每天收集果子的时代，那该多美好呀……</p>
