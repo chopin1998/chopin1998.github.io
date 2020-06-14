@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="毫米波雷达 第三篇, welcome">
+    <meta name="keywords" content="毫米波雷达 第四篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>毫米波雷达 第三篇 | welcome</title>
+    <title>毫米波雷达 第四篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">毫米波雷达 第三篇</h1>
+                    <h1 class="description center-align post-title">毫米波雷达 第四篇</h1>
                 </div>
             </div>
         </div>
@@ -377,7 +377,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-21
+                    2020-05-28
                 </div>
                 
 
@@ -386,7 +386,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    881
                 </div>
                 
 
@@ -399,66 +399,82 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="毫米波雷达的基本工作原理-续"><a href="#毫米波雷达的基本工作原理-续" class="headerlink" title="毫米波雷达的基本工作原理 续"></a>毫米波雷达的基本工作原理 续</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="/archives/98d4edcd.html" title="毫米波雷达第二篇">毫米波雷达第二篇</a>进一步介绍了毫米波雷达的内部构成，和基本测距原理。</p>
-<p>本番将介绍毫米波雷达测速功能和方位角测定功能的基本原理。</p>
+                <h1 id="毫米波雷达的选型"><a href="#毫米波雷达的选型" class="headerlink" title="毫米波雷达的选型"></a>毫米波雷达的选型</h1><h2 id="器件"><a href="#器件" class="headerlink" title="器件"></a>器件</h2><p>经过一段时间的摸索，目前确定还是用国际大厂TI的芯片先练练手。</p>
+<p>选择器件为 <a href="http://www.ti.com/product/IWR6843" target="_blank" rel="noopener"><strong>IWR6843</strong></a></p>
+<p>如<a href="/archives/a8c20115.html" title="前文">前文</a>所述，这是一颗集成式毫米波雷达SoC，主要技术特点：</p>
+<ul>
+<li>60 - 64Ghz 连续调制，4GHz带宽</li>
+<li>3TX</li>
+<li>4RX</li>
+<li>Cortex R4F</li>
+<li>集成FFT、滤波、CFAR等硬件加速</li>
+<li>集成C674x DSP</li>
+</ul>
+<p>本来想要一颗77G的芯片，因为标称频率范围是76 - 81GHz， 也就是5GHz带宽，不过看详细的文档，似乎有一部分带宽的无线电是被分配给了汽车，所以77G的芯片是两部分带宽，一个1GHz，一个也是4GHz。</p>
+<p>当然更重要的一个原因是，目前IWR6843还有一个<strong>AoP</strong>版本，也就是芯片上直接封装了天线！这对日后自己做产品来说非常有利。几十G的射频电路，别说画了，找个代工厂估计都要费些力气。</p>
+<p>所以这次就先选了<strong>IWR6843</strong>的开发板。</p>
 <hr>
-<h2 id="速度测量"><a href="#速度测量" class="headerlink" title="速度测量"></a>速度测量</h2><h3 id="单一目标测速"><a href="#单一目标测速" class="headerlink" title="单一目标测速"></a>单一目标测速</h3><p>在<a href="/archives/a8c20115.html" title="毫米波雷达第一篇">毫米波雷达第一篇</a>中，提到雷达具有对目标测速的能力加成，以及对目标微小移动的检测能力。</p>
-<p>在FMCW雷达技术中，可以通过发射两次间隔为$T_c$的啁啾信号来获取速度信息。</p>
-<p>对于两次反射来的信号，通过上一回说的FFT技术来提取其“调性”（<strong>中频频峰</strong>和<strong>相位差</strong>）。</p>
-<p>因为两次啁啾的时间间隔非常短，就算物体移动很快，在这段微小时间内的位移也不会很大，所以对应的中频频率差别可能小到无法分别。</p>
-<p>不过此时它们的相位差将会出现巨大变化，哪怕目标运动速度很低，由此可以计算出速度。</p>
-<p>在上一篇中，已经知道相位差：<br>$\phi = \frac{4\pi d}{\lambda}$</p>
-<p>取其微分形式：<br>$\Delta \phi = \frac{4\pi v T_c}{\lambda}$</p>
-<p>这里，假定两次啁啾期间物体运动了1mm（使用5mm波长）， 那么相位差将有144°的巨大差异！</p>
-<p>将$v$放在等式最左边，得到：<br>$v = \frac{\lambda \Delta \phi}{4 \pi T_c }$</p>
-<p>由此求得目标速度。</p>
-<p>然而，由于速度信息隐藏在相位中，就会带来一个问题：<strong>ambiguity（模糊性）</strong>， 在<a href="/archives/78201d81.html" title="关于ToF 番二">关于ToF 番二</a> 中其实也有类似的问题。</p>
-<p>只有当$\left| \Delta \phi\right| &lt; \pi$的时候，测得量才有正确的意义。</p>
-<p>也就是说，速度$v$需要小于$\frac{\lambda}{4 T_c}$</p>
-<p>用公式表达雷达能接受的最快运动速度：<br>$v_{max} = \frac{\lambda}{4 T_c}$</p>
-<p>不过需要说明的是，这里求出目标速度，应该说是目标相对雷达平面移动的速度分量，是径向速度。</p>
+<h2 id="功能框图"><a href="#功能框图" class="headerlink" title="功能框图"></a>功能框图</h2><p><img src="62e757fa/block.png" alt="45nm RFCMOS 制程"></p>
+<h3 id="RF和模拟模块"><a href="#RF和模拟模块" class="headerlink" title="RF和模拟模块"></a>RF和模拟模块</h3><h4 id="时钟域"><a href="#时钟域" class="headerlink" title="时钟域"></a>时钟域</h4><p><img src="62e757fa/clock.png" alt="时钟的产生"></p>
+<p>系统使用一个外部40MHz晶振产生内部所需的各种时钟。</p>
+<h4 id="发射电路"><a href="#发射电路" class="headerlink" title="发射电路"></a>发射电路</h4><p><img src="62e757fa/tx.png" alt="一个通道"></p>
+<p>IWR6843有三个独立的发射通道。不过同一时间只能同时使用其中的两个。</p>
+<p>当使用分时三天线策略时，可以实现3D测定。</p>
+<p>设备支持6bit的线性相移以支持MIMO雷达和发射波束成形等应用。</p>
+<h4 id="接收电路"><a href="#接收电路" class="headerlink" title="接收电路"></a>接收电路</h4><p><img src="62e757fa/rx.png" alt="一个通道"></p>
+<p>IWR6843有四个独立的接收通道，并且可以同时使用。<br>器件为快速啁啾信号优化，带通的中频信号链支持可配置的滤波，从175KHz至最大10MHz。</p>
+<h4 id="雷达子系统处理器"><a href="#雷达子系统处理器" class="headerlink" title="雷达子系统处理器"></a>雷达子系统处理器</h4><p>此处理器有其独立的ROM/RAM， 用于执行内置的射频校准程序、底层操作。<br>用户并不能直接操作这个控制器，TI提供了封装好的固件，使用基于mailbox的API，通过消息机制和整个雷达子系统通讯。</p>
+<p><img src="62e757fa/prog_model.png" alt="编程模型"></p>
+<h3 id="处理器系统"><a href="#处理器系统" class="headerlink" title="处理器系统"></a>处理器系统</h3><p><img src="62e757fa/processor.png" alt="简化的处理器系统"></p>
+<p>主要来看有两个可编程的大核心：</p>
+<ul>
+<li>一个<strong>Cortex R4F</strong> 作为主控<ul>
+<li>200 MHz 时钟频率</li>
+<li>注意这是Ｒ，不是Ｍ也不是Ａ。</li>
+</ul>
+</li>
+<li>一个<strong>C674x DSP</strong> 作为协信号处理器<ul>
+<li>600 MHz 时钟频率</li>
+</ul>
+</li>
+</ul>
+<p>LVDS将ADC高速同步泵出，可以作为log或者为外部其它处理器提供原始数据。</p>
+<p>HIL则是高速信号输入接口。</p>
+<p>其中的HWA为雷达硬件加速器，包含了一些FMCW常用的处理硬核，可以降低主处理器负担。</p>
 <hr>
-<h3 id="多目标测速"><a href="#多目标测速" class="headerlink" title="多目标测速"></a>多目标测速</h3><p>然而，这种方式无法应对相对雷达等距的两个以上目标的测速。因为若两个目标相对雷达距离相同，其各自回波延时也相同，因此中频信号中的相位信息会混叠在一起。</p>
-<p>为此，人们想出其它的办法：</p>
-<p>雷达发射更多的Chirp。</p>
-<p>一组<strong>N</strong>个等时间隔的Chrips序列，被称为一个<strong>啁啾帧</strong>。</p>
-<p>假如有两个与雷达等距的目标A、B，它们的速度分别为$v_a$、$v_b$。</p>
-<p>可以想象，中频信号在经过FFT后，会得到<strong>N</strong>个几乎在同一位置的波峰，但是每个峰都会有一个不同的相位信息。</p>
-<p>而每个相位信息都是A、B的相位角的融合。所以需要做的就是将N个相位角，恢复成两个相位角……</p>
-<p>说起来有点儿绕，看图吧<br><img src="d5ca4e9f/multi_object_v.jpg" alt="从一组向量中恢复出两个独立的向量"></p>
-<p>怎么做呢？这时数学家又跑出来了，他们说：</p>
-<p>把那组<strong>和</strong>的向量塞进我的黑箱子，我的黑箱子就能还给你两个<strong>加数</strong>。<br>我的黑箱子叫：“<strong>Doppler FFT</strong>” <strong>多普勒-傅里叶变换</strong></p>
-<p>这波Doppler FFT操作之后，又会得到两个峰，分别是$\omega_A$和$\omega_B$。</p>
-<p>由此得到两个物体分别的速度：<br>$\begin{cases}<br>    v_A = \frac{\lambda \omega_A}{4\pi T_c}\\<br>    v_B = \frac{\lambda \omega_B}{4\pi T_c}<br>\end{cases}$</p>
-<p>Oh my lady gaga……</p>
-<p>如果世间没有数学家，人类就得倒退回每天收集果子的时代，那该多美好呀……</p>
-<hr>
-<h3 id="测速分辨率"><a href="#测速分辨率" class="headerlink" title="测速分辨率"></a>测速分辨率</h3><p>根据离散傅里叶变换理论可知，当两个离散频率$\omega_1$和$\omega_2$的差，大于$\frac{2\pi}{N}$ 时，就可以被分辨。</p>
-<p>而$\Delta \omega = \frac{4\pi v T_c}{\lambda}$</p>
-<p>又有 $v_{res} T_f = N T_c$</p>
-<p>可以得到速度分辨率$v_{rev} = \frac{\lambda}{2T_f}$</p>
-<p>既$\rightarrow$ 雷达速度分辨率与帧时间$T_f$成反比， 帧时间越短，速度分辨率越高。</p>
-<hr>
-<h2 id="方位角测定"><a href="#方位角测定" class="headerlink" title="方位角测定"></a>方位角测定</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>FMCW雷达可以在其水平面估计反射波角度。这是一种被称为 <strong>到达角(AoA)</strong> 检测的技<br>术。</p>
-<p><img src="d5ca4e9f/aoa.png" alt="AoA"></p>
-<p>让我想到<strong>UWB定位</strong>和最新的<strong>蓝牙定位</strong>技术，也用到了类似的技术。</p>
-<p>要使用AoA，需要用到RX天线阵列。目标的反射回波，到达不同的RX天线时，会有一个空间上的距离差异，在中频信号经过FFT或者Doppler-FFT的时候，会看到不同。而这个不同包含了角度的信息。</p>
-<p>以最简化的例子<br><img src="d5ca4e9f/aoa_cal.png" alt="双天线的角度估计"></p>
-<p>同一个目标回波到达两个RX天线的相位差：<br>$\Delta \Phi = \frac{2\pi \Delta d}{\lambda}$</p>
-<p>根据几何， $\Delta d = l \sin(\theta)$，其中$l\rightarrow$天线间距。</p>
-<p>因此得到到达角：<br>$\theta = sin^{-1}(\frac{\lambda \Delta \phi}{2\pi l})$</p>
-<p>带入后会得到 $\theta = \sin(\theta)$的奇怪结果。这被称为非线性近似。</p>
-<p>只有当$\theta$较小时，才会更加准确。</p>
-<hr>
-<h3 id="雷达视场-FoV"><a href="#雷达视场-FoV" class="headerlink" title="雷达视场 FoV"></a>雷达视场 FoV</h3><p>因为AoA使用相位测定， 所以依旧绕不开 $\left| \Delta \phi \right| &lt; 180^\circ$ 的非模糊性问题。</p>
-<p>由上面的公式，得到：<br>$\theta_{max} = \pm sin^{-1}(\frac{\lambda}{2l})$</p>
-<p>例如， 如果天线之间间隔$l = \frac{\lambda}{2}$， 那么最大视场角度就是$\pm 90^\circ$</p>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过三篇blog完整描述了毫米波雷达的特点、基本工作原理。</p>
-<p>是一头雾水呢，还是一头雾水？</p>
-<p>在后续的文章中，将进行实际的毫米波雷达开发和评估。</p>
-<p><img src="d5ca4e9f/antenna.jpg" alt="真实的毫米波雷达天线"></p>
-<p>敬请期待<br>to be continued…</p>
+<h2 id="供电"><a href="#供电" class="headerlink" title="供电"></a>供电</h2><p>芯片需要<strong>4</strong>个电源轨:</p>
+<ul>
+<li><p>VDD 数字核心、SRAM</p>
+<ul>
+<li>1.2v</li>
+</ul>
+</li>
+<li><p>数字IO</p>
+<ul>
+<li>3.3v 或 1.8v</li>
+</ul>
+</li>
+<li><p>射频电源</p>
+<ul>
+<li>1.3v 或 1.0v(旁路内部LDO)</li>
+</ul>
+</li>
+<li><p>模拟电源</p>
+<ul>
+<li>1.8v</li>
+</ul>
+</li>
+</ul>
+<p>其中射频电源和模拟电源如果直接使用开关电源供电，需要额外的LC滤波。</p>
+<p>同时芯片有两个电源域，一个是主电源，一个是DSP电源。DSP电源可以动态开关。</p>
+<p>可以使用多路的PMIC电源芯片来管理，例如：</p>
+<ul>
+<li>LP87702系列</li>
+<li>LP87524系列</li>
+</ul>
+<p>都是给IWR/AWR系列专门设计的PMIC。</p>
+<p>整个系统的功耗相对来说还是不低的， 5v总电源轨的话，至少需要2~3A的充沛电流。</p>
+<p>芯片本身的热量也相当可观。<br><img src="../../../public/archives/62e757fa/curret_ratings.png" alt="各电源轨最大电路"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -502,7 +518,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/archives/d5ca4e9f.html">http://blog.tensor-robotics.com/archives/d5ca4e9f.html</a>
+                    <a href="http://blog.tensor-robotics.com/archives/62e757fa.html">http://blog.tensor-robotics.com/archives/62e757fa.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -720,7 +736,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998",
-        id: '2020-05-21T20-28-37',
+        id: '2020-05-28T21-45-15',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -745,38 +761,43 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/archives/62e757fa.html">
+                <a href="/archives/52155a9e.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="毫米波雷达 第四篇">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="闭门造车日记 第五篇">
                         
-                        <span class="card-title">毫米波雷达 第四篇</span>
+                        <span class="card-title">闭门造车日记 第五篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            毫米波雷达的选型器件经过一段时间的摸索，目前确定还是用国际大厂TI的芯片先练练手。
-选择器件为 IWR6843
-如前文所述，这是一颗集成式毫米波雷达SoC，主要技术特点：
+                            造车日记 milestone 1第一阶段达成
+基础机械完工
+基础电子完工
+基础软件完工
 
-60 - 64Ghz 连续调制，4GHz带宽
-3TX
-4RX
-Co
+达到使用遥控器控制的目标。
+
+开源驱动板电路
+固件和测试软件
+
+关于PCB目前github中的版本与实际稍微有些差异：
+
+去掉了SWD接口，并增加了B
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-14
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE/" class="post-category">
-                                    毫米波雷达
+                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/" class="post-category">
+                                    造车日记
                                 </a>
                             
                             
@@ -790,12 +811,8 @@ Co
                         <span class="chip bg-color">分享和生产知识</span>
                     </a>
                     
-                    <a href="/tags/%E9%9B%B7%E8%BE%BE/">
-                        <span class="chip bg-color">雷达</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/">
-                        <span class="chip bg-color">毫米波</span>
+                    <a href="/tags/%E5%B0%8F%E8%BD%A6/">
+                        <span class="chip bg-color">小车</span>
                     </a>
                     
                 </div>
@@ -809,31 +826,27 @@ Co
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/98d4edcd.html">
+                <a href="/archives/d5ca4e9f.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="毫米波雷达 第二篇">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="毫米波雷达 第三篇">
                         
-                        <span class="card-title">毫米波雷达 第二篇</span>
+                        <span class="card-title">毫米波雷达 第三篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            毫米波雷达的基本工作原理前言在上一篇中介绍了雷达的基本概念
+                            毫米波雷达的基本工作原理 续前言在毫米波雷达第二篇进一步介绍了毫米波雷达的内部构成，和基本测距原理。
+本番将介绍毫米波雷达测速功能和方位角测定功能的基本原理。
 
-雷达系统发射电磁波信号
-路径中的物体反射该电磁波
-雷达系统处理和分析反射波，计算出目标的距离、速度和方位角等信息
-
-本番将从更进一步展开毫米波雷达的工作细节。
-再次声明，本人业余
+速度测量单一目标测速在毫米波雷达第一篇中，提到雷达具有对目标测速的能力加成，以
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-21
                             </span>
                         <span class="publish-author">
                             

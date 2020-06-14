@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="毫米波雷达 第三篇, welcome">
+    <meta name="keywords" content="闭门造车日记 第五篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>毫米波雷达 第三篇 | welcome</title>
+    <title>闭门造车日记 第五篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">毫米波雷达 第三篇</h1>
+                    <h1 class="description center-align post-title">闭门造车日记 第五篇</h1>
                 </div>
             </div>
         </div>
@@ -348,12 +348,8 @@
                                 <span class="chip bg-color">分享和生产知识</span>
                             </a>
                         
-                            <a href="/tags/%E9%9B%B7%E8%BE%BE/">
-                                <span class="chip bg-color">雷达</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/">
-                                <span class="chip bg-color">毫米波</span>
+                            <a href="/tags/%E5%B0%8F%E8%BD%A6/">
+                                <span class="chip bg-color">小车</span>
                             </a>
                         
                     </div>
@@ -364,8 +360,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE/" class="post-category">
-                                毫米波雷达
+                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/" class="post-category">
+                                造车日记
                             </a>
                         
                     </div>
@@ -377,7 +373,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-21
+                    2020-06-14
                 </div>
                 
 
@@ -386,7 +382,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.2k
                 </div>
                 
 
@@ -399,66 +395,79 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="毫米波雷达的基本工作原理-续"><a href="#毫米波雷达的基本工作原理-续" class="headerlink" title="毫米波雷达的基本工作原理 续"></a>毫米波雷达的基本工作原理 续</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="/archives/98d4edcd.html" title="毫米波雷达第二篇">毫米波雷达第二篇</a>进一步介绍了毫米波雷达的内部构成，和基本测距原理。</p>
-<p>本番将介绍毫米波雷达测速功能和方位角测定功能的基本原理。</p>
+                <h1 id="造车日记-milestone-1"><a href="#造车日记-milestone-1" class="headerlink" title="造车日记 milestone 1"></a>造车日记 milestone 1</h1><h2 id="第一阶段达成"><a href="#第一阶段达成" class="headerlink" title="第一阶段达成"></a>第一阶段达成</h2><ul>
+<li>基础机械完工</li>
+<li>基础电子完工</li>
+<li>基础软件完工</li>
+</ul>
+<p>达到使用遥控器控制的目标。</p>
 <hr>
-<h2 id="速度测量"><a href="#速度测量" class="headerlink" title="速度测量"></a>速度测量</h2><h3 id="单一目标测速"><a href="#单一目标测速" class="headerlink" title="单一目标测速"></a>单一目标测速</h3><p>在<a href="/archives/a8c20115.html" title="毫米波雷达第一篇">毫米波雷达第一篇</a>中，提到雷达具有对目标测速的能力加成，以及对目标微小移动的检测能力。</p>
-<p>在FMCW雷达技术中，可以通过发射两次间隔为$T_c$的啁啾信号来获取速度信息。</p>
-<p>对于两次反射来的信号，通过上一回说的FFT技术来提取其“调性”（<strong>中频频峰</strong>和<strong>相位差</strong>）。</p>
-<p>因为两次啁啾的时间间隔非常短，就算物体移动很快，在这段微小时间内的位移也不会很大，所以对应的中频频率差别可能小到无法分别。</p>
-<p>不过此时它们的相位差将会出现巨大变化，哪怕目标运动速度很低，由此可以计算出速度。</p>
-<p>在上一篇中，已经知道相位差：<br>$\phi = \frac{4\pi d}{\lambda}$</p>
-<p>取其微分形式：<br>$\Delta \phi = \frac{4\pi v T_c}{\lambda}$</p>
-<p>这里，假定两次啁啾期间物体运动了1mm（使用5mm波长）， 那么相位差将有144°的巨大差异！</p>
-<p>将$v$放在等式最左边，得到：<br>$v = \frac{\lambda \Delta \phi}{4 \pi T_c }$</p>
-<p>由此求得目标速度。</p>
-<p>然而，由于速度信息隐藏在相位中，就会带来一个问题：<strong>ambiguity（模糊性）</strong>， 在<a href="/archives/78201d81.html" title="关于ToF 番二">关于ToF 番二</a> 中其实也有类似的问题。</p>
-<p>只有当$\left| \Delta \phi\right| &lt; \pi$的时候，测得量才有正确的意义。</p>
-<p>也就是说，速度$v$需要小于$\frac{\lambda}{4 T_c}$</p>
-<p>用公式表达雷达能接受的最快运动速度：<br>$v_{max} = \frac{\lambda}{4 T_c}$</p>
-<p>不过需要说明的是，这里求出目标速度，应该说是目标相对雷达平面移动的速度分量，是径向速度。</p>
+<h2 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h2><p><a href="https://github.com/chopin1998/vechicle_pcb" target="_blank" rel="noopener">驱动板电路</a></p>
+<p><a href="https://github.com/chopin1998/vehcile_firmware" target="_blank" rel="noopener">固件和测试软件</a></p>
 <hr>
-<h3 id="多目标测速"><a href="#多目标测速" class="headerlink" title="多目标测速"></a>多目标测速</h3><p>然而，这种方式无法应对相对雷达等距的两个以上目标的测速。因为若两个目标相对雷达距离相同，其各自回波延时也相同，因此中频信号中的相位信息会混叠在一起。</p>
-<p>为此，人们想出其它的办法：</p>
-<p>雷达发射更多的Chirp。</p>
-<p>一组<strong>N</strong>个等时间隔的Chrips序列，被称为一个<strong>啁啾帧</strong>。</p>
-<p>假如有两个与雷达等距的目标A、B，它们的速度分别为$v_a$、$v_b$。</p>
-<p>可以想象，中频信号在经过FFT后，会得到<strong>N</strong>个几乎在同一位置的波峰，但是每个峰都会有一个不同的相位信息。</p>
-<p>而每个相位信息都是A、B的相位角的融合。所以需要做的就是将N个相位角，恢复成两个相位角……</p>
-<p>说起来有点儿绕，看图吧<br><img src="d5ca4e9f/multi_object_v.jpg" alt="从一组向量中恢复出两个独立的向量"></p>
-<p>怎么做呢？这时数学家又跑出来了，他们说：</p>
-<p>把那组<strong>和</strong>的向量塞进我的黑箱子，我的黑箱子就能还给你两个<strong>加数</strong>。<br>我的黑箱子叫：“<strong>Doppler FFT</strong>” <strong>多普勒-傅里叶变换</strong></p>
-<p>这波Doppler FFT操作之后，又会得到两个峰，分别是$\omega_A$和$\omega_B$。</p>
-<p>由此得到两个物体分别的速度：<br>$\begin{cases}<br>    v_A = \frac{\lambda \omega_A}{4\pi T_c}\\<br>    v_B = \frac{\lambda \omega_B}{4\pi T_c}<br>\end{cases}$</p>
-<p>Oh my lady gaga……</p>
-<p>如果世间没有数学家，人类就得倒退回每天收集果子的时代，那该多美好呀……</p>
+<h2 id="关于PCB"><a href="#关于PCB" class="headerlink" title="关于PCB"></a>关于PCB</h2><p>目前github中的版本与实际稍微有些差异：</p>
+<ul>
+<li>去掉了<strong>SWD</strong>接口，并增加了Boot和nRST按键，以方便使用内建的USB Bootloader</li>
+<li>增加了 D15，可以在没有外部供电情况下使用USB供电，方便调试</li>
+</ul>
+<p>不足和今后可能改进</p>
+<ul>
+<li>F303系列没有内建USB上拉电阻，需要外部上拉，目前是飞线。如果有机会改进会增加上拉电阻相关电路或者更换高等级器件</li>
+<li>电池接插件公母对调一下似乎更加合理</li>
+</ul>
 <hr>
-<h3 id="测速分辨率"><a href="#测速分辨率" class="headerlink" title="测速分辨率"></a>测速分辨率</h3><p>根据离散傅里叶变换理论可知，当两个离散频率$\omega_1$和$\omega_2$的差，大于$\frac{2\pi}{N}$ 时，就可以被分辨。</p>
-<p>而$\Delta \omega = \frac{4\pi v T_c}{\lambda}$</p>
-<p>又有 $v_{res} T_f = N T_c$</p>
-<p>可以得到速度分辨率$v_{rev} = \frac{\lambda}{2T_f}$</p>
-<p>既$\rightarrow$ 雷达速度分辨率与帧时间$T_f$成反比， 帧时间越短，速度分辨率越高。</p>
+<h2 id="一些好玩儿的点"><a href="#一些好玩儿的点" class="headerlink" title="一些好玩儿的点"></a>一些好玩儿的点</h2><ul>
+<li>总电流监控</li>
+</ul>
+<p>在电池输出端有一颗0.01欧姆电阻，配合<strong>INA138</strong>进行高位电流采样，然后通过STM32F3内部的<strong>OPA</strong>继续放大后获取总电流信息</p>
+<ul>
+<li>充电电路</li>
+</ul>
+<p>使用<strong>LM5050</strong>和一颗mosfet，配置成理想二极管。这样即使充电触电被恶意短接，也不会有任何意外。</p>
+<p>至于外来充电是使用触电，还是无线……让我看看口袋里还剩多少钱……</p>
+<ul>
+<li>WS2813 驱动电路</li>
+</ul>
+<p>WS2813的IO无法兼容3.3v操作电平，因此在其供电端串联二极管，以降低其Vcc。</p>
+<p>此外WS2813的数据口接在STM32的<strong>SPI</strong> TX管脚，并在软件中使用<strong>DMA</strong>传输数据，不额外占用cpu时间。</p>
+<p>在软件中同时维护了GRB显存和BIN原始码流。缺点是费点儿内存，但是架不住RAM大呀，小车上最多就100来个嘛，毫无压力。</p>
+<ul>
+<li>关于CubeMX</li>
+</ul>
+<p>其实在早些年我是有点儿鄙视CubeMX的，总觉得这样不够hardcore，不过如今依然逃不过真香定律。。。</p>
+<p>站在高处设计的感觉还是棒棒的，而且需要直接操作寄存器时，也有办法。</p>
+<p>整套stm32的开发体验在Linux环境下还算令人满意。</p>
+<ul>
+<li>PID 速度控制</li>
+</ul>
+<p>本来PID并不复杂也手写过几次，不过看到ARM <strong>CMSIS</strong>里有DSP版本的PID就索性试了试。</p>
+<p>教科书般经典的实现，似乎比我写的要好用？！关键是自己的代码因此看起来非常简单。</p>
+<p>不过需要主要的是，Cortex M4核心的DSP毕竟比较简单，完整的32bit浮点是不支持的，我现在代码里用的f32类型其实并没有真的调用到DSP指令，最多是乘法器、除法器加成.</p>
+<p>要使用真的DSP加速，只能使用q15这种数据类型。使用这个数据类型需要一波归一化操作。我也是后来才学到，所以github中的代码还没有更新。</p>
+<ul>
+<li>stm32死机事件</li>
+</ul>
+<p>之前的调试断断续续都在我的笔记本上完成，最后上机时，第一次将控制板和小车主控电脑（目前是rk3399）用usb连接起来的时候，stm32居然死机了……</p>
+<p>最终我在自行车上想到了解决方法，在主控电脑上删除了 modem manager的包……</p>
+<p>原因是stm32的usb cdc实现在linux看来是一个ACM设备，不过股建立并没有实现modem类的其它调用，如果存在modem manger， linux系统会发起设备类查询，就把stm32被逼死了……所以如果只是用串口的话，最偷懒的方法就是删掉这个包。。。</p>
+<ul>
+<li>手柄功能</li>
+</ul>
+<p>左手摇杆控制前、后、左、右方向，右手油门如果完全松开是蠕动模式。<br>右手摇杆目前是旋转功能。</p>
+<p>其它按键暂时还没有用上，以后可能也不会用上了。</p>
 <hr>
-<h2 id="方位角测定"><a href="#方位角测定" class="headerlink" title="方位角测定"></a>方位角测定</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>FMCW雷达可以在其水平面估计反射波角度。这是一种被称为 <strong>到达角(AoA)</strong> 检测的技<br>术。</p>
-<p><img src="d5ca4e9f/aoa.png" alt="AoA"></p>
-<p>让我想到<strong>UWB定位</strong>和最新的<strong>蓝牙定位</strong>技术，也用到了类似的技术。</p>
-<p>要使用AoA，需要用到RX天线阵列。目标的反射回波，到达不同的RX天线时，会有一个空间上的距离差异，在中频信号经过FFT或者Doppler-FFT的时候，会看到不同。而这个不同包含了角度的信息。</p>
-<p>以最简化的例子<br><img src="d5ca4e9f/aoa_cal.png" alt="双天线的角度估计"></p>
-<p>同一个目标回波到达两个RX天线的相位差：<br>$\Delta \Phi = \frac{2\pi \Delta d}{\lambda}$</p>
-<p>根据几何， $\Delta d = l \sin(\theta)$，其中$l\rightarrow$天线间距。</p>
-<p>因此得到到达角：<br>$\theta = sin^{-1}(\frac{\lambda \Delta \phi}{2\pi l})$</p>
-<p>带入后会得到 $\theta = \sin(\theta)$的奇怪结果。这被称为非线性近似。</p>
-<p>只有当$\theta$较小时，才会更加准确。</p>
+<h2 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h2><h3 id="决定最终的车载电脑"><a href="#决定最终的车载电脑" class="headerlink" title="决定最终的车载电脑"></a>决定最终的车载电脑</h3><p>目前的候选依旧是</p>
+<ul>
+<li>RK3399</li>
+<li>nVidia Jetson Nano</li>
+</ul>
+<p>RK3399的CPU其实要快过 jetson， 毕竟第二代双大核心加四个小核心 pk 第一代四个大核心。毛估估大部分的直线计算可能要快15%以上，有些则要更快。</p>
+<p>当然用jetson的理由无外就是cuda啦，虽然只是从tx1腰斩而来的版本，全速计算还是有客观的算力。</p>
+<p>另外一个考量点，是各自对双目的支持水平，到时候可能要做一个简单的对比。</p>
+<h3 id="测试基于movidius双目模块"><a href="#测试基于movidius双目模块" class="headerlink" title="测试基于movidius双目模块"></a>测试基于movidius双目模块</h3><p>嗯</p>
+<h3 id="测试基于毫米波雷达的定位方式"><a href="#测试基于毫米波雷达的定位方式" class="headerlink" title="测试基于毫米波雷达的定位方式"></a>测试基于毫米波雷达的定位方式</h3><p>啊</p>
 <hr>
-<h3 id="雷达视场-FoV"><a href="#雷达视场-FoV" class="headerlink" title="雷达视场 FoV"></a>雷达视场 FoV</h3><p>因为AoA使用相位测定， 所以依旧绕不开 $\left| \Delta \phi \right| &lt; 180^\circ$ 的非模糊性问题。</p>
-<p>由上面的公式，得到：<br>$\theta_{max} = \pm sin^{-1}(\frac{\lambda}{2l})$</p>
-<p>例如， 如果天线之间间隔$l = \frac{\lambda}{2}$， 那么最大视场角度就是$\pm 90^\circ$</p>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过三篇blog完整描述了毫米波雷达的特点、基本工作原理。</p>
-<p>是一头雾水呢，还是一头雾水？</p>
-<p>在后续的文章中，将进行实际的毫米波雷达开发和评估。</p>
-<p><img src="d5ca4e9f/antenna.jpg" alt="真实的毫米波雷达天线"></p>
-<p>敬请期待<br>to be continued…</p>
+<p>to be continued..</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -502,7 +511,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/archives/d5ca4e9f.html">http://blog.tensor-robotics.com/archives/d5ca4e9f.html</a>
+                    <a href="http://blog.tensor-robotics.com/archives/52155a9e.html">http://blog.tensor-robotics.com/archives/52155a9e.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -544,12 +553,8 @@
                                     <span class="chip bg-color">分享和生产知识</span>
                                 </a>
                             
-                                <a href="/tags/%E9%9B%B7%E8%BE%BE/">
-                                    <span class="chip bg-color">雷达</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/">
-                                    <span class="chip bg-color">毫米波</span>
+                                <a href="/tags/%E5%B0%8F%E8%BD%A6/">
+                                    <span class="chip bg-color">小车</span>
                                 </a>
                             
                         </div>
@@ -720,7 +725,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998",
-        id: '2020-05-21T20-28-37',
+        id: '2020-06-14T14-20-39',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -741,9 +746,76 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/archives/52155a9e.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="闭门造车日记 第五篇">
+                        
+                        <span class="card-title">闭门造车日记 第五篇</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            造车日记 milestone 1第一阶段达成
+基础机械完工
+基础电子完工
+基础软件完工
+
+达到使用遥控器控制的目标。
+
+开源驱动板电路
+固件和测试软件
+
+关于PCB目前github中的版本与实际稍微有些差异：
+
+去掉了SWD接口，并增加了B
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/" class="post-category">
+                                    造车日记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%88%86%E4%BA%AB%E5%92%8C%E7%94%9F%E4%BA%A7%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">分享和生产知识</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%B0%8F%E8%BD%A6/">
+                        <span class="chip bg-color">小车</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/archives/62e757fa.html">
                     <div class="card-image">
@@ -768,72 +840,8 @@ Co
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE/" class="post-category">
-                                    毫米波雷达
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%88%86%E4%BA%AB%E5%92%8C%E7%94%9F%E4%BA%A7%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">分享和生产知识</span>
-                    </a>
-                    
-                    <a href="/tags/%E9%9B%B7%E8%BE%BE/">
-                        <span class="chip bg-color">雷达</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/">
-                        <span class="chip bg-color">毫米波</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/archives/98d4edcd.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="毫米波雷达 第二篇">
-                        
-                        <span class="card-title">毫米波雷达 第二篇</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            毫米波雷达的基本工作原理前言在上一篇中介绍了雷达的基本概念
-
-雷达系统发射电磁波信号
-路径中的物体反射该电磁波
-雷达系统处理和分析反射波，计算出目标的距离、速度和方位角等信息
-
-本番将从更进一步展开毫米波雷达的工作细节。
-再次声明，本人业余
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
                             </span>
                         <span class="publish-author">
                             
@@ -1034,13 +1042,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
     <footer class="page-footer bg-color">
