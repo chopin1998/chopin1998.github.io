@@ -459,7 +459,7 @@
 <p><img src="d7992bd/install_gui_build.png" alt="GUI导入"></p>
 <p>如果使用的是DSP版本， 则需要分别导入DSS项目和MSS项目。</p>
 <p>首先编译DSS部分， 应该没有问题问题，<br>然后编译MSS部分， 如果正确配置，一开始也没有问题，但是在最后会出现一堆乱七八糟的问题。</p>
-<p>经过一番折腾，发现这是CSS导入时的bug，没有针对linux环境做足够的测试。</p>
+<p><del>当时慌得一米</del> 经过一番折腾，发现这是CCS导入工程时的bug，没有针对Linux环境做足够的测试。</p>
 <p>好在修改不难，在项目上右键，选择属性，弹框左侧选择Build, 右边找到Steps， 修改一些细节。。<br><img src="d7992bd/ccs10_image_creator.png" alt="导入程序的bug"></p>
 <p>最后，重新编译，就能得到可以下载的二进制程序。</p>
 <hr>
