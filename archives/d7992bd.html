@@ -440,7 +440,7 @@
 <h2 id="UniFlash"><a href="#UniFlash" class="headerlink" title="UniFlash"></a>UniFlash</h2><p>UniFlash的安装和使用倒没有什么坑，GUI弹窗安装，GUI使用（也有cli模式）。</p>
 <p>不知道为什么，之前在Debian里用总是需要root权限才能正常识别，在Ubuntu里面倒是没有任何问题。。。</p>
 <hr>
-<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>其实仅仅安装sdk就可以进行开发，ccs只是IDE。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="命令行式"><a href="#命令行式" class="headerlink" title="命令行式"></a>命令行式</h3><p>其实仅仅安装sdk就可以进行开发，ccs只是IDE。</p>
 <p>先来看看纯正unix风格的方式。</p>
 <p>在SDK的安装目录下，有一个子目录/packages/scripts/unix, 包含一个setenv.sh，source它就可以导入SDK固件需要的各种环境变量。默认使用的器件是xwr68xx， 如果用别的器件需要修改这个文件。</p>
 <p><img src="d7992bd/install_sdk_env.png" alt="导入环境变量"></p>
@@ -453,7 +453,7 @@
 
 <p>就能得到可以下载的bin文件。</p>
 <hr>
-<p>如果是GUI环境下的配置， 则要复杂一下。</p>
+<h3 id="IDE式"><a href="#IDE式" class="headerlink" title="IDE式"></a>IDE式</h3><p>如果是GUI环境下的配置， 则要复杂一下。</p>
 <p>在安装完sdk后第一次打开ccs10, 会提示找到新的组建。</p>
 <p>在 [Resource Explorer] -&gt; [mmWave Sensors] -&gt; [Industrial Tollbox] -&gt; [Labs] 选择合适的例程，并导入到eclipse环境。</p>
 <p><img src="d7992bd/install_gui_build.png" alt="GUI导入"></p>
