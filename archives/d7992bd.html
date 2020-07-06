@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="闭门造车日记 第五篇, welcome">
+    <meta name="keywords" content="毫米波雷达 第五篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>闭门造车日记 第五篇 | welcome</title>
+    <title>毫米波雷达 第五篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">闭门造车日记 第五篇</h1>
+                    <h1 class="description center-align post-title">毫米波雷达 第五篇</h1>
                 </div>
             </div>
         </div>
@@ -348,8 +348,12 @@
                                 <span class="chip bg-color">分享和生产知识</span>
                             </a>
                         
-                            <a href="/tags/%E5%B0%8F%E8%BD%A6/">
-                                <span class="chip bg-color">小车</span>
+                            <a href="/tags/%E9%9B%B7%E8%BE%BE/">
+                                <span class="chip bg-color">雷达</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/">
+                                <span class="chip bg-color">毫米波</span>
                             </a>
                         
                     </div>
@@ -360,8 +364,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/" class="post-category">
-                                造车日记
+                            <a href="/categories/%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE/" class="post-category">
+                                毫米波雷达
                             </a>
                         
                     </div>
@@ -373,7 +377,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-14
+                    2020-07-06
                 </div>
                 
 
@@ -382,7 +386,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.1k
                 </div>
                 
 
@@ -395,77 +399,69 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="造车日记-milestone-1"><a href="#造车日记-milestone-1" class="headerlink" title="造车日记 milestone 1"></a>造车日记 milestone 1</h1><h2 id="第一阶段达成"><a href="#第一阶段达成" class="headerlink" title="第一阶段达成"></a>第一阶段达成</h2><ul>
-<li>基础机械完工</li>
-<li>基础电子完工</li>
-<li>基础软件完工</li>
-</ul>
-<p>达到使用遥控器控制的目标。</p>
+                <h1 id="在LinuX环境下配置TI毫米波雷达开发环境"><a href="#在LinuX环境下配置TI毫米波雷达开发环境" class="headerlink" title="在LinuX环境下配置TI毫米波雷达开发环境"></a>在LinuX环境下配置TI毫米波雷达开发环境</h1><h2 id="从Debian到Ubuntu"><a href="#从Debian到Ubuntu" class="headerlink" title="从Debian到Ubuntu"></a>从Debian到Ubuntu</h2><p>本来已经在Debian下工作得不错，不过最近因为要学习ROS，居然把用了十多年的Debian给换成了Ubuntu。。。。。</p>
+<p>虽然是大厂出品，但其中还有一些小坑。</p>
+<p>只好再次重新安装配置一次，权当记录。</p>
+<p>目前的版本是Ubuntu 20.04（focal）</p>
 <hr>
-<h2 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h2><p><a href="https://github.com/chopin1998/vechicle_pcb" target="_blank" rel="noopener">驱动板电路</a></p>
-<p><a href="https://github.com/chopin1998/vehcile_firmware" target="_blank" rel="noopener">固件和测试软件</a></p>
+<h2 id="从官方网站下载文件"><a href="#从官方网站下载文件" class="headerlink" title="从官方网站下载文件"></a>从官方网站下载文件</h2><ul>
+<li>CCS10.0.0.00010_linux-x64.tar.gz</li>
+<li>mmwave_sdk_03_04_00_03-Linux-x86-Install.bin</li>
+<li>uniflash_sl.6.0.0.2710.run</li>
+</ul>
+<p><strong>CCS</strong>是TI的IDE，其实就是老派电子厂家最爱用的魔改eclipse……</p>
+<p><strong>mmwave_sd</strong>k则包含了毫米波雷达内建DSP的工具链、中间件等</p>
+<p><strong>uniflash</strong>则是TI专门给IWR/AWR系列器件提供的下载程序</p>
 <hr>
-<h2 id="关于PCB"><a href="#关于PCB" class="headerlink" title="关于PCB"></a>关于PCB</h2><p>目前github中的版本与实际稍微有些差异：</p>
-<ul>
-<li>去掉了<strong>SWD</strong>接口，并增加了Boot和nRST按键，以方便使用内建的USB Bootloader</li>
-<li>增加了 D15，可以在没有外部供电情况下使用USB供电，方便调试</li>
-</ul>
-<p>不足和今后可能改进</p>
-<ul>
-<li>F303系列没有内建USB上拉电阻，需要外部上拉，目前是飞线。如果有机会改进会增加上拉电阻相关电路或者更换高等级器件</li>
-<li>电池接插件公母对调一下似乎更加合理</li>
-</ul>
+<h2 id="CCS10"><a href="#CCS10" class="headerlink" title="CCS10"></a>CCS10</h2><p>安装CCS10前，需要首先下载这些包<br>libc6:i386 libusb-0.1 libgconf libncurses5 libpython2.7 libtinfo5</p>
+<p>注意，需要i386版本，因此如果系统原先没有安装过，需要</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --add-architecture i386</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后解压CCS10.xxxxxx.tar.gz，运行其中的<strong>ccs_setup_10.0.0.00010.run</strong>, 弹出安装GUI</p>
+<p>一路点击next， 选择安装路径什么的，直到器件选择。</p>
+<p><img src="d7992bd/install_device_choose.png" alt="全部安装会超过4G空间，可以根据需要选择，这里就只安装mmWave系列"></p>
+<p>后面再点几次next之后就是自动复制文件的过程。</p>
+<p>等着就好。</p>
+<p>提示一下，最好设置一个好一点儿代理，国内下载速度，你懂的。。</p>
+<p>进入后，可以在[view]-&gt;[Resource Explorer]里选择下载对应的Toolbox，包含了更多examples和配置工具。</p>
 <hr>
-<h2 id="一些好玩儿的点"><a href="#一些好玩儿的点" class="headerlink" title="一些好玩儿的点"></a>一些好玩儿的点</h2><ul>
-<li>总电流监控</li>
-</ul>
-<p>在电池输出端有一颗0.01欧姆电阻，配合<strong>INA138</strong>进行高位电流采样，然后通过STM32F3内部的<strong>OPA</strong>继续放大后获取总电流信息</p>
-<ul>
-<li>充电电路</li>
-</ul>
-<p>使用<strong>LM5050</strong>和一颗mosfet，配置成理想二极管。这样即使充电触点被恶意短接，也不会有任何意外。</p>
-<p>至于未来充电是触点，还是无线……让我看看口袋里还剩多少钱……</p>
-<ul>
-<li>WS2813 驱动电路</li>
-</ul>
-<p>WS2813的IO无法兼容3.3v操作电平，因此在其供电端串联二极管，以降低其Vcc。</p>
-<p>此外WS2813的数据口接在STM32的<strong>SPI</strong> TX管脚，并在软件中启动<strong>DMA</strong>传输数据，不额外占用cpu时间。</p>
-<p>在软件中同时维护了GRB显存和BIN原始码流。缺点是费点儿内存，但是架不住RAM大呀，小车上最多就100来个嘛，毫无压力。</p>
-<ul>
-<li>关于CubeMX</li>
-</ul>
-<p>其实在早些年我是鄙视CubeMX的，总觉得这样不够hardcore，不过如今依然逃不过真香定律。。。</p>
-<p>站在高处设计的感觉还是棒棒的，而且需要直接操作寄存器时，也有办法。</p>
-<p>整套stm32的开发体验在Linux环境下还算令人满意。</p>
-<ul>
-<li>PID 速度控制</li>
-</ul>
-<p>本来PID并不复杂也手写过几次，不过看到ARM <strong>CMSIS</strong>里有DSP版本的PID就索性试了试。</p>
-<p>教科书般经典的实现，似乎比我写的要好用？！关键是代码因此看起来非常简单。</p>
-<p>需要注意的是，Cortex M4核心的DSP毕竟比较简单，完整的32bit浮点是不支持的，我现在代码里用的f32类型其实并没有真的调用到DSP指令，最多是有硬件乘法器、除法器加成.</p>
-<p>要使用真的DSP加速（MAC），只能使用q15这种数据类型。使用这个数据类型需要一波归一化操作。我也是后来才学到，所以github中的代码还没有更新。</p>
-<ul>
-<li>stm32死机事件</li>
-</ul>
-<p>之前的调试都在我的笔记本上完成，最后上机时，第一次将控制板和小车主控电脑（目前是rk3399）用usb连接起来的时候，stm32居然死机了……</p>
-<p>最终我在自行车上想到了解决方法，在主控电脑上删除了 modem manager的包……</p>
-<p>原因是stm32的usb cdc实现在linux看来是一个ACM设备，不过并没有实现modem类的其它调用，如果存在modem manger， linux系统会发起设备类查询，就把stm32被逼死了……所以如果只是用串口的话，最偷懒的方法就是删掉这个包。。。</p>
-<ul>
-<li>手柄功能</li>
-</ul>
-<p>左手摇杆控制前、后、左、右方向，右手油门如果完全松开是蠕动模式。<br>右手摇杆目前是旋转功能。</p>
-<p>其它按键暂时还没有用上，以后可能也不会用上了。</p>
+<h2 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h2><p>不管怎么说，需要感谢TI所做的努力，可以在linux下相对完整得开发毫米波雷达器件。</p>
+<p>直接运行mmwave_sdk_03_04_xxxxxxx-Install.bin，弹出GUI安装对话框，选择安装路径，自动解压复制。</p>
+<p>完了之后，还需要运行</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mono-complete</span><br></pre></td></tr></tbody></table></figure>
+
+<p>为什么需要整套c#环境呢？因为<a href="/archives/62e757fa.html" title="如前文所述">如前文所述</a>, 器件内部有两个可编程逻辑块，需要分别写程序和编译，最后打包成一个bin文件供下载程序下载。</p>
+<p>TI的这个打包过程分了至少四步骤，每个步骤都有对应的二进制程序。</p>
+<p>TI为<strong>几乎</strong>每个二进制程序提供了windows的exe, 和Linux的32bit elf， 除了一个例外……</p>
+<p>这个例外就是<strong>out2rprc</strong>程序……</p>
+<p><img src="d7992bd/install_mono_why.png" alt="不管怎么说，还是要感谢TI"></p>
+<p>装好mono，就可以了跑了。</p>
 <hr>
-<h2 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h2><h3 id="决定最终的车载电脑"><a href="#决定最终的车载电脑" class="headerlink" title="决定最终的车载电脑"></a>决定最终的车载电脑</h3><p>目前的候选依旧是</p>
-<ul>
-<li>RK3399</li>
-<li>nVidia Jetson Nano</li>
-</ul>
-<p>RK3399的CPU要快过 jetson， 毕竟第二代双大核心加四个小核心 pk 第一代四个大核心。毛估估大部分的直线计算可能要快15%以上，有些则要更快。</p>
-<p>用jetson的理由无外就是cuda啦，虽然只是从tx1腰斩而来的阉割版本，全速计算还是有可观的算力。</p>
-<p>另外一个考量点，是各自对双目的支持水平，到时候可能要做一个简单的对比。</p>
-<h3 id="测试基于movidius双目模块"><a href="#测试基于movidius双目模块" class="headerlink" title="测试基于movidius双目模块"></a>测试基于movidius双目模块</h3><p>嗯</p>
-<h3 id="测试基于毫米波雷达的定位方式"><a href="#测试基于毫米波雷达的定位方式" class="headerlink" title="测试基于毫米波雷达的定位方式"></a>测试基于毫米波雷达的定位方式</h3><p>啊</p>
+<h2 id="UniFlash"><a href="#UniFlash" class="headerlink" title="UniFlash"></a>UniFlash</h2><p>UniFlash的安装和使用倒没有什么坑，GUI弹窗安装，GUI使用（也有cli模式）。</p>
+<p>不知道为什么，之前在Debian里用总是需要root权限才能正常识别，在Ubuntu里面倒是没有任何问题。。。</p>
+<hr>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>其实仅仅安装sdk就可以进行开发，ccs只是IDE。</p>
+<p>先来看看纯正unix风格的方式。</p>
+<p>在SDK的安装目录下，有一个子目录/packages/scripts/unix, 包含一个setenv.sh，source它就可以导入SDK固件需要的各种环境变量。默认使用的器件是xwr68xx， 如果用别的器件需要修改这个文件。</p>
+<p><img src="d7992bd/install_sdk_env.png" alt="导入环境变量"></p>
+<p>TI只提供了bash的版本，zsh直接导入会报错（不过其实也无关紧要，一样跑）</p>
+<p>接着进到SDK自带的demo目录。</p>
+<p><img src="d7992bd/install_make_demo.png" alt="进入demo目录"></p>
+<p>dss目录是 DSP核的代码<br>mss目录是 Cortex R核的代码</p>
+<p>看到makefile了嘛！</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j8 all</span><br></pre></td></tr></tbody></table></figure>
+
+<p>就能得到可以下载的bin文件。</p>
+<hr>
+<p>如果是GUI环境下的配置， 则要复杂一下。</p>
+<p>在安装完sdk后第一次打开ccs10, 会提示找到新的组建。</p>
+<p>在 [Resource Explorer] -&gt; [mmWave Sensors] -&gt; [Industrial Tollbox] -&gt; [Labs] 选择合适的例程，并导入到eclipse环境。</p>
+<p><img src="d7992bd/install_gui_build.png" alt="GUI导入"></p>
+<p>如果使用的是DSP版本， 则需要分别导入DSS项目和MSS项目。</p>
+<p>首先编译DSS部分， 应该没有问题问题，<br>然后编译MSS部分， 如果正确配置，一开始也没有问题，但是在最后会出现一堆乱七八糟的问题。</p>
+<p>经过一番折腾，发现这是CSS导入时的bug，没有针对linux环境做足够的测试。</p>
+<p>好在修改不难，在项目上右键，选择属性，弹框左侧选择Build, 右边找到Steps， 修改一些细节。。<br><img src="d7992bd/ccs10_image_creator.png" alt="导入程序的bug"></p>
+<p>最后，重新编译，就能得到可以下载的二进制程序。</p>
 <hr>
 <p>to be continued..</p>
 <script>
@@ -511,7 +507,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/archives/52155a9e.html">http://blog.tensor-robotics.com/archives/52155a9e.html</a>
+                    <a href="http://blog.tensor-robotics.com/archives/d7992bd.html">http://blog.tensor-robotics.com/archives/d7992bd.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -553,8 +549,12 @@
                                     <span class="chip bg-color">分享和生产知识</span>
                                 </a>
                             
-                                <a href="/tags/%E5%B0%8F%E8%BD%A6/">
-                                    <span class="chip bg-color">小车</span>
+                                <a href="/tags/%E9%9B%B7%E8%BE%BE/">
+                                    <span class="chip bg-color">雷达</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/">
+                                    <span class="chip bg-color">毫米波</span>
                                 </a>
                             
                         </div>
@@ -725,7 +725,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998",
-        id: '2020-06-14T14-20-39',
+        id: '2020-07-06T21-51-14',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -746,9 +746,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/archives/d7992bd.html">
                     <div class="card-image">
@@ -768,9 +769,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -783,6 +784,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -809,38 +811,43 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/62e757fa.html">
+                <a href="/archives/52155a9e.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="毫米波雷达 第四篇">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="闭门造车日记 第五篇">
                         
-                        <span class="card-title">毫米波雷达 第四篇</span>
+                        <span class="card-title">闭门造车日记 第五篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            毫米波雷达的选型器件经过一段时间的摸索，目前确定还是用国际大厂TI的芯片先练练手。
-选择器件为 IWR6843
-如前文所述，这是一颗集成式毫米波雷达SoC，主要技术特点：
+                            造车日记 milestone 1第一阶段达成
+基础机械完工
+基础电子完工
+基础软件完工
 
-60 - 64Ghz 连续调制，4GHz带宽
-3TX
-4RX
-Co
+达到使用遥控器控制的目标。
+
+开源驱动板电路
+固件和测试软件
+
+关于PCB目前github中的版本与实际稍微有些差异：
+
+去掉了SWD接口，并增加了B
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE/" class="post-category">
-                                    毫米波雷达
+                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/" class="post-category">
+                                    造车日记
                                 </a>
                             
                             
@@ -854,12 +861,8 @@ Co
                         <span class="chip bg-color">分享和生产知识</span>
                     </a>
                     
-                    <a href="/tags/%E9%9B%B7%E8%BE%BE/">
-                        <span class="chip bg-color">雷达</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/">
-                        <span class="chip bg-color">毫米波</span>
+                    <a href="/tags/%E5%B0%8F%E8%BD%A6/">
+                        <span class="chip bg-color">小车</span>
                     </a>
                     
                 </div>
@@ -1034,6 +1037,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
     <footer class="page-footer bg-color">
