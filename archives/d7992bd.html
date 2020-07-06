@@ -404,16 +404,17 @@
 <p>只好再次重新安装配置一次，权当记录。</p>
 <p>目前的版本是Ubuntu 20.04（focal）</p>
 <hr>
-<h2 id="从官方网站下载文件"><a href="#从官方网站下载文件" class="headerlink" title="从官方网站下载文件"></a>从官方网站下载文件</h2><ul>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>从官网获取：</p>
+<ul>
 <li>CCS10.0.0.00010_linux-x64.tar.gz</li>
 <li>mmwave_sdk_03_04_00_03-Linux-x86-Install.bin</li>
 <li>uniflash_sl.6.0.0.2710.run</li>
 </ul>
-<p><strong>CCS</strong>是TI的IDE，其实就是老派电子厂家最爱用的魔改eclipse……</p>
-<p><strong>mmwave_sd</strong>k则包含了毫米波雷达内建DSP的工具链、中间件等</p>
-<p><strong>uniflash</strong>则是TI专门给IWR/AWR系列器件提供的下载程序</p>
+<p><strong>CCS</strong> 是TI的IDE，其实就是老派电子厂家最爱用的魔改eclipse……</p>
+<p><strong>mmwave_sdk</strong> 包含了毫米波雷达内建DSP的工具链、中间件等</p>
+<p><strong>uniflash</strong> 是TI专门给IWR/AWR系列器件提供的下载程序</p>
 <hr>
-<h2 id="CCS10"><a href="#CCS10" class="headerlink" title="CCS10"></a>CCS10</h2><p>安装CCS10前，需要首先下载这些包<br>libc6:i386 libusb-0.1 libgconf libncurses5 libpython2.7 libtinfo5</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="CCS10"><a href="#CCS10" class="headerlink" title="CCS10"></a>CCS10</h3><p>安装CCS10前，需要首先下载这些包<br>libc6:i386 libusb-0.1 libgconf libncurses5 libpython2.7 libtinfo5</p>
 <p>注意，需要i386版本，因此如果系统原先没有安装过，需要</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --add-architecture i386</span><br></pre></td></tr></tbody></table></figure>
 
@@ -425,7 +426,7 @@
 <p>提示一下，最好设置一个好一点儿代理，国内下载速度，你懂的。。</p>
 <p>进入后，可以在[view]-&gt;[Resource Explorer]里选择下载对应的Toolbox，包含了更多examples和配置工具。</p>
 <hr>
-<h2 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h2><p>不管怎么说，需要感谢TI所做的努力，可以在linux下相对完整得开发毫米波雷达器件。</p>
+<h3 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h3><p>不管怎么说，需要感谢TI所做的努力，可以在linux下相对完整得开发毫米波雷达器件。</p>
 <p>直接运行mmwave_sdk_03_04_xxxxxxx-Install.bin，弹出GUI安装对话框，选择安装路径，自动解压复制。</p>
 <p>完了之后，还需要运行</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mono-complete</span><br></pre></td></tr></tbody></table></figure>
@@ -437,7 +438,7 @@
 <p><img src="d7992bd/install_mono_why.png" alt="不管怎么说，还是要感谢TI"></p>
 <p>装好mono，就可以了跑了。</p>
 <hr>
-<h2 id="UniFlash"><a href="#UniFlash" class="headerlink" title="UniFlash"></a>UniFlash</h2><p>UniFlash的安装和使用倒没有什么坑，GUI弹窗安装，GUI使用（也有cli模式）。</p>
+<h3 id="UniFlash"><a href="#UniFlash" class="headerlink" title="UniFlash"></a>UniFlash</h3><p>UniFlash的安装和使用倒没有什么坑，GUI弹窗安装，GUI使用（也有cli模式）。</p>
 <p>不知道为什么，之前在Debian里用总是需要root权限才能正常识别，在Ubuntu里面倒是没有任何问题。。。</p>
 <hr>
 <h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="命令行式"><a href="#命令行式" class="headerlink" title="命令行式"></a>命令行式</h3><p>其实仅仅安装sdk就可以进行开发，ccs只是IDE。</p>
