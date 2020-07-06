@@ -455,11 +455,12 @@
 <p>就能得到可以下载的bin文件。</p>
 <hr>
 <h3 id="IDE式"><a href="#IDE式" class="headerlink" title="IDE式"></a>IDE式</h3><p>如果是GUI环境下的配置， 操作则要复杂一些，还有一些坑。</p>
-<p>在安装完sdk后第一次打开ccs10, 会提示找到新的组建。</p>
-<p>在 [Resource Explorer] -&gt; [mmWave Sensors] -&gt; [Industrial Tollbox] -&gt; [Labs] 选择合适的例程，并导入到eclipse环境。</p>
+<p>安装完sdk后, 第一次打开CCS10, 会提示找到新的组件。</p>
+<p>从 [Resource Explorer] -&gt; [mmWave Sensors] -&gt; [Industrial Tollbox] -&gt; [Labs] 选择合适的例程，并导入到eclipse环境。</p>
 <p><img src="d7992bd/install_gui_build.png" alt="GUI导入"></p>
 <p>如果使用的是DSP版本， 则需要分别导入DSS项目和MSS项目。</p>
-<p>首先编译DSS部分， 应该没有问题问题，<br>然后编译MSS部分， 如果正确配置，一开始也没有问题，但是在最后会出现一堆乱七八糟的问题。</p>
+<p>首先编译DSS部分， 应该没有什么问题嗒</p>
+<p>然后编译MSS部分， 如果正确配置，一开始也不会有问题，但是在最后会出现一堆乱七八糟的报错。</p>
 <p><del>当时慌得一米</del> 经过一番折腾，发现这是CCS导入工程时的bug，没有针对Linux环境做足够的测试。</p>
 <p>好在修改不难，在项目上右键，选择属性，弹框左侧选择Build, 右边找到Steps， 修改一些细节。。<br><img src="d7992bd/ccs10_image_creator.png" alt="导入程序的bug"></p>
 <p>最后，重新编译，就能得到可以下载的二进制程序。</p>
