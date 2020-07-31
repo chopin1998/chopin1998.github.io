@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="闭门造车日记 第六篇, welcome">
+    <meta name="keywords" content="闭门造车日记 第七篇, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>闭门造车日记 第六篇 | welcome</title>
+    <title>闭门造车日记 第七篇 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">闭门造车日记 第六篇</h1>
+                    <h1 class="description center-align post-title">闭门造车日记 第七篇</h1>
                 </div>
             </div>
         </div>
@@ -373,7 +373,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-15
+                    2020-07-31
                 </div>
                 
 
@@ -382,7 +382,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    980
+                    583
                 </div>
                 
 
@@ -395,73 +395,54 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="造车日记-第六篇"><a href="#造车日记-第六篇" class="headerlink" title="造车日记 第六篇"></a>造车日记 第六篇</h1><h2 id="第二阶段alpha"><a href="#第二阶段alpha" class="headerlink" title="第二阶段alpha"></a>第二阶段alpha</h2><p><video src="371b1147/stage2_alpha.mp4" type="video/mp4" controls="controls" width="50%" height="50%"></video></p>
-<p>下面准备整合毫米波雷达。</p>
-<p>不过在这之前，需要先把ROS搞定，因为我已经快要受不了“裸奔”的状态了。</p>
-<p>然而在整合ROS之前，我又看了一眼仿真器。</p>
+                <h1 id="造车日记-模拟器的SLAM初试"><a href="#造车日记-模拟器的SLAM初试" class="headerlink" title="造车日记 模拟器的SLAM初试"></a>造车日记 模拟器的SLAM初试</h1><p>本来挺简单的过程，但是因为各种版本的问题，折腾了很久。</p>
+<p>dashing自带的程序似乎有问题。。</p>
+<p>下面使用的是ROS2 foxy版本。</p>
 <hr>
-<h2 id="机器人仿真软件"><a href="#机器人仿真软件" class="headerlink" title="机器人仿真软件"></a>机器人仿真软件</h2><p>维基百科中有一篇对目前主流的机器人仿真软件进行了详细的比对</p>
-<p><a href="https://en.wikipedia.org/wiki/Robotics_simulator" target="_blank" rel="noopener">戳这里</a></p>
-<p>我目前选择了<a href="https://www.cyberbotics.com/" target="_blank" rel="noopener">webots</a></p>
-<p>这货原本是个商业软件，但是2018年后拥抱了开源。</p>
-<p>几番学习和试用之后，感觉蛮好玩的，在此介绍一下。</p>
+<h2 id="准备好必要的软件包。"><a href="#准备好必要的软件包。" class="headerlink" title="准备好必要的软件包。"></a>准备好必要的软件包。</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p turtlebot3_ws/src</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> turtlebot3_ws</span><br><span class="line"></span><br><span class="line">$ wget https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/ros2/turtlebot3.repos</span><br><span class="line"></span><br><span class="line">$ vcs import src &lt; turtlebot3.repos</span><br><span class="line"></span><br><span class="line">$ colcon build --symlink-install</span><br></pre></td></tr></tbody></table></figure>
+
+<p>编译成功。</p>
 <hr>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>安装配置什么的就不用说了，Linux下面都是一条命令的事儿。</p>
-<p>先介绍几个概念</p>
+<h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/turtlebot3_ws/install/setup.zsh</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后将  turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/models 里的所有目录全部软链接到 <strong>~/.gazebo/models/</strong>里，或者每次使用前 申明一下环境变量<strong>$GAZEBO_MODEL_PATH</strong></p>
+<p>最后，申明环境变量TURTLEBOT3_MODEL</p>
+<figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> TURTLEBOT3_MODEL=waffle</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这样就完成了环境准备。</p>
+<p>注意下面的操作，每新开一个terminal，都需要执行上述操作。</p>
 <hr>
-<h3 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h3><p>从全局来看，使用模拟器进行机器人开发的步骤包含：</p>
-<ul>
-<li>建立和导入 环境、机械、传感器等模型</li>
-<li>编写控制程序</li>
-<li>进行仿真</li>
-<li>放到真机中实测</li>
-</ul>
+<h2 id="打开gazebo-模拟环境"><a href="#打开gazebo-模拟环境" class="headerlink" title="打开gazebo 模拟环境"></a>打开gazebo 模拟环境</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这时应该能看到gazebo环境被启动</p>
+<p><img src="e51b66d8/sim_gazebo.png" alt="一个3x3的迷宫？"></p>
 <hr>
-<h3 id="世界（World）"><a href="#世界（World）" class="headerlink" title="世界（World）"></a>世界（World）</h3><p>在一个webots项目中，有一个唯一的 <strong>*.wbt</strong> 文件。</p>
-<p>这个文件就是当前的“<strong>世界</strong>”，包含了机器人（群）和它（们）所处环境的三维描述。</p>
-<p>所有对象的位置、方向、几何形状、外观、物理属性等一切信息都包含其中。</p>
-<p>wbt使用结构化存储，可以包含其他文件（例如用CAD软件生成的模型）。</p>
-<p>但是wbt不包含任何可执行代码。</p>
+<h2 id="打开-slam建图"><a href="#打开-slam建图" class="headerlink" title="打开 slam建图"></a>打开 slam建图</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True</span><br></pre></td></tr></tbody></table></figure>
+<p>这时能看到rviz和gazebo同窗</p>
+<p><img src="e51b66d8/sim_rviz.png" alt="一个是SLAM数据可视化，一个物理环境模拟，"></p>
 <hr>
-<h3 id="控制器（Controller）"><a href="#控制器（Controller）" class="headerlink" title="控制器（Controller）"></a>控制器（Controller）</h3><p>webots中的控制器，就是一段计算机代码，它实际控制世界中的机器人行为。webots支持的语言有：</p>
-<ul>
-<li>C/ C++</li>
-<li>Python</li>
-<li>其它（Java/ Matlab）</li>
-</ul>
-<p>当模拟器运行的时候，webots启动对应的控制器，每一个控制器对应一个操作系统进程。</p>
+<h2 id="操作-机器人"><a href="#操作-机器人" class="headerlink" title="操作 机器人"></a>操作 机器人</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 run turtlebot3_teleop teleop_keyboard</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="e51b66d8/sim_teleop.png" alt="键盘操作计算机"></p>
+<p>通过按键让机器人在环境中走动，机器人的深度传感器就同时会对环境进行扫描和建图。</p>
 <hr>
-<h3 id="超级控制器（Supervisor-Controller）"><a href="#超级控制器（Supervisor-Controller）" class="headerlink" title="超级控制器（Supervisor Controller）"></a>超级控制器（Supervisor Controller）</h3><p>在wbt中定义的机器人Robot会有很多属性，当其中的”supervisor”域被置位”TRUE”的时候，这个机器人的控制器将会有额外的权限，通常是控制模拟器本身的行为，例如将机器人瞬间移动到一个位置，或者进行模拟的视频录制等等。</p>
+<h2 id="存图"><a href="#存图" class="headerlink" title="存图"></a>存图</h2><p>当机器人走了一段路程，传感器已经覆盖全部环境时，停下机器人。保存地图</p>
+<figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 run nav2_map_server map_saver_cli -f ~/map</span><br></pre></td></tr></tbody></table></figure>
+
+<p>正确运行的话， 在指定目录就会出现两个地图文件。</p>
+<p>这时关闭cartographer 和 teleop_keyboard。</p>
 <hr>
-<h2 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h2><p>随便打开一个webots自带的例子</p>
-<p><video src="371b1147/shrimp.mp4" type="video/mp4" controls="controls" width="50%" height="50%"></video></p>
-<p>当模拟器进入工作状态后，显卡将一直出于工作状态，在我的笔记本上(thinkpad T480s), 如果用intel 集成显卡，复杂一点儿3D界面会有卡顿，甚至会影响到其它GUI程序的流畅度，如果切换成让mx150去渲染的话，整个过程会丝滑很多。</p>
+<h2 id="使用地图导航"><a href="#使用地图导航" class="headerlink" title="使用地图导航"></a>使用地图导航</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/marco/map.yaml</span><br></pre></td></tr></tbody></table></figure>
+
+<p>注意地图文件的路径一定要用 <strong>绝对路径</strong> 。。。<strong>不要问我是怎么知道的</strong>。。。。</p>
+<p>RVIZ和Gazebo再度同窗。</p>
+<p>但是此时，机器人尚不知道自己的初始位置，需要人工标定出来。</p>
+<p>使用RVIZ界面里的 “2D Pose Estimate” 按钮， 对比Gazebo中的实际位置，在RVIZ里点出初始位置。</p>
+<p>只要误差不要太大就可以。</p>
+<p>之后ROS2 的NAV2系统就进入工作状态。</p>
+<p><img src="e51b66d8/sim_init_pose.png" alt="人工指明初始位置"></p>
 <hr>
-<h2 id="从头创建一个真正的例子"><a href="#从头创建一个真正的例子" class="headerlink" title="从头创建一个真正的例子"></a>从头创建一个真正的例子</h2><h3 id="创世纪"><a href="#创世纪" class="headerlink" title="创世纪"></a>创世纪</h3><p><img src="371b1147/create_world.gif" alt="记得使用独立显卡加载"></p>
-<p>新建一个项目，选上默认的场景和灯光。。</p>
-<p>完了之后，左侧的节点树中会增加一些东西。</p>
-<hr>
-<h3 id="零号号机器人"><a href="#零号号机器人" class="headerlink" title="零号号机器人"></a>零号号机器人</h3><p>在世界里添加一个机器人。</p>
-<p><img src="371b1147/add_a_bot.gif" alt="先使用webots自带的机器人"></p>
-<p><a href="http://www.e-puck.org/" target="_blank" rel="noopener">e-puck</a> 是一个mini机器人，使用一对差速轮控制。</p>
-<hr>
-<h3 id="修改行为"><a href="#修改行为" class="headerlink" title="修改行为"></a>修改行为</h3><p>正如前文所述，每个机器人都一个控制器选项，默认的控制器代码，是一个简单的防止碰撞代码。</p>
-<p>现在把它改掉，改成”extern”</p>
-<p><img src="371b1147/control_property.png" alt="也就是让外部程序来控制webots里的robot"></p>
-<hr>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>现在来编写一个ros node， 同时导入webots的模块，成为ROS和 webots的中介。</p>
-<p>打开iPython， 键入如下代码<br><img src="371b1147/controller_code.png" alt="最后一行的回车慢点儿输入"></p>
-<p>当最后一行输入的时候，注意webots已经受到程序控制。</p>
-<p>同时，一个新的ros 节点也会被创建出来， 像这样</p>
-<p><img src="371b1147/ros_node_up.png" alt="初始化节点"></p>
-<hr>
-<p>继续输入代码<br><img src="371b1147/spin.gif" alt="spin!"></p>
-<ul>
-<li>分别获取左右电机的控制描述符</li>
-<li>设置成速度控制模式，并让左右轮相反转动</li>
-<li>让ROS节点运行起来</li>
-</ul>
-<p>最后就能看到webots里的机器人，被这个ipython里的脚本控制得团团转。</p>
+<p>再次使用RVIZ里的“Navigation2 Goal” 在地图上选择目的地， 这时nav2就会规划出路线，并自动驱动机器人在路线上行走到目标位置。</p>
 <hr>
 <p>to be continued…</p>
 <script>
@@ -507,7 +488,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/archives/371b1147.html">http://blog.tensor-robotics.com/archives/371b1147.html</a>
+                    <a href="http://blog.tensor-robotics.com/archives/e51b66d8.html">http://blog.tensor-robotics.com/archives/e51b66d8.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -721,7 +702,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998",
-        id: '2020-07-15T21-22-11',
+        id: '2020-07-31T21-28-42',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -742,9 +723,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/archives/e51b66d8.html">
                     <div class="card-image">
@@ -766,9 +748,9 @@ dashing自带的程序似乎有问题。。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -781,6 +763,7 @@ dashing自带的程序似乎有问题。。
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -803,33 +786,36 @@ dashing自带的程序似乎有问题。。
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/d7992bd.html">
+                <a href="/archives/371b1147.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="毫米波雷达 第五篇">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="闭门造车日记 第六篇">
                         
-                        <span class="card-title">毫米波雷达 第五篇</span>
+                        <span class="card-title">闭门造车日记 第六篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在LinuX环境下配置TI毫米波雷达开发环境从Debian到Ubuntu本来已经在Debian下工作得不错，不过最近因为要学习ROS，居然把用了十多年的Debian给换成了Ubuntu。。。。。
-虽然是大厂出品，但其中还有一些小坑。
-只好再
+                            造车日记 第六篇第二阶段alpha
+下面准备整合毫米波雷达。
+不过在这之前，需要先把ROS搞定，因为我已经快要受不了“裸奔”的状态了。
+然而在整合ROS之前，我又看了一眼仿真器。
+
+机器人仿真软件维基百科中有一篇对目前主流的机器人仿真软件进
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE/" class="post-category">
-                                    毫米波雷达
+                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/" class="post-category">
+                                    造车日记
                                 </a>
                             
                             
@@ -843,12 +829,8 @@ dashing自带的程序似乎有问题。。
                         <span class="chip bg-color">分享和生产知识</span>
                     </a>
                     
-                    <a href="/tags/%E9%9B%B7%E8%BE%BE/">
-                        <span class="chip bg-color">雷达</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%AF%AB%E7%B1%B3%E6%B3%A2/">
-                        <span class="chip bg-color">毫米波</span>
+                    <a href="/tags/%E5%B0%8F%E8%BD%A6/">
+                        <span class="chip bg-color">小车</span>
                     </a>
                     
                 </div>

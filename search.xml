@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>闭门造车日记 第七篇</title>
+      <link href="/archives/e51b66d8.html"/>
+      <url>/archives/e51b66d8.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="造车日记-模拟器的SLAM初试"><a href="#造车日记-模拟器的SLAM初试" class="headerlink" title="造车日记 模拟器的SLAM初试"></a>造车日记 模拟器的SLAM初试</h1><p>本来挺简单的过程，但是因为各种版本的问题，折腾了很久。</p><p>dashing自带的程序似乎有问题。。</p><p>下面使用的是ROS2 foxy版本。</p><hr><h2 id="准备好必要的软件包。"><a href="#准备好必要的软件包。" class="headerlink" title="准备好必要的软件包。"></a>准备好必要的软件包。</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p turtlebot3_ws/src</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> turtlebot3_ws</span><br><span class="line"></span><br><span class="line">$ wget https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/ros2/turtlebot3.repos</span><br><span class="line"></span><br><span class="line">$ vcs import src &lt; turtlebot3.repos</span><br><span class="line"></span><br><span class="line">$ colcon build --symlink-install</span><br></pre></td></tr></tbody></table></figure><p>编译成功。</p><hr><h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/turtlebot3_ws/install/setup.zsh</span><br></pre></td></tr></tbody></table></figure><p>然后将  turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/models 里的所有目录全部软链接到 <strong>~/.gazebo/models/</strong>里，或者每次使用前 申明一下环境变量<strong>$GAZEBO_MODEL_PATH</strong></p><p>最后，申明环境变量TURTLEBOT3_MODEL</p><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> TURTLEBOT3_MODEL=waffle</span><br></pre></td></tr></tbody></table></figure><p>这样就完成了环境准备。</p><p>注意下面的操作，每新开一个terminal，都需要执行上述操作。</p><hr><h2 id="打开gazebo-模拟环境"><a href="#打开gazebo-模拟环境" class="headerlink" title="打开gazebo 模拟环境"></a>打开gazebo 模拟环境</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py</span><br></pre></td></tr></tbody></table></figure><p>这时应该能看到gazebo环境被启动</p><p><img src="e51b66d8/sim_gazebo.png" alt="一个3x3的迷宫？"></p><hr><h2 id="打开-slam建图"><a href="#打开-slam建图" class="headerlink" title="打开 slam建图"></a>打开 slam建图</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True</span><br></pre></td></tr></tbody></table></figure><p>这时能看到rviz和gazebo同窗</p><p><img src="e51b66d8/sim_rviz.png" alt="一个是SLAM数据可视化，一个物理环境模拟，"></p><hr><h2 id="操作-机器人"><a href="#操作-机器人" class="headerlink" title="操作 机器人"></a>操作 机器人</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 run turtlebot3_teleop teleop_keyboard</span><br></pre></td></tr></tbody></table></figure><p><img src="e51b66d8/sim_teleop.png" alt="键盘操作计算机"></p><p>通过按键让机器人在环境中走动，机器人的深度传感器就同时会对环境进行扫描和建图。</p><hr><h2 id="存图"><a href="#存图" class="headerlink" title="存图"></a>存图</h2><p>当机器人走了一段路程，传感器已经覆盖全部环境时，停下机器人。保存地图</p><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 run nav2_map_server map_saver_cli -f ~/map</span><br></pre></td></tr></tbody></table></figure><p>正确运行的话， 在指定目录就会出现两个地图文件。</p><p>这时关闭cartographer 和 teleop_keyboard。</p><hr><h2 id="使用地图导航"><a href="#使用地图导航" class="headerlink" title="使用地图导航"></a>使用地图导航</h2><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/marco/map.yaml</span><br></pre></td></tr></tbody></table></figure><p>注意地图文件的路径一定要用 <strong>绝对路径</strong> 。。。<strong>不要问我是怎么知道的</strong>。。。。</p><p>RVIZ和Gazebo再度同窗。</p><p>但是此时，机器人尚不知道自己的初始位置，需要人工标定出来。</p><p>使用RVIZ界面里的 “2D Pose Estimate” 按钮， 对比Gazebo中的实际位置，在RVIZ里点出初始位置。</p><p>只要误差不要太大就可以。</p><p>之后ROS2 的NAV2系统就进入工作状态。</p><p><img src="e51b66d8/sim_init_pose.png" alt="人工指明初始位置"></p><hr><p>再次使用RVIZ里的“Navigation2 Goal” 在地图上选择目的地， 这时nav2就会规划出路线，并自动驱动机器人在路线上行走到目标位置。</p><hr><p>to be continued…</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 造车日记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 分享和生产知识 </tag>
+            
+            <tag> 小车 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>闭门造车日记 第六篇</title>
       <link href="/archives/371b1147.html"/>
       <url>/archives/371b1147.html</url>
