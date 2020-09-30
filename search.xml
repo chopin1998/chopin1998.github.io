@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>关于ToF 番五</title>
+      <link href="/archives/6b4c85d7.html"/>
+      <url>/archives/6b4c85d7.html</url>
+      
+        <content type="html"><![CDATA[<p>一些照片和效果展示</p><p><img src="6b4c85d7/1.jpg" alt="1"></p><p><img src="6b4c85d7/2.jpg" alt="2"></p><p><img src="6b4c85d7/3.jpg" alt="3"></p><p><video src="6b4c85d7/v.mp4" type="video/mp4" controls="controls" width="50%" height="50%"></video></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> ToF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 生产和分享知识 </tag>
+            
+            <tag> ToF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>闭门造车日记 第七篇</title>
       <link href="/archives/e51b66d8.html"/>
       <url>/archives/e51b66d8.html</url>
