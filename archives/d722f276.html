@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于ToF 番五, welcome">
+    <meta name="keywords" content="编译安装ORB-SLAM3, welcome">
     <meta name="description" content="还记得年少时的梦吗">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于ToF 番五 | welcome</title>
+    <title>编译安装ORB-SLAM3 | welcome</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -222,12 +222,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于ToF 番五</h1>
+                    <h1 class="description center-align post-title">编译安装ORB-SLAM3</h1>
                 </div>
             </div>
         </div>
@@ -348,8 +348,8 @@
                                 <span class="chip bg-color">生产和分享知识</span>
                             </a>
                         
-                            <a href="/tags/ToF/">
-                                <span class="chip bg-color">ToF</span>
+                            <a href="/tags/SLAM/">
+                                <span class="chip bg-color">SLAM</span>
                             </a>
                         
                     </div>
@@ -360,8 +360,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/ToF/" class="post-category">
-                                ToF
+                            <a href="/categories/CS/" class="post-category">
+                                CS
                             </a>
                         
                     </div>
@@ -373,7 +373,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-30
+                    2020-12-08
                 </div>
                 
 
@@ -382,7 +382,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    125
+                    670
                 </div>
                 
 
@@ -395,20 +395,69 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>一些照片和效果展示</p>
-<p><img src="6b4c85d7/1.jpg" alt="1"></p>
-<p><img src="6b4c85d7/2.jpg" alt="2"></p>
-<p><img src="6b4c85d7/3.jpg" alt="3"></p>
-<p><video src="6b4c85d7/v.mp4" type="video/mp4" controls="controls" width="50%" height="50%"></video></p>
-<p>字越少，事儿越大。</p>
+                <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><h3 id="联想台式机，配置很奇葩"><a href="#联想台式机，配置很奇葩" class="headerlink" title="联想台式机，配置很奇葩"></a>联想台式机，配置很奇葩</h3><ul>
+<li>CPU Intel(R) Core(TM) <strong>i7-9700</strong> CPU @ 3.00GHz</li>
+<li>NVIDIA Corporation GK208B [<strong>GeForce GT 730</strong>]</li>
+<li>2 * 8G RAM</li>
+</ul>
+<h3 id="RK3399-SBC"><a href="#RK3399-SBC" class="headerlink" title="RK3399 SBC"></a><strong>RK3399</strong> SBC</h3><ul>
+<li>4G RAM</li>
+</ul>
+<h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><ul>
+<li>mkdir -p build/orb_slam3</li>
+<li>cd build/orb_slam3/</li>
+<li>git clone <a href="https://github.com/UZ-SLAMLab/ORB_SLAM3.git" target="_blank" rel="noopener">https://github.com/UZ-SLAMLab/ORB_SLAM3.git</a></li>
+</ul>
+<p><img src="d722f276/top_tree.jpg" alt="顶层目录"></p>
+<h2 id="准备依赖"><a href="#准备依赖" class="headerlink" title="准备依赖"></a>准备依赖</h2><h3 id="Pangolin"><a href="#Pangolin" class="headerlink" title="Pangolin"></a>Pangolin</h3><p>这是一个轻量级的opengl 显示和交互开发库。demo code用到的。<br>然后apt 安装一些其它的依赖， 就可以编译安装Pangolin。</p>
+<ul>
+<li><p>sudo apt install libgl1-mesa-dev libglew-dev</p>
+</li>
+<li><p>sudo apt install libegl1-mesa-dev libwayland-dev libxkbcommon-dev wayland-protocols</p>
+</li>
+<li><p>sudo apt install ffmpeg libavcodec-dev libavutil-dev libavformat-dev libswscale-dev libavdevice-dev</p>
+</li>
+<li><p>sudo pip –no-cache install pyopengl Pillow pybind11</p>
+</li>
+<li><p>git clone <a href="https://github.com/stevenlovegrove/Pangolin" target="_blank" rel="noopener">https://github.com/stevenlovegrove/Pangolin</a></p>
+</li>
+<li><p>cd Pangolin; mkdir build; cd build; cmake ../; cmake –build .; sudo make install</p>
+</li>
+</ul>
+<h3 id="Opencv-3-2"><a href="#Opencv-3-2" class="headerlink" title="Opencv 3.2"></a>Opencv 3.2</h3><p>在更新的发行版本里，自带的opencv 4.x不能通过编译。。所以只能使用老一些的版本，比如ubuntu18.04，或者自行编译一套老版本的opencv</p>
+<ul>
+<li>sudo apt install libopencv-dev</li>
+</ul>
+<h3 id="DBoW2-g2o"><a href="#DBoW2-g2o" class="headerlink" title="DBoW2 / g2o"></a>DBoW2 / g2o</h3><p>这里使用修改的版本，已经包含在源代码 的ORB_SLAM3/Thirdparty中，不需要额外下载。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>可以使用orb_slam3中自带的编译脚本<strong>“build.sh</strong>“<br>build.sh 其实就是分别编译DBoW2/ g2o, 解压特征字典，最后编译ORB_Slam自身。</p>
+<p><img src="d722f276/base_dir_ls.jpg" alt=""></p>
+<p>但在RK3399上，需要将脚本内的<strong>make -j</strong> 参数修改成<strong>2</strong>，否则。。。。</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>Orb_slam自带了测试程序，需要额外下载配套的数据集。<br>可以从<a href="https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets" target="_blank" rel="noopener">这里获取</a></p>
+<p><img src="d722f276/download.jpg" alt="如果是独立运行，选择ASL格式"></p>
+<p><img src="d722f276/dataset.jpg" alt="部分数据集，仅压缩包就>10G，加钱警告，世界触手可及"></p>
 <hr>
-<p>接下来还要捣鼓捣鼓，跑到ROS2上。</p>
-<p>然后呢， 正式做adapter板。</p>
+<p>下载好后，修改一下 <strong>euroc_examples.sh</strong>，将文件开头的数据集路径修改成刚刚解压的位置。</p>
+<p>直接运行就可以。</p>
+<p>euroc_examples.sh 会顺序的以不同方式运行各种数据集。当然也可以挑其中单独一个来运行。</p>
+<p>比如，以单摄像头配合IMU运行， 就类似这样：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./Examples/Monocular-Inertial/mono_inertial_euroc ./Vocabulary/ORBvoc.txt ./Examples/Monocular-Inertial/EuRoC.yaml <span class="string">"<span class="variable">$pathDatasetEuroc</span>"</span>/V102 ./Examples/Monocul\</span><br><span class="line">ar-Inertial/EuRoC_TimeStamps/V102.txt dataset-V102_monoi</span><br></pre></td></tr></tbody></table></figure>
+
 <hr>
-<p>结束了吗？</p>
-<p>如今ToF步入主流技术三分天下的局面，好玩儿的事儿还在后面呢。</p>
-<p>拭目以待</p>
-<p>.end</p>
+<p>首先会加载字典，需要等待一下下。。。</p>
+<p>突然！</p>
+<p><img src="d722f276/running.jpg" alt="跳出两个激动人心的窗口"></p>
+<hr>
+<p>台式机加载字典时，单核100%，几秒钟，RK3399要久一点儿， 大概十几秒。 网上有针对ORB_SLAM2的优化，将字典binary，可以加速。</p>
+<p>SLAM模式运行时，台式机双核工作（也可能是超线程）， cpu 功耗13~15瓦左右，非常流畅。</p>
+<p>但在RK3399上则卡顿很多，目测5fps左右。 网上有针对ORB_SLAM2的 特殊优化，可以跑在CUDA上，以及使用优化的opencv库，据说有数倍的效能提升。</p>
+<hr>
+<p>下一步：</p>
+<ul>
+<li>尝试真实硬件运行</li>
+<li>尝试整合程序</li>
+<li>尝试优化速度</li>
+</ul>
+<p>to be continued..</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -452,7 +501,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.tensor-robotics.com/archives/6b4c85d7.html">http://blog.tensor-robotics.com/archives/6b4c85d7.html</a>
+                    <a href="http://blog.tensor-robotics.com/archives/d722f276.html">http://blog.tensor-robotics.com/archives/d722f276.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -494,8 +543,8 @@
                                     <span class="chip bg-color">生产和分享知识</span>
                                 </a>
                             
-                                <a href="/tags/ToF/">
-                                    <span class="chip bg-color">ToF</span>
+                                <a href="/tags/SLAM/">
+                                    <span class="chip bg-color">SLAM</span>
                                 </a>
                             
                         </div>
@@ -666,7 +715,7 @@
         repo: 'chopin1998.github.io',
         owner: 'chopin1998',
         admin: "chopin1998",
-        id: '2020-09-30T21-52-11',
+        id: '2020-12-08T01-02-29',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -687,9 +736,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/archives/d722f276.html">
                     <div class="card-image">
@@ -712,9 +762,9 @@ RK3399
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -727,6 +777,7 @@ RK3399
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -749,43 +800,46 @@ RK3399
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/e51b66d8.html">
+                <a href="/archives/6b4c85d7.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="闭门造车日记 第七篇">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="关于ToF 番五">
                         
-                        <span class="card-title">闭门造车日记 第七篇</span>
+                        <span class="card-title">关于ToF 番五</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            造车日记 模拟器的SLAM初试本来挺简单的过程，但是因为各种版本的问题，折腾了很久。
-dashing自带的程序似乎有问题。。
-下面使用的是ROS2 foxy版本。
+                            一些照片和效果展示
 
-准备好必要的软件包。123456789mkdir -p turtlebot
+
+
+
+字越少，事儿越大。
+
+接下来还要捣鼓捣鼓，跑到ROS2上。
+然后呢， 正式做adapter板。
+
+结束了吗？
+如今ToF步入主流技术三分天下的局面，好玩儿的事儿还在后面呢。
+拭目以待
+.end
+
+        
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-30
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/" class="post-category">
-                                    造车日记
-                                </a>
-                            
-                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/CS/" class="post-category">
-                                    CS
-                                </a>
-                            
-                            <a href="/categories/%E9%80%A0%E8%BD%A6%E6%97%A5%E8%AE%B0/CS/ROS/" class="post-category">
-                                    ROS
+                            <a href="/categories/ToF/" class="post-category">
+                                    ToF
                                 </a>
                             
                             
@@ -795,12 +849,12 @@ dashing自带的程序似乎有问题。。
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%88%86%E4%BA%AB%E5%92%8C%E7%94%9F%E4%BA%A7%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">分享和生产知识</span>
+                    <a href="/tags/%E7%94%9F%E4%BA%A7%E5%92%8C%E5%88%86%E4%BA%AB%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">生产和分享知识</span>
                     </a>
                     
-                    <a href="/tags/%E5%B0%8F%E8%BD%A6/">
-                        <span class="chip bg-color">小车</span>
+                    <a href="/tags/ToF/">
+                        <span class="chip bg-color">ToF</span>
                     </a>
                     
                 </div>
